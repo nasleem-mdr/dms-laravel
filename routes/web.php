@@ -1,7 +1,7 @@
 <?php
 
-use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,9 +22,27 @@ Route::get('/', function () {
 Route::view('dashboard', 'layouts.dashboard');
 
 //test role
-Route::middleware('has.role')->group(function () {
-    Route::view('dashboard', 'layouts.dashboard');
+Route::middleware('has.role')->prefix('xyz')->group(function () {
+    Route::view('dashboard', 'layouts.dashboard')->name('dashboard');
+
+    Route::prefix('role-and-permission')->namespace('Permissions')->group(function () {
+        Route::prefix('roles')->group(function () {
+            Route::get('', 'RoleController@index')->name('roles.index');
+            Route::post('create', 'RoleController@store')->name('roles.create');
+            Route::get('{role}/edit', 'RoleController@edit')->name('roles.edit');
+            Route::put('{role}/edit', 'RoleController@update');
+            Route::delete('{role}/delete', 'RoleController@destroy')->name('roles.delete');
+        });
+        Route::prefix('permissions')->group(function () {
+            Route::get('', 'PermissionController@index')->name('permissions.index');
+            Route::post('create', 'PermissionController@store')->name('permissions.create');
+            Route::get('{permission}/edit', 'PermissionController@edit')->name('permissions.edit');
+            Route::put('{permission}/edit', 'PermissionController@update');
+            Route::delete('{permission}/delete', 'PermissionController@destroy')->name('permissions.delete');
+        });
+    });
 });
+
 
 Auth::routes();
 

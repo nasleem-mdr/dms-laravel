@@ -34,7 +34,7 @@
 
                     @hasanyrole($roles)
                     <li class="nav-item">
-                        <a class="nav-link" href="/dashboard">{{ __('Dasboard') }}</a>
+                        <a class="nav-link" href="{{ route('dashboard') }}">{{ __('Dasboard') }}</a>
                     </li>
                     @endhasanyrole
 
