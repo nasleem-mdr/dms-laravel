@@ -21,7 +21,7 @@ Route::get('/', function () {
 
 Route::view('dashboard', 'layouts.dashboard');
 
-//test role
+
 Route::middleware('has.role')->prefix('xyz')->group(function () {
     Route::view('dashboard', 'layouts.dashboard')->name('dashboard');
 
