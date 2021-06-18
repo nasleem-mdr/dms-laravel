@@ -38,7 +38,7 @@
                 aria-current="true">
                 Permission
             </a>
-            <a href="#" class="list-group-item list-group-item-action" aria-current="true">
+            <a href="{{ route('assign.create') }}" class="list-group-item list-group-item-action" aria-current="true">
                 Assign Permission
             </a>
         </div>
