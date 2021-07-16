@@ -31,6 +31,11 @@ Route::middleware('has.role')->prefix('xyz')->group(function () {
         Route::post('assignable', 'AssignController@store');
         Route::get('assignable/{role}/edit', 'AssignController@edit')->name('assign.edit');
         Route::put('assignable/{role}/edit', 'AssignController@update');
+        //user
+        Route::get('assign/user', 'UserController@create')->name('assign.user.create');
+        Route::post('assign/user', 'UserController@store');
+        Route::get('assign/{user}/user', 'UserController@edit')->name('assign.user.edit');
+        Route::put('assign/{user}/user', 'UserController@update');
 
         Route::prefix('roles')->group(function () {
             Route::get('', 'RoleController@index')->name('roles.index');
@@ -46,6 +51,11 @@ Route::middleware('has.role')->prefix('xyz')->group(function () {
             Route::put('{permission}/edit', 'PermissionController@update');
             Route::delete('{permission}/delete', 'PermissionController@destroy')->name('permissions.delete');
         });
+    });
+
+    Route::prefix('navigation')->middleware('permission:create navigation')->group(function () {
+        Route::get('create', 'NavigationController@create')->name('navigation.create');
+        Route::post('create', 'NavigationController@store');
     });
 });
 

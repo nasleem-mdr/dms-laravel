@@ -28,8 +28,9 @@
     <div class="mb-5">
         <small class="d-block text-secondary  mb-2 text-uppercase">Role & Permission</small>
         <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action" aria-current="true">
-                Create new Users
+            <a href="{{ route('assign.user.create') }}" class="list-group-item list-group-item-action"
+                aria-current="true">
+                Permission To Users
             </a>
             <a href="{{ route('roles.index') }}" class="list-group-item list-group-item-action" aria-current="true">
                 Roles
@@ -41,6 +42,19 @@
             <a href="{{ route('assign.create') }}" class="list-group-item list-group-item-action" aria-current="true">
                 Assign Permission
             </a>
+        </div>
+    </div>
+    @endcan
+
+    @can('create_navigation')
+        <div class="mb-5">
+        <small class="d-block text-secondary  mb-2 text-uppercase">Navigation Setup</small>
+        <div class="list-group">
+            <a href="{{ route('navigation.create') }}" class="list-group-item list-group-item-action"
+                aria-current="true">
+                Create Navigation
+            </a>
+           
         </div>
     </div>
     @endcan
