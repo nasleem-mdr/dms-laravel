@@ -1,63 +1,20 @@
 <div>
-    @can('create user')
+
+    @foreach ($navigations as $navigation)
+    @can($navigation->permission_name)
     <div class="mb-4">
-        <small class="d-block text-secondary mb-2 text-uppercase ">User</small>
+        <small class="d-block text-secondary mb-2 text-uppercase ">{{ $navigation->name }}</small>
         <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action " aria-current="true">
-                Create new User
+            @foreach ($navigation->children as $child)
+            <a href="{{ url($child->url )}}" class="list-group-item list-group-item-action " aria-current="true">
+                {{ $child->name }}
             </a>
-            <a href="#" class="list-group-item list-group-item-action">Data Table User</a>
+            @endforeach
+
         </div>
     </div>
     @endcan
-
-    @can('create category')
-    <div class="mb-5">
-        <small class="d-block text-secondary  mb-2 text-uppercase">Cataegory</small>
-        <div class="list-group">
-
-            <a href="#" class="list-group-item list-group-item-action" aria-current="true">
-                Create new Category
-            </a>
-            <a href="#" class="list-group-item list-group-item-action">Data Table Category</a>
-        </div>
-    </div>
-    @endcan
-
-    @can('assign permission')
-    <div class="mb-5">
-        <small class="d-block text-secondary  mb-2 text-uppercase">Role & Permission</small>
-        <div class="list-group">
-            <a href="{{ route('assign.user.create') }}" class="list-group-item list-group-item-action"
-                aria-current="true">
-                Permission To Users
-            </a>
-            <a href="{{ route('roles.index') }}" class="list-group-item list-group-item-action" aria-current="true">
-                Roles
-            </a>
-            <a href="{{ route('permissions.index') }}" class="list-group-item list-group-item-action"
-                aria-current="true">
-                Permission
-            </a>
-            <a href="{{ route('assign.create') }}" class="list-group-item list-group-item-action" aria-current="true">
-                Assign Permission
-            </a>
-        </div>
-    </div>
-    @endcan
-
-    @can('create_navigation')
-        <div class="mb-5">
-        <small class="d-block text-secondary  mb-2 text-uppercase">Navigation Setup</small>
-        <div class="list-group">
-            <a href="{{ route('navigation.create') }}" class="list-group-item list-group-item-action"
-                aria-current="true">
-                Create Navigation
-            </a>
-           
-        </div>
-    </div>
-    @endcan
+    @endforeach
 
     <div class="mb-5">
         <small class="d-block text-secondary  mb-2 text-uppercase">Logout</small>

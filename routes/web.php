@@ -22,10 +22,10 @@ Route::get('/', function () {
 Route::view('dashboard', 'layouts.dashboard');
 
 
-Route::middleware('has.role')->prefix('xyz')->group(function () {
+Route::middleware('has.role')->group(function () {
     Route::view('dashboard', 'layouts.dashboard')->name('dashboard');
 
-    Route::prefix('role-and-permission')->namespace('Permissions')->group(function () {
+    Route::prefix('role-and-permission')->namespace('Permissions')->middleware('permission:assign permission')->group(function () {
 
         Route::get('assignable', 'AssignController@create')->name('assign.create');
         Route::post('assignable', 'AssignController@store');
@@ -56,6 +56,10 @@ Route::middleware('has.role')->prefix('xyz')->group(function () {
     Route::prefix('navigation')->middleware('permission:create navigation')->group(function () {
         Route::get('create', 'NavigationController@create')->name('navigation.create');
         Route::post('create', 'NavigationController@store');
+        Route::get('table', 'NavigationController@table')->name('navigation.table');
+        Route::get('{navigation}/edit', 'NavigationController@edit')->name('navigation.edit');
+        Route::put('{navigation}/edit', 'NavigationController@update');
+        Route::delete('{navigation}/delete', 'NavigationController@destroy')->name('navigation.delete');
     });
 });
 
