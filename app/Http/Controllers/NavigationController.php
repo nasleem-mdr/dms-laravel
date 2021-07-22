@@ -56,6 +56,12 @@ class NavigationController extends Controller
 
     public function update(Navigation $navigation)
     {
+        request()->validate([
+            'name' => 'required',
+            'permission_name' => 'required',
+
+        ]);
+
         $navigation->update([
             'name' => request('name'),
             'url' => request('url') ?? null,

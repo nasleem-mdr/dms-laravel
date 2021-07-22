@@ -61,6 +61,19 @@ Route::middleware('has.role')->group(function () {
         Route::put('{navigation}/edit', 'NavigationController@update');
         Route::delete('{navigation}/delete', 'NavigationController@destroy')->name('navigation.delete');
     });
+
+    Route::prefix('agency')->middleware('permission:create agency')->group(function () {
+        Route::get('create', 'AgencyController@create')->name('agency.create');
+        Route::post('create', 'AgencyController@store');
+        Route::get('table', 'AgencyController@index')->name('agency.table');
+        Route::get('{agency}', 'AgencyController@show')->name('agency.detail');
+        Route::get('{agency}/edit', 'AgencyController@edit')->name('agency.edit');
+        Route::put('{agency}/edit', 'AgencyController@update');
+        Route::delete('{agency}/delete', 'AgencyController@destroy')->name('agency.delete');
+    });
+
+    Route::prefix('position')->middleware('permission:create positions')->group(function () {
+    });
 });
 
 
