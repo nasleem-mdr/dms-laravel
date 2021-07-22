@@ -21,7 +21,7 @@
     </div>
 
     <div class="mt-5">
-      <h5>List Positions {{ $agency->name }}</h5>
+      <h5>List Positions at {{ $agency->name }}</h5>
     </div>
 
     <table class="table table-hover mt-0">
