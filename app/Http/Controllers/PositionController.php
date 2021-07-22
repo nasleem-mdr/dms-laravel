@@ -2,83 +2,78 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Agency;
+use App\Models\Position;
 use Illuminate\Http\Request;
 
 class PositionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+
+    public function index(Agency $agency)
     {
-        //
+        return view('position.table', [
+            'positions' => Position::get(),
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function show(Agency $agency, Position $position)
     {
-        //
+        return view('agency.position.show', [
+            'agency' => $agency,
+            'position' => $position,
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function create(Agency $agency)
     {
-        //
+        return view('agency.position.create', [
+            'position' => new Position,
+            'agency' => $agency,
+            'submit' => 'Create',
+        ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function store()
     {
-        //
+        request()->validate([
+            'position' => 'required',
+        ]);
+
+        $position = Position::create([
+            'position' => request('position'),
+            'agency_id' => request('agency_id'),
+        ]);
+        $agency = Agency::find(request('agency_id'));
+
+        return redirect()->route('agency.detail', $agency);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function edit(Agency $agency, Position $position)
     {
-        //
+        return view('agency.position.edit', [
+            'position' => $position,
+            'agency' => $agency,
+            'submit' => 'Update',
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(Agency $agency, Position $position)
     {
-        //
+
+        request()->validate([
+            'name' => 'required',
+        ]);
+
+        $agency->position->update([
+            'name' => request('name'),
+        ]);
+
+        return redirect()->route('position.table');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function destroy(Agency $agency, Position $position)
     {
-        //
+        $position->delete();
+        return redirect()->route('agency.detail', $agency);
     }
 }

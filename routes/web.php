@@ -70,9 +70,16 @@ Route::middleware('has.role')->group(function () {
         Route::get('{agency}/edit', 'AgencyController@edit')->name('agency.edit');
         Route::put('{agency}/edit', 'AgencyController@update');
         Route::delete('{agency}/delete', 'AgencyController@destroy')->name('agency.delete');
-    });
 
-    Route::prefix('position')->middleware('permission:create positions')->group(function () {
+        Route::prefix('{agency}/position')->middleware('permission:create positions')->group(function () {
+            Route::get('create', 'PositionController@create')->name('position.create');
+            Route::post('create', 'PositionController@store');
+            Route::get('table', 'PositionController@index')->name('position.table');
+            Route::get('{position}', 'PositionController@show')->name('position.detail');
+            Route::get('{position}/edit', 'PositionController@edit')->name('position.edit');
+            Route::put('{position}/edit', 'PositionController@update');
+            Route::delete('{position}/delete', 'PositionController@destroy')->name('position.delete');
+        });
     });
 });
 

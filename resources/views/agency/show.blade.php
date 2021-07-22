@@ -27,26 +27,24 @@
     <table class="table table-hover mt-0">
       <tr>
         <th>#</th>
-        <th>Name</th>
-        <th>Address</th>
-        <th>Contact</th>
+        <th>Position</th>
         <th>Action</th>
       </tr>
 
       @foreach ($agency->positions as $index => $position)
       <tr>
         <td>{{ $index + 1 }}</td>
-        <td>{{ $position->name }}</td>
+        <td>{{ $position->position }}</td>
         <td>
-          <a class="btn btn-primary " href="{{ route('position.detail', $position) }}">Detail</a>
-          <a class="btn btn-primary " href="{{ route('position.edit', $position) }}">Edit</a>
-          @include('position.delete', ['position'
+          <a class="btn btn-primary " href="{{ route('position.detail',[$agency, $position]) }}">Detail</a>
+          <a class="btn btn-primary " href="{{ route('position.edit', [$agency, $position]) }}">Edit</a>
+          @include('agency.position.delete', ['position'
           => $position])</td>
       </tr>
       @endforeach
 
     </table>
-    <button type="submit" class="btn btn-primary">Create New Position</button>
+    <a href="{{ route('position.create', $agency) }}" type="submit" class="btn btn-primary">Create New Position</a>
   </div>
 </div>
 @endsection
