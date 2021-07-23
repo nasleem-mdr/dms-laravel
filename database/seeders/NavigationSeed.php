@@ -14,6 +14,7 @@ class NavigationSeed extends Seeder
      */
     public function run()
     {
+
         Navigation::create([
             'name' => 'Role & Permission',
             'url' => null,
@@ -24,28 +25,28 @@ class NavigationSeed extends Seeder
         Navigation::create([
             'name' => 'Roles',
             'url' => 'role-and-permission/roles/',
-            'parent_id' => 'Role & Permission',
+            'parent_id' => 1,
             'permission_name' => 'assign permission',
         ]);
 
         Navigation::create([
             'name' => 'Permissions',
             'url' => 'role-and-permission/permissions/',
-            'parent_id' => 'Role & Permission',
+            'parent_id' => 1,
             'permission_name' => 'assign permission',
         ]);
 
         Navigation::create([
             'name' => 'Assign Permission',
             'url' => 'role-and-permission/assignable',
-            'parent_id' => 'Role & Permission',
+            'parent_id' => 1,
             'permission_name' => 'assign permission',
         ]);
 
         Navigation::create([
             'name' => 'Permission to Users',
             'url' => 'role-and-permission/assign/user',
-            'parent_id' => 'Role & Permission',
+            'parent_id' => 1,
             'permission_name' => 'assign permission',
         ]);
 
@@ -59,14 +60,14 @@ class NavigationSeed extends Seeder
         Navigation::create([
             'name' => 'Create new menu',
             'url' => 'navigation/create',
-            'parent_id' => 'Navigation Settings',
+            'parent_id' => 2,
             'permission_name' => 'create navigation',
         ]);
 
         Navigation::create([
             'name' => 'Navigation Table',
             'url' => 'navigation/table',
-            'parent_id' => 'Navigation Settings',
+            'parent_id' => 2,
             'permission_name' => 'create navigation',
         ]);
 
@@ -80,14 +81,14 @@ class NavigationSeed extends Seeder
         Navigation::create([
             'name' => 'Create new Agency',
             'url' => 'agency/create',
-            'parent_id' => 'Agency',
+            'parent_id' => 3,
             'permission_name' => 'create agency',
         ]);
 
         Navigation::create([
             'name' => 'Agency Table',
             'url' => 'agency/table',
-            'parent_id' => 'Agency',
+            'parent_id' => 3,
             'permission_name' => 'create agency',
         ]);
     }
