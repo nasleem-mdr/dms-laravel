@@ -17,8 +17,8 @@ class CreateEmployeesTable extends Migration
             $table->id();
             $table->string('nip');
             $table->string('name');
-            $table->string('address');
-            $table->string('phone_number');
+            $table->string('address')->nullable();
+            $table->string('phone_number')->nullable();
             $table->unsignedBigInteger('agency_id');
             $table->unsignedBigInteger('position_id');
             $table->unsignedBigInteger('user_id');

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Agency;
+use App\Models\Position;
 use Illuminate\Http\Request;
+use PhpParser\Node\Stmt\Foreach_;
 
 class AgencyController extends Controller
 {
@@ -71,5 +73,11 @@ class AgencyController extends Controller
     {
         $agency->delete();
         return redirect()->route('agency.table');
+    }
+
+    public function getPositionFromAgency($id)
+    {
+        $agency = Agency::with('positions')->find($id);
+        return $agency->positions;
     }
 }

@@ -31,7 +31,7 @@ class RolesAndPermissionsSeeder extends Seeder
         Role::create(['name' => 'admin'])
             ->givePermissionTo(['create documents', 'create employee']);
 
-        Role::create(['name' => 'karyawan'])
+        Role::create(['name' => 'pegawai'])
             ->givePermissionTo('create documents');
     }
 }

@@ -26,4 +26,15 @@ class Employee extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function archives()
+    {
+        return $this->hasMany(Archives::class);
+    }
+
+
+    public function documents()
+    {
+        return $this->hasMany(Document::class);
+    }
 }

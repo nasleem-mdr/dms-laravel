@@ -25,7 +25,7 @@ class HasRoleMiddleware
                 abort(403);
             }
         } else {
-            abort(404);
+            return redirect()->route('login')->with('message', 'Login terlebih dahulu');
         }
     }
 }

@@ -62,7 +62,17 @@ Route::middleware('has.role')->group(function () {
         Route::delete('{navigation}/delete', 'NavigationController@destroy')->name('navigation.delete');
     });
 
+    Route::prefix('employee')->middleware('permission:create employee')->group(function () {
+        Route::get('table', 'EmployeeController@index')->name('employee.table');
+        Route::get('create', 'EmployeeController@create')->name('employee.create');
+        Route::post('create', 'EmployeeController@store');
+        Route::get('{employee}/edit', 'EmployeeController@edit')->name('employee.edit');
+        Route::put('{employee}/edit', 'EmployeeController@update');
+        Route::delete('{employee}/delete', 'EmployeeController@destroy')->name('employee.delete');
+    });
+
     Route::prefix('agency')->middleware('permission:create agency')->group(function () {
+
         Route::get('create', 'AgencyController@create')->name('agency.create');
         Route::post('create', 'AgencyController@store');
         Route::get('table', 'AgencyController@index')->name('agency.table');
@@ -81,9 +91,26 @@ Route::middleware('has.role')->group(function () {
             Route::delete('{position}/delete', 'PositionController@destroy')->name('position.delete');
         });
     });
+
+    Route::prefix('year')->middleware('permission:create year')->group(function () {
+        Route::get('create', 'YearController@create')->name('year.create');
+        Route::post('create', 'YearController@store');
+        Route::get('{year}/edit', 'YearController@edit')->name('year.edit');
+        Route::put('{year}/edit', 'YearController@update');
+        Route::delete('{year}/delete', 'YearController@destroy')->name('year.delete');
+    });
+
+    Route::prefix('category')->middleware('permission:create category')->group(function () {
+        Route::get('create', 'DocumentCategoryController@create')->name('category.create');
+        Route::post('create', 'DocumentCategoryController@store');
+        Route::get('{category}/edit', 'DocumentCategoryController@edit')->name('category.edit');
+        Route::put('{category}/edit', 'DocumentCategoryController@update');
+        Route::delete('{category}/delete', 'DocumentCategoryController@destroy')->name('category.delete');
+    });
 });
 
 
 Auth::routes();
-
+//API get position from agency 
+Route::get('/agency/{agency}/positions', 'AgencyController@getPositionFromAgency');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
