@@ -19,8 +19,10 @@ class CreateArchivesTable extends Migration
             $table->string('desc');
             $table->unsignedBigInteger('year_id');
             $table->unsignedBigInteger('employee_id');
+            $table->unsignedBigInteger('agency_id');
             $table->foreign('year_id')->references('id')->on('years')->onDelete('cascade');
             $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
+            $table->foreign('agency_id')->references('id')->on('agencies')->onDelete('cascade');
             $table->timestamps();
         });
     }

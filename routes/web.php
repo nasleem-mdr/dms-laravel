@@ -69,6 +69,7 @@ Route::middleware('has.role')->group(function () {
         Route::get('{employee}/edit', 'EmployeeController@edit')->name('employee.edit');
         Route::put('{employee}/edit', 'EmployeeController@update');
         Route::delete('{employee}/delete', 'EmployeeController@destroy')->name('employee.delete');
+        Route::put('{$employee}/resetpassword', 'EmployeeController@resetPassword')->name('employee.reset_password');
     });
 
     Route::prefix('agency')->middleware('permission:create agency')->group(function () {
@@ -107,10 +108,32 @@ Route::middleware('has.role')->group(function () {
         Route::put('{category}/edit', 'DocumentCategoryController@update');
         Route::delete('{category}/delete', 'DocumentCategoryController@destroy')->name('category.delete');
     });
+
+    Route::prefix('archive')->middleware('permission:create archive')->group(function () {
+        Route::get('table', 'ArchiveController@index')->name('archive.table');
+        Route::get('create', 'ArchiveController@create')->name('archive.create');
+        Route::post('create', 'ArchiveController@store');
+        Route::get('{archive}/edit', 'ArchiveController@edit')->name('archive.edit');
+        Route::put('{archive}/edit', 'ArchiveController@update');
+        Route::delete('{archive}/delete', 'ArchiveController@destroy')->name('archive.delete');
+    });
+
+    Route::prefix('document')->middleware('permission:create document')->group(function () {
+        Route::get('table', 'DocumentController@index')->name('document.table');
+        Route::get('create', 'DocumentController@create')->name('document.create');
+        Route::post('create', 'DocumentController@store');
+        Route::get('{document}/edit', 'DocumentController@edit')->name('document.edit');
+        Route::put('{document}/edit', 'DocumentController@update');
+        Route::delete('{document}/delete', 'DocumentController@destroy')->name('document.delete');
+        Route::get('{document}/download', 'DocumentController@download')->name('document.download');
+    });
 });
 
 
 Auth::routes();
+
 //API get position from agency 
 Route::get('/agency/{agency}/positions', 'AgencyController@getPositionFromAgency');
+
+//home
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

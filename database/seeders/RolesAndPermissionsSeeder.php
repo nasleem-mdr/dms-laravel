@@ -23,15 +23,23 @@ class RolesAndPermissionsSeeder extends Seeder
         Permission::create(['name' => 'create agency']);
         Permission::create(['name' => 'create position']);
         Permission::create(['name' => 'create employee']);
-        Permission::create(['name' => 'create documents']);
+        Permission::create(['name' => 'create archive']);
+        Permission::create(['name' => 'create document']);
 
         $superAdmin = Role::create(['name' => 'super admin']);
         $superAdmin->givePermissionTo(Permission::all());
 
         Role::create(['name' => 'admin'])
-            ->givePermissionTo(['create documents', 'create employee']);
+            ->givePermissionTo([
+                'create employee',
+                'create archive',
+                'create document',
+            ]);
 
         Role::create(['name' => 'pegawai'])
-            ->givePermissionTo('create documents');
+            ->givePermissionTo(
+                'create archive',
+                'create document',
+            );
     }
 }

@@ -8,6 +8,7 @@ use App\Models\Employee;
 use App\Models\Position;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class EmployeeController extends Controller
@@ -17,6 +18,7 @@ class EmployeeController extends Controller
     public function index()
     {
         return view('employee.table', [
+            'user' => Auth::user(),
             'employees' => Employee::get(),
         ]);
     }
@@ -60,14 +62,62 @@ class EmployeeController extends Controller
             'name' => ucwords(request('name')),
             'agency_id' => request('agency_id'),
             'address' => request('address') ?? null,
-            'phone_number' => request('phone_number'),
-            'position_id' => request('position_id') ?? null,
+            'phone_number' => request('phone_number') ?? null,
+            'position_id' => request('position_id'),
         ]);
 
 
         return redirect()->route('employee.table', [
             'employees' => Employee::get(),
         ]);
+    }
+
+    public function edit(Employee $employee)
+    {
+        return view('employee.edit', [
+            'employee' => $employee,
+            'agencies' => Agency::get(),
+            'roles' => Role::get(),
+            'submit' => 'Update',
+        ]);
+    }
+
+    public function update(Employee $employee)
+    {
+        request()->validate([
+            'nip' => 'required',
+            'name' => 'required',
+            'email' => 'required',
+            'agency_id' => 'required',
+            'position_id' => 'required',
+            'roles' => 'required',
+        ]);
+
+        $employee->update([
+            'nip' => request('nip'),
+            'name' => ucwords(request('name')),
+            'agency_id' => request('agency_id'),
+            'address' => request('address') ?? null,
+            'phone_number' => request('phone_number') ?? null,
+            'position_id' => request('position_id'),
+        ]);
+
+        $user = User::find($employee->user->id);
+        $user->syncRoles(request('roles'));
+
+        return redirect()->route('employee.table')->with('success', "Data {$employee->name} telah diperbaruhi");
+    }
+
+    public function resetPassword(Employee $employee)
+    {
+        $user = User::find($employee->user->id);
+        $names = explode(' ', $employee->name);
+
+        $user->update([
+            'password' => $names[0] . $employee->nip,
+        ]);
+
+        return redirect()->route('employee.table')->with('success', "Password {$employee} telah direset");
     }
 
     public function destroy(Employee $employee)
@@ -77,6 +127,6 @@ class EmployeeController extends Controller
         $employee->user->delete();
         $employee->delete();
 
-        return redirect()->route('employee.table')->with('success', "{$employeeTemp} has been deleted");
+        return redirect()->route('employee.table')->with('success', "{$employeeTemp} telah dihapus");
     }
 }

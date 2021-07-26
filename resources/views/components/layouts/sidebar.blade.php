@@ -6,7 +6,8 @@
         <small class="d-block text-secondary mb-2 text-uppercase ">{{ $navigation->name }}</small>
         <div class="list-group">
             @foreach ($navigation->children as $child)
-            <a href="{{ url($child->url )}}" class="list-group-item list-group-item-action " aria-current="true">
+            <a href="{{ ($child->url===null) ? '#' : url($child->url )}}"
+                class="list-group-item list-group-item-action " aria-current="true">
                 {{ $child->name }}
             </a>
             @endforeach

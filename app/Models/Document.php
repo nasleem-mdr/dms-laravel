@@ -23,8 +23,13 @@ class Document extends Model
         return $this->belongsTo(Year::class);
     }
 
-    public function category()
+    public function document_category()
     {
-        return $this->hasOne(DocumentCategory::class);
+        return $this->belongsTo(DocumentCategory::class);
+    }
+
+    public function agency()
+    {
+        return $this->belongsTo(Agency::class);
     }
 }

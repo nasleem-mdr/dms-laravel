@@ -5,9 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Archives extends Model
+class Archive extends Model
 {
     use HasFactory;
+
 
     protected $guarded = [
         'id',
@@ -16,6 +17,11 @@ class Archives extends Model
     public function employee()
     {
         return $this->belongsTo(Employee::class);
+    }
+
+    public function agency()
+    {
+        return $this->belongsTo(Agency::class);
     }
 
     public function year()

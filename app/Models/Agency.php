@@ -22,4 +22,13 @@ class Agency extends Model
     {
         return $this->hasMany(Employee::class);
     }
+    public function archives()
+    {
+        return $this->hasMany(Archive::class);
+    }
+
+    public function documents()
+    {
+        return $this->hasMany(Document::class);
+    }
 }
