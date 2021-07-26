@@ -1,7 +1,9 @@
 @extends('layouts.base')
 
 @section('body')
+
 <x-layouts.navigation></x-layouts.navigation>
+
 <div class="container-fluid">
   <div class="py-3">
     <div class="row">

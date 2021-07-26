@@ -9,7 +9,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="archive-{{ $archive->id }}Label"> Anda yakin ingin menghapus tahun
+        <h5 class="modal-title" id="archive-{{ $archive->id }}Label"> Anda yakin ingin menghapus arsip
           {{ $archive->no  }}? </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>

@@ -2,19 +2,20 @@
 
 @section('content')
 
-@if (session('message'))
-<div class="alert alert-success text-center">
-    {{ session('message') }}
-</div>
-@endif
 
-<div class="container">
+
+<div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">
+                    @if (session('message'))
+                    <div class="alert alert-success text-center">
+                        {{ session('message') }}
+                    </div>
+                    @endif
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
