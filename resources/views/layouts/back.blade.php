@@ -1,11 +1,12 @@
 @extends('layouts.base')
 
 @section('body')
-
+<x-layouts.navigation></x-layouts.navigation>
 <div class="container-fluid">
   <div class="py-3">
     <div class="row">
       <div class="col-md-3">
+
         <x-layouts.sidebar>
         </x-layouts.sidebar>
       </div>

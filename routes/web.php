@@ -14,15 +14,11 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-
-    return view('welcome');
-});
-
-Route::view('dashboard', 'layouts.dashboard');
-
+Route::get('/', 'HomeController@index');
 
 Route::middleware('has.role')->group(function () {
+
+
     Route::view('dashboard', 'layouts.dashboard')->name('dashboard');
 
     Route::prefix('role-and-permission')->namespace('Permissions')->middleware('permission:assign permission')->group(function () {

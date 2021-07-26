@@ -2,8 +2,8 @@
 
 @section('body')
 
-<main class="py-4">
-    <x-layouts.navigation></x-layouts.navigation>
+<main class="">
+
     @yield('content')
 </main>
 
