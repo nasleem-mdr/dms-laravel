@@ -14,7 +14,6 @@
     }
   );
 
-
   });
 </script>
 @endpush
@@ -35,7 +34,7 @@
       <div class="form-group">
         <label for="role">Role</label>
         <select name="role" id="role" class="form-control">
-          <option selected disabled">Pilih Role</option>
+          <option selected disabled>Pilih Role</option>
           @foreach ($roles as $role)
           <option value="{{ $role->id }}">{{ $role->name }}</option>
           @endforeach
@@ -49,7 +48,7 @@
         <label for="permissions">Permission</label>
         <select name="permissions[]" id="permissions" class="form-control select2" multiple>
           @foreach ($permissions as $permission)
-          <option value="{{ $permission->id }}">{{ $permission->name}} | Guard : {{ $permission->guard_name }}
+          <option value="{{ $permission->id }}">{{ $permission->name}} }}
           </option>
           @endforeach
           @error('permissions')
