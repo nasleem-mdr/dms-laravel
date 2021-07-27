@@ -30,6 +30,8 @@
   <!-- Scripts -->
   <script src="{{ asset('js/app.js') }}"></script>
   @stack('scripts')
+
+  @stack('script_select2')
 </body>
 
 </html>

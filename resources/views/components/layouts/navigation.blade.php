@@ -13,6 +13,8 @@
 
         @hasanyrole($roles)
         @endhasanyrole
+        
+        
         @endguest
     </div>
 </nav>
