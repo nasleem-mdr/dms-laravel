@@ -11,7 +11,6 @@ class UserController extends Controller
 {
     public function create()
     {
-
         return view('permission.assign.user.create', [
             'roles' => Role::get(),
             'users' => User::has('roles')->get(),

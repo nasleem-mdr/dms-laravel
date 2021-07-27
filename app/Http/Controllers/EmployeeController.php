@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Hash;
 class EmployeeController extends Controller
 {
 
-
     public function index()
     {
         return view('employee.table', [
@@ -38,7 +37,7 @@ class EmployeeController extends Controller
         request()->validate([
             'nip' => 'required',
             'name' => 'required',
-            'email' => 'required',
+            'email' => 'required|unique:users',
             'agency_id' => 'required',
             'position_id' => 'required',
             'roles' => 'required',
@@ -53,7 +52,6 @@ class EmployeeController extends Controller
             'email' => request('email'),
             'password' => Hash::make($password),
         ]);
-
         $user->assignRole(request('roles'));
 
         Employee::create([
@@ -65,7 +63,6 @@ class EmployeeController extends Controller
             'phone_number' => request('phone_number') ?? null,
             'position_id' => request('position_id'),
         ]);
-
 
         return redirect()->route('employee.table', [
             'employees' => Employee::get(),
@@ -84,14 +81,21 @@ class EmployeeController extends Controller
 
     public function update(Employee $employee)
     {
+        if ($employee->user->email === request('email')) {
+            $emailValidation = 'required';
+        } else {
+            $emailValidation = 'required|unique|users';
+        }
+
         request()->validate([
             'nip' => 'required',
             'name' => 'required',
-            'email' => 'required',
+            'email' => $emailValidation,
             'agency_id' => 'required',
             'position_id' => 'required',
             'roles' => 'required',
         ]);
+
 
         $employee->update([
             'nip' => request('nip'),
@@ -104,6 +108,13 @@ class EmployeeController extends Controller
 
         $user = User::find($employee->user->id);
         $user->syncRoles(request('roles'));
+
+        $names = explode(' ', request('name'));
+
+        $user->update([
+            'username' => request('nip'),
+            'email' => request('email'),
+        ]);
 
         return redirect()->route('employee.table')->with('success', "Data {$employee->name} telah diperbaruhi");
     }

@@ -69,7 +69,7 @@
 
 @section('content')
 <div class="card">
-  <div class="card-header">Add new Employee</div>
+  <div class="card-header">Edit Data {{ $employee->name }}</div>
   <div class="card-body">
     <form action="{{ route('employee.edit', $employee) }}" method="POST">
       @csrf

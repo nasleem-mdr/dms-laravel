@@ -18,8 +18,16 @@ Route::get('/', 'HomeController@index');
 
 Route::middleware('has.role')->group(function () {
 
-
     Route::view('dashboard', 'layouts.dashboard')->name('dashboard');
+
+    Route::prefix('profile')->middleware('permission:edit profile')->group(function () {
+        Route::get('/', 'ProfileController@show')->name('profile.show');
+        Route::get('/edit', 'ProfileController@edit')->name('profile.edit');
+        Route::put('/edit', 'ProfileController@update')->name('profile.update');
+        Route::delete('{employee}/delete', 'ProfileController@destroy')->name('profile.delete');
+        Route::get('/resetpassword', 'ProfileController@editPassword')->name('profile.reset_password');
+        Route::put('/resetpassword', 'ProfileController@resetPassword');
+    });
 
     Route::prefix('role-and-permission')->namespace('Permissions')->middleware('permission:assign permission')->group(function () {
 
@@ -65,7 +73,7 @@ Route::middleware('has.role')->group(function () {
         Route::get('{employee}/edit', 'EmployeeController@edit')->name('employee.edit');
         Route::put('{employee}/edit', 'EmployeeController@update');
         Route::delete('{employee}/delete', 'EmployeeController@destroy')->name('employee.delete');
-        Route::put('{$employee}/resetpassword', 'EmployeeController@resetPassword')->name('employee.reset_password');
+        Route::put('{employee}/resetpassword', 'EmployeeController@resetPassword')->name('employee.reset_password');
     });
 
     Route::prefix('agency')->middleware('permission:create agency')->group(function () {

@@ -25,6 +25,7 @@ class RolesAndPermissionsSeeder extends Seeder
         Permission::create(['name' => 'create employee']);
         Permission::create(['name' => 'create archive']);
         Permission::create(['name' => 'create document']);
+        Permission::create(['name' => 'edit profile']);
 
         $superAdmin = Role::create(['name' => 'super admin']);
         $superAdmin->givePermissionTo(Permission::all());
@@ -34,12 +35,14 @@ class RolesAndPermissionsSeeder extends Seeder
                 'create employee',
                 'create archive',
                 'create document',
+                'edit profile'
             ]);
 
         Role::create(['name' => 'pegawai'])
             ->givePermissionTo(
                 'create archive',
                 'create document',
+                'edit profile'
             );
     }
 }

@@ -12,7 +12,7 @@
   <div class="card-header">
     <div class="col justify-content-md-around">
       Arsip Dinamis
-      <a class="btn btn-sm btn-primary float-right" href="{{ route('document.create') }}">Tambah Arsip Kepegawaian</a>
+      <a class="btn btn-sm btn-primary float-right" href="{{ route('document.create') }}">Tambah Arsip Dokumen</a>
     </div>
   </div>
   <div class="card-body">

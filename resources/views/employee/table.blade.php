@@ -51,7 +51,12 @@
         <td>
           <a class="text-primary" href="{{ route('employee.edit', $employee) }}">Edit</a>
           @include('employee.delete', ['employee' => $employee])
+          @if ($user->hasRole('super admin'))
+
           @include('employee.reset', ['employee' => $employee])
+
+          @endif
+
         </td>
       </tr>
       @endforeach

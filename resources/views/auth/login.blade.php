@@ -20,7 +20,8 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="credential" class="col-md-4 col-form-label text-md-right">Email/Username</label>
+                            <label for="credential"
+                                class="col-md-4 col-form-label text-md-right">Email/Username/NIP</label>
 
                             <div class="col-md-6">
                                 <input id="credential" type="text"

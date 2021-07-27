@@ -15,7 +15,7 @@ class AgencySeeder extends Seeder
      */
     public function run()
     {
-        $unit1 = Agency::create([
+        Agency::create([
             'name' => 'Unit 1',
             'address' => 'Yogyakarta',
             'contact' => '082255988912',
