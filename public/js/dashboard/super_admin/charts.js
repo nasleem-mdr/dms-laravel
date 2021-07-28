@@ -26,7 +26,7 @@ fetch('/get/total/agency/archives')
 
       data.forEach(data => {
           agencies.push(data.nama_unit);
-          archives.push(data.total_arsip);
+          archives.push(data.total_archives);
       });
 
       createGraphArchive(agencies, archives)
@@ -40,7 +40,7 @@ fetch('/get/total/agency/documents')
     .then(data => {
         data.forEach(data => {
             units.push(data.nama_unit);
-            documents.push(data.total_dokumen);
+            documents.push(data.total_documents);
         });
 
         createGraphDocument(units, documents)

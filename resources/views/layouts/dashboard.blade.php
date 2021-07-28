@@ -57,33 +57,32 @@
       </div>
     </div>
   </div>
-
-
-  <div class="row">
-    <div class="col-xl-6">
-      <div class="card mb-4">
-        <div class="card-header">
-          <i class='bx bx-bar-chart-alt-2 mr-2'></i>
-          Jumlah Arsip Kepegawaian di setiap instansi
-        </div>
-        <div class="card-body">
-          <canvas id="archiveChart" width="100%" height="40"></canvas>
-        </div>
+</div>
+<div class="row">
+  <div class="col-xl-6">
+    <div class="card mb-4">
+      <div class="card-header">
+        <i class='bx bx-bar-chart-alt-2 mr-2'></i>
+        Jumlah Arsip Kepegawaian di setiap instansi
+      </div>
+      <div class="card-body">
+        <canvas id="archiveChart" width="100%" height="40"></canvas>
       </div>
     </div>
-    <div class="col-xl-6">
-      <div class="card mb-4">
-        <div class="card-header">
-          <i class='bx bx-pie-chart-alt-2 mr-2'></i>
-          Jumlah Dokumen di setiap instansi
-        </div>
-        <div class="card-body">
-          <canvas id="documentChart" width="100%" height="40">
-          </canvas></div>
-      </div>
-    </div>
-
   </div>
+  <div class="col-xl-6">
+    <div class="card mb-4">
+      <div class="card-header">
+        <i class='bx bx-pie-chart-alt-2 mr-2'></i>
+        Jumlah Dokumen di setiap instansi
+      </div>
+      <div class="card-body">
+        <canvas id="documentChart" width="100%" height="40">
+        </canvas></div>
+    </div>
+  </div>
+
+</div>
 </div>
 @endif
 
