@@ -19,10 +19,8 @@ class DocumentController extends Controller
         $user = User::find($user->id);
         if ($user->hasRole('super admin')) {
             $documents = Document::get();
-        } else if ($user->hasRole('admin')) {
-            $documents = Document::where('agency_id', $user->employee->agency_id)->get();
         } else {
-            $documents = Document::where('employee_id', $user->employee->id)->get();
+            $documents = Document::where('agency_id', $user->employee->agency_id)->get();
         }
 
         return view('document.table', compact('documents', 'user'));
@@ -105,6 +103,7 @@ class DocumentController extends Controller
         }
 
         return view('document.edit', [
+            'categories' => DocumentCategory::get(),
             'document' => $document,
             'years' => Year::get(),
             'submit' => 'Update',
@@ -150,12 +149,9 @@ class DocumentController extends Controller
     {
         $agency = Agency::find($document->agency_id);
         $filePath = public_path("documents/{$agency->name}/$document->file");
-
         if (File::exists($filePath)) {
             File::delete($filePath);
             return;
-        } else {
-            abort('404');
         }
     }
 

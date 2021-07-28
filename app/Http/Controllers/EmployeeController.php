@@ -25,6 +25,7 @@ class EmployeeController extends Controller
     public function create()
     {
         return view('employee.create', [
+            'user' => Auth::user(),
             'employee' => new Employee,
             'agencies' => Agency::get(),
             'roles' => Role::get(),
