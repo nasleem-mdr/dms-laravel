@@ -4,6 +4,7 @@
 <div class="card">
   <div class="card-header">Data Table Navigation</div>
   <div class="card-body">
+    <div class="table-responsive">
     <table class="table table-hover">
       <tr>
         <th>Parent</th>

@@ -26,7 +26,9 @@
 
 <div class="card mb-3">
   <div class="card-header">Pick Roles for User</div>
+  
   <div class="card-body">
+    <div class="table-responsive">
     <form action="{{ route('assign.user.create')  }}" method="post">
       @csrf
       <div class="form-group">
@@ -58,6 +60,7 @@
     Table User and Roles
   </div>
   <div class="card-body">
+    <div class="table-responsive">
     <table class="table table-hover">
       <tr>
         <th>#</th>
