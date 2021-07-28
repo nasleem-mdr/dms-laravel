@@ -31,7 +31,7 @@
       <ul>
         <li>
           <a href="{{ route('dashboard')}}">
-            <span>Dashboard</span>
+            <span class="text-white">Dashboard</span>
           </a>
         </li>
       </ul>
@@ -43,14 +43,14 @@
         @can($navigation->permission_name)
         <li class="sidebar-dropdown">
           <a href="#">
-            <span>{{ $navigation->name }}</span>
+            <span class="text-white">{{ $navigation->name }}</span>
             <span class=" badge badge-pill badge-warning"></span>
           </a>
           <div class="sidebar-submenu">
             <ul>
               @foreach ($navigation->children as $child)
               <li>
-                <a href="{{ ($child->url === null) ? '#' : url($child->url) }}">{{ $child->name }}
+                <a class="text-white" href="{{ ($child->url === null) ? '#' : url($child->url) }}">{{ $child->name }}
                   <span class="badge badge-pill badge-success"></span>
                 </a>
               </li>

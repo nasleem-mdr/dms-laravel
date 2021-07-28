@@ -74,7 +74,7 @@
   }
   
   .page-wrapper .theme.chiller-theme {
-    background: #1e2229;
+    background: #022873;
   }
   
   /*----------------toggeled sidebar----------------*/
@@ -376,15 +376,15 @@
     height: 0px;
   }
   ::-webkit-scrollbar-thumb {
-    background: #525965;
+    background: #3490dc;
     border: 0px none #ffffff;
     border-radius: 0px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #525965;
+    background: #3490dc;
   }
   ::-webkit-scrollbar-thumb:active {
-    background: #525965;
+    background: #3490dc;
   }
   ::-webkit-scrollbar-track {
     background: transparent;
@@ -405,7 +405,7 @@
   /*-----------------------------chiller-theme-------------------------------------------------*/
   
   .chiller-theme .sidebar-wrapper {
-      background: #31353D;
+      background: #022873;
   }
   
   .chiller-theme .sidebar-wrapper .sidebar-header,
@@ -458,7 +458,7 @@
   .chiller-theme .sidebar-wrapper .sidebar-menu .sidebar-dropdown div,
   .chiller-theme .sidebar-wrapper .sidebar-search input.search-menu,
   .chiller-theme .sidebar-wrapper .sidebar-search .input-group-text {
-      background: #3a3f48;
+      background: #163471d9;
   }
   
   .chiller-theme .sidebar-wrapper .sidebar-menu .header-menu span {
@@ -466,7 +466,7 @@
   }
   
   .chiller-theme .sidebar-footer {
-      background: #3a3f48;
+      background: #022873;
       box-shadow: 0px -1px 5px #282c33;
       border-top: 1px solid #464a52;
   }
