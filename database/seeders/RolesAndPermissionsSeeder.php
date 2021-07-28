@@ -26,6 +26,7 @@ class RolesAndPermissionsSeeder extends Seeder
         Permission::create(['name' => 'create archive']);
         Permission::create(['name' => 'create document']);
         Permission::create(['name' => 'edit profile']);
+        Permission::create(['name' => 'master']);
 
         $superAdmin = Role::create(['name' => 'super admin']);
         $superAdmin->givePermissionTo(Permission::all());

@@ -37,7 +37,7 @@ class EmployeeController extends Controller
     {
         $fileName = null;
 
-        $names = explode('.', $request->file->getClientOriginalName());
+        $names = explode('.', $request->profile_picture->getClientOriginalName());
         if ($request->file) {
             $fileName = $names[0] . '-' . time() . '-' . request('nip') . '-' . 'profile-picture'
                 . '.' . $request->file->extension();
@@ -87,6 +87,8 @@ class EmployeeController extends Controller
             'profile_picture' => $fileName,
         ]);
 
+
+
         return redirect()->route('employee.table', [
             'employees' => Employee::get(),
         ]);
@@ -95,6 +97,7 @@ class EmployeeController extends Controller
     public function edit(Employee $employee)
     {
         return view('employee.edit', [
+            'user' => Auth::user(),
             'employee' => $employee,
             'agencies' => Agency::get(),
             'roles' => Role::get(),

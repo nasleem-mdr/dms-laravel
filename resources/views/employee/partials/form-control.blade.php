@@ -4,13 +4,13 @@
     <option selected disabled>Choose a Agency</option>
     @if ($user->hasRole('admin'))
     <option {{ isset($agency) ? $item->id == $agency->id ? 'selected' : '' : ''}}
-      value="{{ $user->employee->agency->id  }}">
+      value="{{ old('agency_id') ?? $user->employee->agency->id  }}">
       {{ $user->employee->agency->name }}</option>
     @endif
 
     @if ($user->hasRole('super admin'))
     @foreach ($agencies as $item)
-    <option {{ isset($agency) ? $item->id == $agency->id ? 'selected' : '' : ''}} value="{{ $item->id }}">
+    <option {{ isset($agency) ? ($item->id == $agency->id) ? 'selected' : '' : ''}} value="{{ $item->id }}">
       {{ $item->name }}</option>
     @endforeach
     @endif
@@ -51,7 +51,8 @@
 
 <div class="form-group">
   <label for="email">Email</label>
-  <input type="text" name="email" id="email" class="form-control" value="{{ old('email') ?? $employee->email }}"
+  <input type="text" name="email" id="email" class="form-control"
+    value="{{ old('email') ?? isset ($employee->user->email) ? $employee->user->email : '' }}"
     placeholder="refinaldy@test.test">
   @error('email')
   <div class="text-danger mt-1 d-block">{{ $message }}</div>

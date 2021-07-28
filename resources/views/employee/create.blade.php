@@ -1,12 +1,24 @@
 @extends('layouts.back')
 
+@section('styles')
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+@endsection
 
-@push('scripts')
 
-
+@push('script_select2')
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+  $(document).ready(function() {
+  $('.select2').select2(
+    {
+      placeholder: "  Pilih Roles"
+    }
+  );
+  });
+</script>
 
 <script>
-  
   function destroyElement(el){
     el.innerHTML = '';
   }
@@ -60,7 +72,7 @@
 <div class="card">
   <div class="card-header">Add new Employee</div>
   <div class="card-body">
-    <form action="{{ route('employee.create') }}" method="POST">
+    <form action="{{ route('employee.create') }}" method="POST" enctype="multipart/form-data">
       @csrf
       @include('employee.partials.form-control')
     </form>

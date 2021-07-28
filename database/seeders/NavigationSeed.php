@@ -14,6 +14,68 @@ class NavigationSeed extends Seeder
      */
     public function run()
     {
+        $archive = Navigation::create([
+            'name' => 'Archive',
+            'url' => null,
+            'parent_id' => null,
+            'permission_name' => 'create archive',
+        ]);
+
+        Navigation::create([
+            'name' => 'Archive Table',
+            'url' => 'archive/table',
+            'parent_id' => $archive->id,
+            'permission_name' => 'create archive',
+        ]);
+
+        $document = Navigation::create([
+            'name' => 'Document',
+            'url' => null,
+            'parent_id' => null,
+            'permission_name' => 'create document',
+        ]);
+
+        Navigation::create([
+            'name' => 'Document Table',
+            'url' => 'document/table',
+            'parent_id' => $document->id,
+            'permission_name' => 'create document',
+        ]);
+
+        $agency = Navigation::create([
+            'name' => 'Agency',
+            'url' => null,
+            'parent_id' => null,
+            'permission_name' => 'create agency',
+        ]);
+
+        Navigation::create([
+            'name' => 'Create new Agency',
+            'url' => 'agency/create',
+            'parent_id' => $agency->id,
+            'permission_name' => 'create agency',
+        ]);
+
+        Navigation::create([
+            'name' => 'Agency Table',
+            'url' => 'agency/table',
+            'parent_id' => $agency->id,
+            'permission_name' => 'create agency',
+        ]);
+
+        $employee = Navigation::create([
+            'name' => 'Employee',
+            'url' => null,
+            'parent_id' => null,
+            'permission_name' => 'create employee',
+        ]);
+
+        Navigation::create([
+            'name' => 'Employee Table',
+            'url' => 'employee/table',
+            'parent_id' => $employee->id,
+            'permission_name' => 'create employee',
+        ]);
 
         $roleAndPermission = Navigation::create([
             'name' => 'Role & Permission',
@@ -71,41 +133,6 @@ class NavigationSeed extends Seeder
             'permission_name' => 'create navigation',
         ]);
 
-        $agency = Navigation::create([
-            'name' => 'Agency',
-            'url' => null,
-            'parent_id' => null,
-            'permission_name' => 'create agency',
-        ]);
-
-        Navigation::create([
-            'name' => 'Create new Agency',
-            'url' => 'agency/create',
-            'parent_id' => $agency->id,
-            'permission_name' => 'create agency',
-        ]);
-
-        Navigation::create([
-            'name' => 'Agency Table',
-            'url' => 'agency/table',
-            'parent_id' => $agency->id,
-            'permission_name' => 'create agency',
-        ]);
-
-        $employee = Navigation::create([
-            'name' => 'Employee',
-            'url' => null,
-            'parent_id' => null,
-            'permission_name' => 'create employee',
-        ]);
-
-        Navigation::create([
-            'name' => 'Employee Table',
-            'url' => 'employee/table',
-            'parent_id' => $employee->id,
-            'permission_name' => 'create employee',
-        ]);
-
         $category = Navigation::create([
             'name' => 'Category',
             'url' => null,
@@ -132,34 +159,6 @@ class NavigationSeed extends Seeder
             'url' => 'year/create',
             'parent_id' => $year->id,
             'permission_name' => 'create year',
-        ]);
-
-        $archive = Navigation::create([
-            'name' => 'Archive',
-            'url' => null,
-            'parent_id' => null,
-            'permission_name' => 'create archive',
-        ]);
-
-        Navigation::create([
-            'name' => 'Archive Table',
-            'url' => 'archive/table',
-            'parent_id' => $archive->id,
-            'permission_name' => 'create archive',
-        ]);
-
-        $document = Navigation::create([
-            'name' => 'Document',
-            'url' => null,
-            'parent_id' => null,
-            'permission_name' => 'create document',
-        ]);
-
-        Navigation::create([
-            'name' => 'Document Table',
-            'url' => 'document/table',
-            'parent_id' => $document->id,
-            'permission_name' => 'create document',
         ]);
     }
 }
