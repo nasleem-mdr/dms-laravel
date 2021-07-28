@@ -1,7 +1,7 @@
 function loadData() {
 
-    let dummyData = [20, 25, 30, 45, 78, 98];
-    let dummyData2 = [98, 78, 30, 25, 21];
+    let dummyData = [20, 25, 30, 78, 98];
+    let dummyData2 = [ 98, 78, 30, 25, 21];
 
   //get total of units/agency
 let elTotalAgency = document.getElementById('total_agencies');
