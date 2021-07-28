@@ -42,7 +42,7 @@ class RolesAndPermissionsSeeder extends Seeder
             ->givePermissionTo(
                 'create archive',
                 'create document',
-                'edit profile'
+                'edit profile',
             );
     }
 }

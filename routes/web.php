@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', 'HomeController@index');
+
+Route::get('/', 'HomeController@index')->name('home');
 
 Route::middleware('has.role')->group(function () {
 
@@ -136,8 +137,15 @@ Route::middleware('has.role')->group(function () {
 
 Auth::routes();
 
+
 //API get position from agency 
 Route::get('/agency/{agency}/positions', 'AgencyController@getPositionFromAgency');
 
-//home
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// jumlah arsip kepegawaian , jumlah arsip dinamis, 
+// jumlah instansi/unit, jumlah posisi pada suatu instansi
+
+// get total row of table, ex ; Agencies, Positions
+Route::get('/get/total/{Entity}', 'ChartController@getTotalOf');
+
+// get total of agency relation , ex : archives, documents, or employees
+Route::get('/get/total/agency/{agency_relation}', 'ChartController@getTotal');

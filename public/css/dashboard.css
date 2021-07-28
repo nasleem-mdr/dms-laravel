@@ -1,0 +1,53 @@
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  list-style: none;
+  /* background-color: #e9ecef; */
+  border-radius: 0.25rem;
+}
+
+.card__welcome{
+  background-color: var(--very-light-blue-color);
+  color: var(--light-blue-color); 
+}
+
+.card__body-title{
+  color: var(--light-black-color);
+}
+.card__body-title p{
+  color: var(--first-color);
+  font-weight: bolder;
+  font-style: normal;
+}
+
+
+.card__body-icon {
+  position: absolute;
+  width: 8rem;
+  right: 8px;
+  top: 5px;
+  bottom: 3px;
+  opacity: .8;
+}
+
+
+.breadcrumb-item {
+  display: flex;
+}
+.breadcrumb-item + .breadcrumb-item {
+  padding-left: 0.5rem;
+}
+.breadcrumb-item + .breadcrumb-item::before {
+  display: inline-block;
+  padding-right: 0.5rem;
+  /* color: #6c757d; */
+  content: "/";
+}
+.breadcrumb-item + .breadcrumb-item:hover::before {
+  text-decoration: underline;
+}
+.breadcrumb-item + .breadcrumb-item:hover::before {
+  text-decoration: none;
+}

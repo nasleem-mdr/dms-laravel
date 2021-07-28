@@ -14,7 +14,7 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
         $employee = $user->employee;
-        return view('profile.show', compact('employee'));
+        return view('profile.show', compact('employee', 'user'));
     }
 
     public function edit()

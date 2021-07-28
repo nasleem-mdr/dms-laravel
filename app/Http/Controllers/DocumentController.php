@@ -19,10 +19,8 @@ class DocumentController extends Controller
         $user = User::find($user->id);
         if ($user->hasRole('super admin')) {
             $documents = Document::get();
-        } else if ($user->hasRole('admin')) {
-            $documents = Document::where('agency_id', $user->employee->agency_id)->get();
         } else {
-            $documents = Document::where('employee_id', $user->employee->id)->get();
+            $documents = Document::where('agency_id', $user->employee->agency_id)->get();
         }
 
         return view('document.table', compact('documents', 'user'));
@@ -91,6 +89,7 @@ class DocumentController extends Controller
             'agency_id' => $agencyID,
             'document_category_id' =>  request('category_id'),
         ]);
+
         return redirect()->route('document.table')->with('success', "{$document->file} berhasil ditambahkan");
     }
 
@@ -104,6 +103,7 @@ class DocumentController extends Controller
         }
 
         return view('document.edit', [
+            'categories' => DocumentCategory::get(),
             'document' => $document,
             'years' => Year::get(),
             'submit' => 'Update',
@@ -128,11 +128,18 @@ class DocumentController extends Controller
 
         $oldDocument = $document->no;
 
+        $fileName = $document->file;
+        if (request('file') !== null) {
+            $agencyID = $document->employee->agency->id;
+            $fileName = $this->saveFile(request(), $agencyID);
+        }
+
         $document->update([
             'no' => request('no'),
             'desc' => request('desc'),
             'year_id' => request('year_id'),
             'document_category' =>  request('category_id'),
+            'file' => $fileName,
         ]);
 
         return redirect()->route('document.table')->with('success', "Arsip No. {$oldDocument} telah diperbaruhi menjadi {$document->no}");
@@ -142,12 +149,9 @@ class DocumentController extends Controller
     {
         $agency = Agency::find($document->agency_id);
         $filePath = public_path("documents/{$agency->name}/$document->file");
-
         if (File::exists($filePath)) {
             File::delete($filePath);
             return;
-        } else {
-            abort('404');
         }
     }
 

@@ -19,6 +19,7 @@ class CreateEmployeesTable extends Migration
             $table->string('name');
             $table->string('address')->nullable();
             $table->string('phone_number')->nullable();
+            $table->string('profile_picture')->nullable();
             $table->unsignedBigInteger('agency_id');
             $table->unsignedBigInteger('position_id');
             $table->unsignedBigInteger('user_id');

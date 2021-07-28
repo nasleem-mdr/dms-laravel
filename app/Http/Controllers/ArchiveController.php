@@ -18,10 +18,8 @@ class ArchiveController extends Controller
         $user = User::find($user->id);
         if ($user->hasRole('super admin')) {
             $archives = Archive::get();
-        } else if ($user->hasRole('admin')) {
-            $archives = Archive::where('agency_id', $user->employee->agency_id)->get();
         } else {
-            $archives = Archive::where('employee_id', $user->employee->id)->get();
+            $archives = Archive::where('agency_id', $user->employee->agency_id)->get();
         }
 
         return view('archive.table', compact('archives', 'user'));
