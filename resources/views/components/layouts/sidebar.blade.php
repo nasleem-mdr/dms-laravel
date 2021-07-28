@@ -30,8 +30,8 @@
     <div class="sidebar-menu mb-0">
       <ul>
         <li>
-          <a class="text-white" href="{{ route('dashboard')}}">
-            <span>Dashboard</span>
+          <a href="{{ route('dashboard')}}">
+            <span class="text-white">Dashboard</span>
           </a>
         </li>
       </ul>
