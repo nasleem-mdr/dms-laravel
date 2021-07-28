@@ -376,15 +376,15 @@
     height: 0px;
   }
   ::-webkit-scrollbar-thumb {
-    background: #525965;
+    background: #043452;
     border: 0px none #ffffff;
     border-radius: 0px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #525965;
+    background: #043452;
   }
   ::-webkit-scrollbar-thumb:active {
-    background: #525965;
+    background: #043452;
   }
   ::-webkit-scrollbar-track {
     background: transparent;
@@ -404,14 +404,15 @@
   
   /*-----------------------------chiller-theme-------------------------------------------------*/
   
+  /* color sidebar */
   .chiller-theme .sidebar-wrapper {
-      background: #31353D;
+      background: #074973;
   }
   
   .chiller-theme .sidebar-wrapper .sidebar-header,
   .chiller-theme .sidebar-wrapper .sidebar-search,
   .chiller-theme .sidebar-wrapper .sidebar-menu {
-      border-top: 1px solid #3a3f48;
+      border-top: 1px solid #02263b;
   }
   
   .chiller-theme .sidebar-wrapper .sidebar-search input.search-menu,
@@ -420,6 +421,7 @@
       box-shadow: none;
   }
   
+  /* color tombol power */
   .chiller-theme .sidebar-wrapper .sidebar-header .user-info .user-role,
   .chiller-theme .sidebar-wrapper .sidebar-header .user-info .user-status,
   .chiller-theme .sidebar-wrapper .sidebar-search input.search-menu,
@@ -430,22 +432,26 @@
       color: #818896;
   }
   
+  /* hover text link di sidebar */
   .chiller-theme .sidebar-wrapper .sidebar-menu ul li:hover>a,
   .chiller-theme .sidebar-wrapper .sidebar-menu .sidebar-dropdown.active>a,
   .chiller-theme .sidebar-wrapper .sidebar-header .user-info,
   .chiller-theme .sidebar-wrapper .sidebar-brand>a:hover,
   .chiller-theme .sidebar-footer>a:hover i {
-      color: #b8bfce;
+      color: #ceb8b8;
   }
   
+  /* button x */
   .page-wrapper.chiller-theme.toggled #close-sidebar {
       color: #bdbdbd;
   }
   
+  /* button x saat hover */
   .page-wrapper.chiller-theme.toggled #close-sidebar:hover {
       color: #ffffff;
   }
   
+   /* round in sidebar sub menu */
   .chiller-theme .sidebar-wrapper ul li:hover a i,
   .chiller-theme .sidebar-wrapper .sidebar-dropdown .sidebar-submenu li a:hover:before,
   .chiller-theme .sidebar-wrapper .sidebar-search input.search-menu:focus+span,
@@ -454,21 +460,22 @@
       text-shadow:0px 0px 10px rgba(22, 199, 255, 0.5);
   }
   
+  /* sub menu color */
   .chiller-theme .sidebar-wrapper .sidebar-menu ul li a i,
   .chiller-theme .sidebar-wrapper .sidebar-menu .sidebar-dropdown div,
   .chiller-theme .sidebar-wrapper .sidebar-search input.search-menu,
   .chiller-theme .sidebar-wrapper .sidebar-search .input-group-text {
-      background: #3a3f48;
+      background: #195982;
   }
   
   .chiller-theme .sidebar-wrapper .sidebar-menu .header-menu span {
-      color: #6c7b88;
+      color: #886c6c;
   }
   
   .chiller-theme .sidebar-footer {
-      background: #3a3f48;
-      box-shadow: 0px -1px 5px #282c33;
-      border-top: 1px solid #464a52;
+      background: #074973;
+      box-shadow: 0px -1px 5px #053e61;
+      border-top: 1px solid #053757;
   }
   
   .chiller-theme .sidebar-footer>a:first-child {
@@ -479,3 +486,12 @@
       border-right: none;
   }
   
+  .sidebar_button{
+    background-color: #074973;
+    color: rgba(255, 255, 255, 0.884);
+  }
+
+  .sidebar_button:hover{
+    background-color: #063958;
+    color: white;
+  }

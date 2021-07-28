@@ -1,11 +1,11 @@
-<a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+<a id="show-sidebar" class="btn btn-sm sidebar_button" href=" #">
   <i class="fas fa-bars"></i>
 </a>
 
 <nav id="sidebar" class="sidebar-wrapper">
   <div class="sidebar-content">
     <div class="sidebar-brand">
-      <a class="text-center" href="{{ route('home') }}">DMS</a>
+      <a class="text-center text-white" href="{{ route('home') }}">DMS</a>
       <div id="close-sidebar">
         <i class="fas fa-times"></i>
       </div>
@@ -22,7 +22,7 @@
             href="{{ route('profile.show')}}"><strong>{{ auth()->user()->employee->name }}</strong></a>
         </span>
         <span class="user-role">{{ auth()->user()->employee->position->position }}</span>
-        <span class="user-role"><a href="{{ route('profile.show')}}">My Profile</a></span>
+        <span class="user-role"><a class="text-white" href="{{ route('profile.show')}}">My Profile</a></span>
       </div>
     </div>
     <!-- sidebar-header  -->
@@ -30,7 +30,7 @@
     <div class="sidebar-menu mb-0">
       <ul>
         <li>
-          <a href="{{ route('dashboard')}}">
+          <a class="text-white" href="{{ route('dashboard')}}">
             <span>Dashboard</span>
           </a>
         </li>
@@ -43,14 +43,14 @@
         @can($navigation->permission_name)
         <li class="sidebar-dropdown">
           <a href="#">
-            <span>{{ $navigation->name }}</span>
+            <span class="text-white">{{ $navigation->name }}</span>
             <span class=" badge badge-pill badge-warning"></span>
           </a>
           <div class="sidebar-submenu">
             <ul>
               @foreach ($navigation->children as $child)
               <li>
-                <a href="{{ ($child->url === null) ? '#' : url($child->url) }}">{{ $child->name }}
+                <a class="text-white" href="{{ ($child->url === null) ? '#' : url($child->url) }}">{{ $child->name }}
                   <span class="badge badge-pill badge-success"></span>
                 </a>
               </li>
