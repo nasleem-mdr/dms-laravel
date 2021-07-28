@@ -2,13 +2,13 @@
   <label for="agency_id">Agency</label>
   <select name="agency_id" id="agency_id" class="form-control" onchange="getPositions()">
     <option selected disabled>Choose a Agency</option>
-    @if (auth()->user()->hasRole('admin'))
+    @if ($user->hasRole('admin'))
     <option {{ isset($agency) ? $item->id == $agency->id ? 'selected' : '' : ''}}
-      value="{{ auth()->user()->employee->agency->id  }}">
-      {{ auth()->user()->employee->agency->name }}</option>
+      value="{{ $user->employee->agency->id  }}">
+      {{ $user->employee->agency->name }}</option>
     @endif
 
-    @if (auth()->user()->hasRole('super admin'))
+    @if ($user->hasRole('super admin'))
     @foreach ($agencies as $item)
     <option {{ isset($agency) ? $item->id == $agency->id ? 'selected' : '' : ''}} value="{{ $item->id }}">
       {{ $item->name }}</option>
@@ -23,7 +23,7 @@
 <div class="form-group">
   <label for="position_id">Position</label>
   <select name="position_id" id="position_id" class="form-control">
-
+    <option selected disabled>Choose a Position</option>
   </select>
   @error('position_id')
   <div class="text-danger mt-1 d-block">{{ $message }}</div>
