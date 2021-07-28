@@ -91,6 +91,7 @@ class DocumentController extends Controller
             'agency_id' => $agencyID,
             'document_category_id' =>  request('category_id'),
         ]);
+
         return redirect()->route('document.table')->with('success', "{$document->file} berhasil ditambahkan");
     }
 

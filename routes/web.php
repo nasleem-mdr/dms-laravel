@@ -137,6 +137,7 @@ Route::middleware('has.role')->group(function () {
 
 Auth::routes();
 
+
 //API get position from agency 
 Route::get('/agency/{agency}/positions', 'AgencyController@getPositionFromAgency');
 
