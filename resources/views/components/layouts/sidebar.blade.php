@@ -22,7 +22,7 @@
             href="{{ route('profile.show')}}"><strong>{{ auth()->user()->employee->name }}</strong></a>
         </span>
         <span class="user-role">{{ auth()->user()->employee->position->position }}</span>
-        <span class="user-role"><a href="{{ route('profile.edit')}}">My Profile</a></span>
+        <span class="user-role"><a href="{{ route('profile.show')}}">My Profile</a></span>
       </div>
     </div>
     <!-- sidebar-header  -->

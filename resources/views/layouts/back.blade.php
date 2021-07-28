@@ -11,7 +11,7 @@
 @section('body')
 
 
-<div class="page-wrapper chiller-theme toggled">
+<div class="page-wrapper chiller-theme ">
   <x-layouts.sidebar>
   </x-layouts.sidebar>
   <main class="page-content">
