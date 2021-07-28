@@ -39,8 +39,12 @@
         <td>{{ $index + 1 }}</td>
         <td>{{ $employee->nip}}</td>
         <td>{{ $employee->name }}</td>
-        <td>{{ $employee->address }}</td>
-        <td>{{ $employee->phone_number }}</td>
+        <td class="{{ ($employee->address === null) ? 'text-center' : ''}}">
+          {{ ($employee->address === null) ? '-' : $employee->address }}
+        </td>
+        <td class="{{ ($employee->phone_number === null) ? 'text-center' : ''}}">
+          {{ ($employee->phone_number === null) ? '-' : $employee->phone_number }}
+        </td>
         <td>{{ $employee->agency->name }}</td>
         <td>{{ $employee->position->position }}</td>
         @if ($user->hasRole('super admin'))
@@ -49,7 +53,7 @@
         </td>
         @endif
         <td>
-          <a class="text-primary" href="{{ route('employee.edit', $employee) }}">Edit</a>
+          <a class=" text-primary" href="{{ route('employee.edit', $employee) }}">Edit</a>
           @include('employee.delete', ['employee' => $employee])
           @if ($user->hasRole('super admin'))
 
