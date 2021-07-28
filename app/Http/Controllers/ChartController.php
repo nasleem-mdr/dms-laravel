@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Agency;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class ChartController extends Controller
 {
@@ -15,43 +17,31 @@ class ChartController extends Controller
         return $entity->count();
     }
 
-    // jumlah pegawai pada suatu instansi
-    public function getTotalEmployees()
+    //dynamic get count from agency relation 
+    // ex : archives, documents, or employees
+    public function getTotal($entity)
     {
-        $agencies = Agency::withCount('employees')->get();
-        $messages = array();
-        foreach ($agencies as $agency) {
-            array_push($messages, [
-                'nama_unit' => $agency->name,
-                'total_pegawai' => $agency->employees_count,
-            ]);
-        }
-        return response()->json($messages, 400);
-    }
+        $user = Auth::user();
+        $count = $entity . '_count';
 
-    public function getTotalArchives()
-    {
-        $agencies = Agency::withCount('archives')->get();
-        $messages = array();
-        foreach ($agencies as $agency) {
-            array_push($messages, [
-                'nama_unit' => $agency->name,
-                'total_arsip' => $agency->archives_count,
-            ]);
-        }
-        return response()->json($messages, 400);
-    }
+        if ($user->hasRole('super admin')) {
+            $agencies = Agency::withCount($entity)->get();
+            $messages = array();
 
-    public function getTotalDocuments()
-    {
-        $agencies = Agency::withCount('documents')->get();
-        $messages = array();
-        foreach ($agencies as $agency) {
-            array_push($messages, [
-                'nama_unit' => $agency->name,
-                'total_dokumen' => $agency->documents_count,
-            ]);
+            foreach ($agencies as $agency) {
+                array_push($messages, [
+                    'nama_unit' => $agency->name,
+                    'total_' . $entity => $agency->$count,
+                ]);
+            }
+        } else {
+            $agencyID = $user->employee->agency->id;
+            $employees = Agency::withCount($entity)->find($agencyID);
+            $messages = [
+                'total_' . $entity => $employees->$count,
+            ];
         }
+
         return response()->json($messages, 400);
     }
 }

@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Auth;
 */
 
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index')->name('home');
 
 Route::middleware('has.role')->group(function () {
 
@@ -147,6 +147,5 @@ Route::get('/agency/{agency}/positions', 'AgencyController@getPositionFromAgency
 // get total row of table, ex ; Agencies, Positions
 Route::get('/get/total/{Entity}', 'ChartController@getTotalOf');
 
-Route::get('/get/total/agency/employees', 'ChartController@getTotalEmployees');
-Route::get('/get/total/agency/archives', 'ChartController@getTotalArchives');
-Route::get('/get/total/agency/documents', 'ChartController@getTotalDocuments');
+// get total of agency relation , ex : archives, documents, or employees
+Route::get('/get/total/agency/{agency_relation}', 'ChartController@getTotal');
