@@ -129,11 +129,18 @@ class DocumentController extends Controller
 
         $oldDocument = $document->no;
 
+        $fileName = $document->file;
+        if (request('file') !== null) {
+            $agencyID = $document->employee->agency->id;
+            $fileName = $this->saveFile(request(), $agencyID);
+        }
+
         $document->update([
             'no' => request('no'),
             'desc' => request('desc'),
             'year_id' => request('year_id'),
             'document_category' =>  request('category_id'),
+            'file' => $fileName,
         ]);
 
         return redirect()->route('document.table')->with('success', "Arsip No. {$oldDocument} telah diperbaruhi menjadi {$document->no}");

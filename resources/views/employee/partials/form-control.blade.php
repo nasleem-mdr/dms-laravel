@@ -2,10 +2,18 @@
   <label for="agency_id">Agency</label>
   <select name="agency_id" id="agency_id" class="form-control" onchange="getPositions()">
     <option selected disabled>Choose a Agency</option>
+    @if (auth()->user()->hasRole('admin'))
+    <option {{ isset($agency) ? $item->id == $agency->id ? 'selected' : '' : ''}}
+      value="{{ auth()->user()->employee->agency->id  }}">
+      {{ auth()->user()->employee->agency->name }}</option>
+    @endif
+
+    @if (auth()->user()->hasRole('super admin'))
     @foreach ($agencies as $item)
     <option {{ isset($agency) ? $item->id == $agency->id ? 'selected' : '' : ''}} value="{{ $item->id }}">
       {{ $item->name }}</option>
     @endforeach
+    @endif
   </select>
   @error('agency_id')
   <div class="text-danger mt-1 d-block">{{ $message }}</div>
@@ -79,6 +87,12 @@
     <div class="text-danger mt-2 d-block">{{ $message }}</div>
     @enderror
   </select>
+</div>
+
+<div class="form-group">
+  <label for="file">Upload Profile Picture</label>
+  <input type="file" class="form-control-file" id="profile_picture" name="profile_picture">
+  <small>max 5 MB</small>
 </div>
 
 <button type="submit" class="btn btn-info">{{ $submit }}</button>

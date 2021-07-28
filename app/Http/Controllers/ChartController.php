@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class ChartController extends Controller
 {
+    //dynamic get total of row in one table
     public function getTotalOf($table)
     {
         $entity = DB::table($table)->get();

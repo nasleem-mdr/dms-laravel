@@ -32,6 +32,20 @@ class EmployeeController extends Controller
         ]);
     }
 
+    function saveFile(Request $request, $agencyName)
+    {
+        $fileName = null;
+
+        $names = explode('.', $request->file->getClientOriginalName());
+        if ($request->file) {
+            $fileName = $names[0] . '-' . time() . '-' . request('nip') . '-' . 'profile-picture'
+                . '.' . $request->file->extension();
+            $request->file->move(public_path('images/profile/employees/' . $agencyName), $fileName);
+        }
+
+        return $fileName;
+    }
+
     public function store()
     {
         request()->validate([
@@ -52,7 +66,14 @@ class EmployeeController extends Controller
             'email' => request('email'),
             'password' => Hash::make($password),
         ]);
+
         $user->assignRole(request('roles'));
+
+        $fileName = 'default-profile.png';
+        if (request('profile_picture') !== null) {
+            $agencyName = Agency::find(request('agency_id'))->name;
+            $fileName = $this->saveFile(request(), $agencyName);
+        }
 
         Employee::create([
             'user_id' => $user->id,
@@ -62,6 +83,7 @@ class EmployeeController extends Controller
             'address' => request('address') ?? null,
             'phone_number' => request('phone_number') ?? null,
             'position_id' => request('position_id'),
+            'profile_picture' => $fileName,
         ]);
 
         return redirect()->route('employee.table', [
@@ -96,6 +118,11 @@ class EmployeeController extends Controller
             'roles' => 'required',
         ]);
 
+        $fileName = $employee->profile_picture;
+        if (request('profile_picture') !== null) {
+            $agencyName = $employee->agency->name;
+            $fileName = $this->saveFile(request(), $agencyName);
+        }
 
         $employee->update([
             'nip' => request('nip'),
@@ -104,6 +131,7 @@ class EmployeeController extends Controller
             'address' => request('address') ?? null,
             'phone_number' => request('phone_number') ?? null,
             'position_id' => request('position_id'),
+            'profile_picture' => $fileName,
         ]);
 
         $user = User::find($employee->user->id);
