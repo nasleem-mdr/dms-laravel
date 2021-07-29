@@ -15,7 +15,7 @@
 @endif
 
 <div class="card">
-  <div class="card-header">
+  <div class="card-header text-white" style="background-color: #005ea3;">
     <div class="col justify-content-md-around">
       <div>
         My Profile
@@ -23,7 +23,7 @@
     </div>
   </div>
 
-  <div class="card-body d-flex">
+  <div class="card-body d-flex" style="background-color: #0482dc;">
 
     <div class="row">
       <div class="col-md-4">
@@ -32,7 +32,7 @@
           alt="{{ ($user->employee->profile_picture) ? $user->employee->profile_picture : 'avatar-default'}}"></div>
       <div class="col">
         <div class="row">
-          <table class="table table-hover">
+          <table class="table table-hover text-white">
             <tr>
               <td>NIP</td>
               <td>{{ $employee->nip}}</td>
