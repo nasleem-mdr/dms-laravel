@@ -24,7 +24,7 @@
 @endif
 
 <div class="card mb-3">
-  <div class="card-header">Sync Roles for {{$user->name}}</div>
+  <div class="card-header text-white" style="background-color: #005ea3;">Sync Roles for {{$user->name}}</div>
   <div class="card-body">
     <form action="{{  route('assign.user.edit', $user)  }}" method="post">
       @csrf

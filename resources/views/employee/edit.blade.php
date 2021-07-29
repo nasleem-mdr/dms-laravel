@@ -69,7 +69,7 @@ selectEl.appendChild(optionEl);
 
 @section('content')
 <div class="card">
-  <div class="card-header">Edit Data {{ $employee->name }}</div>
+  <div class="card-header text-white" style="background-color: #005ea3;">Edit Data {{ $employee->name }}</div>
   <div class="card-body">
     <form action="{{ route('employee.edit', $employee) }}" method="POST" enctype="multipart/form-data">
       @csrf

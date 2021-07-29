@@ -9,7 +9,7 @@
 @endif
 
 <div class="card">
-  <div class="card-header">
+  <div class="card-header text-white" style="background-color: #005ea3;">
     <div class="col justify-content-md-around">
       Data Table Employees
       <a class="btn btn-sm btn-primary float-right" href="{{ route('employee.create') }}">Add New Employee</a>

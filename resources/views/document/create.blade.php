@@ -11,7 +11,7 @@
 
 @section('content')
 <div class="card">
-  <div class="card-header">Tambahkan Arsip Dokumen </div>
+  <div class="card-header text-white" style="background-color: #005ea3;">Tambahkan Arsip Dokumen </div>
   <div class="card-body">
     <form action="{{ route('document.create') }}" method="POST" enctype="multipart/form-data">
       @csrf

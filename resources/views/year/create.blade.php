@@ -9,7 +9,7 @@
 @endif
 
 <div class="card mb-3">
-  <div class="card-header">Add new Year</div>
+  <div class="card-header text-white" style="background-color: #005ea3;">Add new Year</div>
   <div class="card-body">
     <form action="{{ route('year.create')  }}" method="post">
       @csrf
@@ -20,7 +20,7 @@
 </div>
 
 <div class="card">
-  <div class="card-header">
+  <div class="card-header text-white" style="background-color: #005ea3;">
     Table Years
   </div>
   <div class="card-body">

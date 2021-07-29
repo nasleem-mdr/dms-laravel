@@ -10,7 +10,7 @@
 
 @section('content')
 <div class="card">
-  <div class="card-header">Edit Profile</div>
+  <div class="card-header text-white" style="background-color: #005ea3;">Edit Profile</div>
   <div class="card-body">
     <form action="{{ route('profile.edit', $employee) }}" method="POST">
       @csrf

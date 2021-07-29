@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="card">
-  <div class="card-header">Create New Agency</div>
+  <div class="card-header text-white" style="background-color: #005ea3;">Create New Agency</div>
   <div class="card-body">
     <form action="{{ route('agency.edit', $agency) }}" method="POST">
       @csrf

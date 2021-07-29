@@ -22,7 +22,7 @@
 @endif
 
 <div class="card mb-3">
-  <div class="card-header">Pick Roles for User</div>
+  <div class="card-header text-white" style="background-color: #005ea3;">Pick Roles for User</div>
 
   <div class="card-body">
     <div class="table-responsive">
@@ -53,7 +53,7 @@
   </div>
 
   <div class="card">
-    <div class="card-header">
+    <div class="card-header text-white" style="background-color: #005ea3;">
       Table User and Roles
     </div>
     <div class="card-body">
