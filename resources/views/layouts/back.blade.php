@@ -5,10 +5,7 @@
 <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 @endsection
 
-
-
 @section('body')
-
 
 <div class="page-wrapper chiller-theme ">
   <x-layouts.sidebar>

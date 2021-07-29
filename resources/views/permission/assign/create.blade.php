@@ -9,7 +9,6 @@
       placeholder: "  Pilih Permissions"
     }
   );
-
   });
 </script>
 @endpush

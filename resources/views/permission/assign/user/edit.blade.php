@@ -6,17 +6,14 @@
   $(document).ready(function() {
   $('.select2').select2(
     {
-      placeholder: "  Pilih Roles"
+      placeholder: "  Pilih Permissions"
     }
   );
-
-
   });
 </script>
 @endpush
 
 @section('content')
-
 @if (session('success'))
 <div class="alert alert-success">
   {{ session('success') }}
