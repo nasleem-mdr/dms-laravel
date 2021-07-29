@@ -10,7 +10,7 @@
 
 @section('content')
 <div class="card">
-  <div class="card-header">Ubah Password</div>
+  <div class="card-header text-white" style="background-color: #005ea3;">Ubah Password</div>
   <div class="card-body">
     @if (session('error_message'))
     <div class="alert alert-danger">

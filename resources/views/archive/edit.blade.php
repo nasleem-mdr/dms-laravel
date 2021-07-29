@@ -11,7 +11,7 @@
 
 @section('content')
 <div class="card">
-  <div class="card-header">Edit {{ $archive->no }}</div>
+  <div class="card-header text-white" style="background-color: #005ea3;">Edit {{ $archive->no }}</div>
   <div class="card-body">
     <form action="{{ route('archive.edit', $archive) }}" method="POST">
       @csrf

@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="card">
-  <div class="card-header">Detail {{ $agency->name }}</div>
+  <div class="card-header text-white" style="background-color: #005ea3;">Detail {{ $agency->name }}</div>
   <div class="card-body">
 
     <div class="form-group">

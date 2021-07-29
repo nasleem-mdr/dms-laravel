@@ -9,7 +9,7 @@
 @endif
 
 <div class="card mb-3">
-  <div class="card-header">Edit {{ $year->year }}</div>
+  <div class="card-header text-white" style="background-color: #005ea3;">Edit {{ $year->year }}</div>
   <div class="card-body">
     <form action="{{ route('year.edit', $year)  }}" method="post">
       @csrf

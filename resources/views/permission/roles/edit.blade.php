@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="card mb-4">
-  <div class="card-header">Edit Role</div>
+  <div class="card-header text-white" style="background-color: #005ea3;">Edit Role</div>
   <div class="card-body">
     <form action="{{ route('roles.edit', $role)  }}" method="POST">
       @csrf

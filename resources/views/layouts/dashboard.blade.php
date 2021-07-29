@@ -5,14 +5,14 @@
 @endsection
 
 @section('content')
-<ol class="breadcrumb d-flex mt-4">
-  <li class="breadcrumb-item active">{{ ucwords(explode('.', Route::currentRouteName())[0]) }}</li>
+<ol class="breadcrumb d-flex mt-4" style="background-color: #005ea3;">
+  <li class="breadcrumb-item active text-white">{{ ucwords(explode('.', Route::currentRouteName())[0]) }}</li>
 </ol>
 
 <div class="row">
   <div class="{{ auth()->user()->hasRole('admin') ? 'col-md-12' : 'col-xl-4 col-md-6' }}">
     <div class="card mb-4 d-flex">
-      <div class="card-body card__body-title">
+      <div class="card-body card__body-title text-white" style="background-color: #005ea3;">
         <div class="d-flex flex-column">
           <p>Selamat Datang,</p>
           <span class="h5 bold text__blue-color pt-1 pb-2">{{ auth()->user()->employee->name }}</span>
@@ -30,8 +30,8 @@
   @if (auth()->user()->hasRole('super admin'))
   <div class="col-xl-4 col-md-6">
     <div class="card text__black bg-white  mb-4">
-      <div class="card-body bg- card__body-title h6">Jumlah Instansi</div>
-      <div class="card-body pt-0 h3 " id="total_agencies">
+      <div class="card-body bg- card__body-title h6 text-white" style="background-color: #005ea3;">Jumlah Instansi</div>
+      <div class="card-body pt-0 h3" id="total_agencies">
         0
       </div>
       <div class="card-footer d-flex align-items-center justify-content-between">
@@ -44,8 +44,8 @@
 
   <div class="col-xl-4 col-md-6">
     <div class="card text__black mb-4">
-      <div class="card-body card__body-title h6">Jumlah Pegawai</div>
-      <div class="card-body pt-0 h3" id="total_employee">
+      <div class="card-body card__body-title h6 text-white" style="background-color: #005ea3;">Jumlah Pegawai</div>
+      <div class="card-body pt-0 h3 " id="total_employee">
         0
       </div>
       {{-- <img src="{{asset('icons/trophy_card_icon.svg')}}" width="60px" height="60px" class="card__body-icon mt-4"

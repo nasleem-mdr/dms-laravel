@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="card">
-  <div class="card-header">Edit Position {{ $position->position }} at {{ $agency->name }}</div>
+  <div class="card-header text-white" style="background-color: #005ea3;">Edit Position {{ $position->position }} at {{ $agency->name }}</div>
   <div class="card-body">
     <form action="{{ route('position.edit', [$agency, $position]) }}" method="POST">
       @csrf

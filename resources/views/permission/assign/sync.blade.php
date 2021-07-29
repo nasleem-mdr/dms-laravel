@@ -4,7 +4,7 @@
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 @endsection
 
-@push('scripts')
+@push('scripts_select2')
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
   $(document).ready(function() {
@@ -28,7 +28,7 @@
 @endif
 
 <div class="card mb-3">
-  <div class="card-header">Assign Permission</div>
+  <div class="card-header text-white" style="background-color: #005ea3;">Assign Permission</div>
   <div class="card-body">
     <form action="{{ route('assign.edit', $role)  }}" method="post">
       @csrf
