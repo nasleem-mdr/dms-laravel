@@ -46,7 +46,6 @@
           @foreach ($permissions as $permission)
           <option {{ $role->permissions()->find($permission->id) ? 'selected' : '' }} value="{{ $permission->id }}">
             {{ $permission->name}} |
-            Guard : {{ $permission->guard_name }}
           </option>
           @endforeach
           @error('permissions')
