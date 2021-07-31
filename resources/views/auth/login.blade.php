@@ -2,28 +2,25 @@
 
 @section('content')
 
-
-
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+<div class="container d-flex justify-content-center my-5">
+    <div class="row ">
+        <div class="col-md-12">
             <div class="card text-white" style="background-color: #005ea3;">
-
-                <div class="card-body">
+                <div class="card-header mb-lg-4">
+                    <h2 class="text-center title-login">Masuk</h2>
+                </div>
+                <div class="card-body px-lg-5 py-lg-3">
                     @if (session('message'))
-                    <div class="alert alert-success text-center">
+                    <div class="alert alert-info text-center mb-5">
                         {{ session('message') }}
                     </div>
                     @endif
                     <form method="POST" action="{{ route('login') }}">
-                        <h2 class="text-center title-login">Login</h2>
                         @csrf
-
                         <div class="form-group row">
-                            <label for="credential"
-                                class="col-md-4 col-form-label text-md-right">Email/Username/NIP</label>
+                            <label for="credential" class="col-md-4 col-form-label text-md-right">Email/NIP</label>
 
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <input id="credential" type="text"
                                     class="form-control @error('credential') is-invalid @enderror" name="credential"
                                     value="{{ old('credential') }}" required autocomplete="credential" autofocus>
@@ -40,7 +37,7 @@
                             <label for="password"
                                 class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <input id="password" type="password"
                                     class="form-control @error('password') is-invalid @enderror" name="password"
                                     required autocomplete="current-password">
@@ -60,21 +57,22 @@
                                         {{ old('remember') ? 'checked' : '' }}>
 
                                     <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
+                                        Ingat Saya
                                     </label>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
+                        <div class="form-group row mb-0 justify-content-center">
+                            <div class="col-md-8 offset-md-4 mt-4">
+                                <button type="submit" class="btn btn-light">
+                                    Masuk
                                 </button>
-
+                            </div>
+                            <div class="col-md-8 offset-md-4">
                                 @if (Route::has('password.request'))
-                                <a class="btn btn-outline-danger" href="{{ route('password.request') }}">
-                                    {{ __('Forgot Your Password?') }}
+                                <a class="text-white" href="{{ route('password.request') }}">
+                                    Lupa Password?
                                 </a>
                                 @endif
                             </div>
