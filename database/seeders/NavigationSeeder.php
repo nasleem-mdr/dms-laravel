@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use App\Models\Navigation;
 use Illuminate\Database\Seeder;
 
-class NavigationSeed extends Seeder
+class NavigationSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,149 +15,128 @@ class NavigationSeed extends Seeder
     public function run()
     {
         $archive = Navigation::create([
-            'name' => 'Archive',
+            'name' => 'Arsip Kepegawaian',
             'url' => null,
             'parent_id' => null,
             'permission_name' => 'create archive',
         ]);
 
         Navigation::create([
-            'name' => 'Archive Table',
+            'name' => 'Tabel Arsip Kepegawaian',
             'url' => 'archive/table',
             'parent_id' => $archive->id,
             'permission_name' => 'create archive',
         ]);
 
         $document = Navigation::create([
-            'name' => 'Document',
+            'name' => 'Arsip Dokumen',
             'url' => null,
             'parent_id' => null,
             'permission_name' => 'create document',
         ]);
 
         Navigation::create([
-            'name' => 'Document Table',
+            'name' => 'Tabel Arsip Dokumen',
             'url' => 'document/table',
             'parent_id' => $document->id,
             'permission_name' => 'create document',
         ]);
 
         $agency = Navigation::create([
-            'name' => 'Agency',
+            'name' => 'Unit',
             'url' => null,
             'parent_id' => null,
             'permission_name' => 'create agency',
         ]);
 
         Navigation::create([
-            'name' => 'Create new Agency',
+            'name' => 'Tambah Unit Baru',
             'url' => 'agency/create',
             'parent_id' => $agency->id,
             'permission_name' => 'create agency',
         ]);
 
         Navigation::create([
-            'name' => 'Agency Table',
+            'name' => 'Tabel Unit',
             'url' => 'agency/table',
             'parent_id' => $agency->id,
             'permission_name' => 'create agency',
         ]);
 
         $employee = Navigation::create([
-            'name' => 'Employee',
+            'name' => 'Pegawai',
             'url' => null,
             'parent_id' => null,
             'permission_name' => 'create employee',
         ]);
 
         Navigation::create([
-            'name' => 'Employee Table',
+            'name' => 'Tabel Pegawai',
             'url' => 'employee/table',
             'parent_id' => $employee->id,
             'permission_name' => 'create employee',
         ]);
 
-        $roleAndPermission = Navigation::create([
-            'name' => 'Role & Permission',
+        $master = Navigation::create([
+            'name' => 'Master',
             'url' => null,
             'parent_id' => null,
-            'permission_name' => 'assign permission',
+            'permission_name' => 'master',
         ]);
 
         Navigation::create([
-            'name' => 'Roles',
+            'name' => 'Kelola Role',
             'url' => 'role-and-permission/roles/',
-            'parent_id' => $roleAndPermission->id,
+            'parent_id' => $master->id,
             'permission_name' => 'assign permission',
         ]);
 
         Navigation::create([
-            'name' => 'Permissions',
+            'name' => 'Kelola Akses Perizinan',
             'url' => 'role-and-permission/permissions/',
-            'parent_id' => $roleAndPermission->id,
+            'parent_id' => $master->id,
             'permission_name' => 'assign permission',
         ]);
 
         Navigation::create([
-            'name' => 'Assign Permission',
+            'name' => 'Perizinan Untuk Role',
             'url' => 'role-and-permission/assignable',
-            'parent_id' => $roleAndPermission->id,
+            'parent_id' => $master->id,
             'permission_name' => 'assign permission',
         ]);
 
         Navigation::create([
-            'name' => 'Permission to Users',
+            'name' => 'Role Untuk User',
             'url' => 'role-and-permission/assign/user',
-            'parent_id' => $roleAndPermission->id,
+            'parent_id' => $master->id,
             'permission_name' => 'assign permission',
         ]);
 
-        $navigation = Navigation::create([
-            'name' => 'Navigation Settings',
-            'url' => null,
-            'parent_id' => null,
-            'permission_name' => 'create navigation',
-        ]);
-
         Navigation::create([
-            'name' => 'Create new menu',
+            'name' => 'Tambah menu Baru',
             'url' => 'navigation/create',
-            'parent_id' => $navigation->id,
+            'parent_id' => $master->id,
             'permission_name' => 'create navigation',
         ]);
 
         Navigation::create([
-            'name' => 'Navigation Table',
+            'name' => 'Tabel Navigasi',
             'url' => 'navigation/table',
-            'parent_id' => $navigation->id,
+            'parent_id' => $master->id,
             'permission_name' => 'create navigation',
         ]);
 
-        $category = Navigation::create([
-            'name' => 'Category',
-            'url' => null,
-            'parent_id' => null,
-            'permission_name' => 'create category',
-        ]);
-
         Navigation::create([
-            'name' => 'Table Category',
+            'name' => 'Table Kategori Dokumen',
             'url' => 'category/create',
-            'parent_id' => $category->id,
+            'parent_id' => $master->id,
             'permission_name' => 'create category',
         ]);
 
-        $year = Navigation::create([
-            'name' => 'Year',
-            'url' => null,
-            'parent_id' => null,
-            'permission_name' => 'create year',
-        ]);
-
         Navigation::create([
-            'name' => 'Table Year',
+            'name' => 'Table Tahun',
             'url' => 'year/create',
-            'parent_id' => $year->id,
+            'parent_id' => $master->id,
             'permission_name' => 'create year',
         ]);
     }

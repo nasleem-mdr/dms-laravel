@@ -3,7 +3,6 @@
 @section('body')
 
 <main class="">
-
     @yield('content')
 </main>
 

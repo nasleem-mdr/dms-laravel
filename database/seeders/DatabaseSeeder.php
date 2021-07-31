@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
             RolesAndPermissionsSeeder::class,
             AgencySeeder::class,
             UserSeeder::class,
-            NavigationSeed::class,
+            NavigationSeeder::class,
             CategorySeeder::class,
             YearSeeder::class,
             EmployeeSeeder::class,

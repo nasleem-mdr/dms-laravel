@@ -76,7 +76,11 @@
         <td>{{ $index+1 }}</td>
         <td>{{ $role->name }}</td>
         <td>{{ $role->guard_name }}</td>
-        <td>{{ implode(', ', $role->getPermissionNames()->toArray()) }}</td>
+        <td>
+          @foreach ($role->permissions as $permission)
+          {{ $permission->name }},
+          @endforeach
+        </td>
         <td><a href="{{ route('assign.edit', $role) }}">Sync</a></td>
       </tr>
       @endforeach

@@ -8,7 +8,6 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card text-white" style="background-color: #005ea3;">
-                
 
                 <div class="card-body">
                     @if (session('message'))

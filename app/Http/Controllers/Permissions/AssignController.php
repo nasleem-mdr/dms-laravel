@@ -10,9 +10,8 @@ class AssignController extends Controller
 {
     public function create()
     {
-
         return view('permission.assign.create', [
-            'roles' => Role::get(),
+            'roles' => Role::with('permissions')->get(),
             'permissions' => Permission::get(),
         ]);
     }
@@ -27,7 +26,7 @@ class AssignController extends Controller
         $role = Role::findOrFail(request('role'));
         $role->givePermissionTo(request('permissions'));
 
-        return back()->with('success', "Permission has been assigned to role {$role->name}");
+        return back()->with('success', "Izin diberikan kepada role {$role->name}");
     }
 
     public function edit(Role $role)

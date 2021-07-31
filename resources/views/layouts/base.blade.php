@@ -28,6 +28,9 @@
   <link href=" https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
     crossorigin="anonymous" />
 
+  {{-- login --}}
+  <link rel="stylesheet" type="text/css" href="css/login.css">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -47,6 +50,9 @@
   <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
   <script src="{{ asset('js/datatables.js') }}"></script>
 
+  {{-- login --}}
+
+  <script src="https://kit.fontawesome.com/a81368914c.js"></script>
 </body>
 
 </html>

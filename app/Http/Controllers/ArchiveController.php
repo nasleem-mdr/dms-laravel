@@ -15,11 +15,11 @@ class ArchiveController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $user = User::find($user->id);
+
         if ($user->hasRole('super admin')) {
-            $archives = Archive::get();
+            $archives = Archive::with('employee', 'agency', 'year')->get();
         } else {
-            $archives = Archive::where('agency_id', $user->employee->agency_id)->get();
+            $archives = Archive::with('employee', 'agency', 'year')->where('agency_id', $user->employee->agency_id)->get();
         }
 
         return view('archive.table', compact('archives', 'user'));
@@ -44,7 +44,6 @@ class ArchiveController extends Controller
         ]);
 
         $user = Auth::user();
-        $user = User::find($user->id);
         $employeeID = $user->employee->id;
         $agencyID = $user->employee->agency_id;
 
@@ -62,7 +61,6 @@ class ArchiveController extends Controller
     public function edit(Archive $archive)
     {
         $user = Auth::user();
-        $user = User::find($user->id);
 
         if ($user->id !== $archive->employee->id && !$user->hasRole(['super admin', 'admin'])) {
             abort('403');
@@ -78,7 +76,6 @@ class ArchiveController extends Controller
     public function update(Archive $archive)
     {
         $user = Auth::user();
-        $user = User::find($user->id);
 
         if ($user->id !== $archive->employee->id && !$user->hasRole(['super admin', 'admin'])) {
             abort('403');

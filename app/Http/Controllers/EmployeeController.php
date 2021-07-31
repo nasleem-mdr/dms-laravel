@@ -18,7 +18,7 @@ class EmployeeController extends Controller
     {
         return view('employee.table', [
             'user' => Auth::user(),
-            'employees' => Employee::get(),
+            'employees' => Employee::with('position', 'agency', 'user', 'archives', 'documents')->get(),
         ]);
     }
 

@@ -16,11 +16,10 @@ class DocumentController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $user = User::find($user->id);
         if ($user->hasRole('super admin')) {
-            $documents = Document::get();
+            $documents = Document::with('employee', 'year', 'document_category', 'agency')->get();
         } else {
-            $documents = Document::where('agency_id', $user->employee->agency_id)->get();
+            $documents = Document::with('employee', 'year', 'document_category', 'agency')->where('agency_id', $user->employee->agency_id)->get();
         }
 
         return view('document.table', compact('documents', 'user'));
@@ -74,7 +73,6 @@ class DocumentController extends Controller
         ]);
 
         $user = Auth::user();
-        $user = User::find($user->id);
         $employeeID = $user->employee->id;
         $agencyID = $user->employee->agency_id;
 
@@ -96,7 +94,6 @@ class DocumentController extends Controller
     public function edit(Document $document)
     {
         $user = Auth::user();
-        $user = User::find($user->id);
 
         if ($user->id !== $document->employee->id && !$user->hasRole(['super admin', 'admin'])) {
             abort('403');
@@ -113,7 +110,6 @@ class DocumentController extends Controller
     public function update(Document $document)
     {
         $user = Auth::user();
-        $user = User::find($user->id);
 
         if ($user->id !== $document->employee->id && !$user->hasRole(['super admin', 'admin'])) {
             abort('403');

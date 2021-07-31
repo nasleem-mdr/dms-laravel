@@ -29,7 +29,7 @@ class Employee extends Model
 
     public function archives()
     {
-        return $this->hasMany(Archives::class);
+        return $this->hasMany(Archive::class);
     }
 
 
