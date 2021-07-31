@@ -1,86 +1,59 @@
 @extends('layouts.app')
-
+@section('styles')
+<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+@endsection
 @section('content')
 
-<div class="container d-flex justify-content-center my-5">
-    <div class="row ">
-        <div class="col-md-12">
-            <div class="card text-white" style="background-color: #005ea3;">
-                <div class="card-header mb-lg-4">
-                    <h2 class="text-center title-login">Masuk</h2>
-                </div>
-                <div class="card-body px-lg-5 py-lg-3">
-                    @if (session('message'))
-                    <div class="alert alert-info text-center mb-5">
-                        {{ session('message') }}
+<div class="container d-flex justify-content-center">
+    <div class="card col col-xl-4 px-0 my-5" style="border-radius:8px;">
+        <form action="{{ route('login') }}" method="POST">
+            @csrf
+            <div class="card-header radius-10 bg__first-color px-0"
+                style="border-radius: 8px 8px 0px 0px; background-color: #005ea3 ;">
+                <div class="text-light px-4">
+                    <div class="title">
+                        <h4 class="text-left text-center">Login Manajemen Arsip</h4>
                     </div>
-                    @endif
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
-                        <div class="form-group row">
-                            <label for="credential" class="col-md-4 col-form-label text-md-right">Email/NIP</label>
-
-                            <div class="col-md-8">
-                                <input id="credential" type="text"
-                                    class="form-control @error('credential') is-invalid @enderror" name="credential"
-                                    value="{{ old('credential') }}" required autocomplete="credential" autofocus>
-
-                                @error('credential')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password"
-                                class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-8">
-                                <input id="password" type="password"
-                                    class="form-control @error('password') is-invalid @enderror" name="password"
-                                    required autocomplete="current-password">
-
-                                @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember"
-                                        {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        Ingat Saya
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0 justify-content-center">
-                            <div class="col-md-8 offset-md-4 mt-4">
-                                <button type="submit" class="btn btn-light">
-                                    Masuk
-                                </button>
-                            </div>
-                            <div class="col-md-8 offset-md-4">
-                                @if (Route::has('password.request'))
-                                <a class="text-white" href="{{ route('password.request') }}">
-                                    Lupa Password?
-                                </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
                 </div>
             </div>
-        </div>
+            <div class="card-body px-2">
+                <div class="col pt-3 ">
+                    <label class="sr-only" for="inputEmail">Email</label>
+                    <div class="input-group mb-2 mt-0">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text border-0" style="background-color: #005ea3"><i
+                                    class='bx bxs-user bx-sm text-white'></i>
+                            </div>
+                        </div>
+                        <input type="text" class="form-control" id="inputEmail" name="credential" placeholder="Email"
+                            required>
+                    </div>
+                </div>
+                <div class="col pt-2">
+                    <label class="sr-only" for="inputPassword">Password</label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text border-0" style="background-color: #005ea3">
+                                <i class='bx bxs-lock-alt bx-sm text-white'></i></i>
+                            </div>
+                        </div>
+                        <input type="password" class="form-control" id="inputPassword" name="password"
+                            placeholder="Password" required>
+                    </div>
+                </div>
+                <div class="col-sm-12 pt-4 offset-md-4">
+                    <button class="btn px-3 text-white text-md-right" style="background-color: #005ea3;"
+                        type="submit">Login</button>
+                </div>
+                <div class="col text-center py-3">
+                    @if (Route::has('password.request'))
+                    <p>Lupa Password? <a class="text__first-color font-weight-bold"
+                            href="{{ route('password.request') }}">Reset</a></p>
+                    @endif
+
+                </div>
+            </div>
     </div>
 </div>
+
 @endsection
