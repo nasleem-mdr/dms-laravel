@@ -3,7 +3,6 @@
 <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 @endsection
 @section('content')
-
 <div class="container d-flex justify-content-center">
     <div class="card col col-xl-4 px-0 my-5" style="border-radius:8px;">
         <form action="{{ route('login') }}" method="POST">
@@ -12,7 +11,7 @@
                 style="border-radius: 8px 8px 0px 0px; background-color: #005ea3 ;">
                 <div class="text-light px-4">
                     <div class="title">
-                        <h4 class="text-left text-center">Login Manajemen Arsip</h4>
+                        <h4 class="text-left text-left">SINAR <br> Sistem Manajemen Arsip</h4>
                     </div>
                 </div>
             </div>

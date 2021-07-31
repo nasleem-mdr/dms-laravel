@@ -3,8 +3,6 @@
 <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 @endsection
 @section('content')
-
-
 <div class="container d-flex justify-content-center">
     <div class="card col col-xl-4 px-0 my-5" style="border-radius:8px;">
         <form action="{{ route('password.email') }}" method="POST">
@@ -42,5 +40,4 @@
             </div>
     </div>
 </div>
-
 @endsection
