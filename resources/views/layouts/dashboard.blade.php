@@ -1,8 +1,5 @@
 @extends('layouts.back')
 
-@section('styles')
-<link rel="stylesheet" href="{{ asset('css/dashboard') }}">
-@endsection
 
 @section('content')
 <ol class="breadcrumb d-flex mt-4" style="background-color: #005ea3;">
@@ -17,7 +14,7 @@
           <p>Selamat Datang,</p>
           <span class="h5 bold text__blue-color pt-1 pb-2">{{ auth()->user()->employee->name }}</span>
         </div>
-        {{-- <img src="" class="card__body-icon pt-1" alt="Welcome Icon"> --}}
+
       </div>
       <div class="card-footer d-flex align-items-center justify-content-between">
         <a class=" text__blue-color stretched-link h6" href="#">Lihat
@@ -48,8 +45,7 @@
       <div class="card-body pt-0 h3 " id="total_employee">
         0
       </div>
-      {{-- <img src="{{asset('icons/trophy_card_icon.svg')}}" width="60px" height="60px" class="card__body-icon mt-4"
-      alt="Welcome Icon"> --}}
+
       <div class="card-footer d-flex align-items-center justify-content-between">
         <a class="text__blue-color stretched-link h6" href="{{ route('employee.table')}}">Lihat
           Detail</a>

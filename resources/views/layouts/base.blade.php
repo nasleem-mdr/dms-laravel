@@ -28,9 +28,7 @@
   <link href=" https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
     crossorigin="anonymous" />
 
-  {{-- login --}}
-  <link rel="stylesheet" type="text/css" href="css/login.css">
-  <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+
 </head>
 
 <body>

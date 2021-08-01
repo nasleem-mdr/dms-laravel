@@ -1,15 +1,12 @@
 function loadData() {
 
-    let dummyData = [20, 25, 30, 78, 98];
-    let dummyData2 = [ 98, 78, 30, 25, 21];
-
   //get total of units/agency
 let elTotalAgency = document.getElementById('total_agencies');
 
 fetch('/get/total/agencies')
   .then(response => response.json())
   .then(data => {
-    elTotalAgency.innerHTML = data;
+    elTotalAgency.innerHTML = data.total_agencies;
   });
 
 let elTotalEmployee = document.getElementById('total_employee');
@@ -17,7 +14,7 @@ let elTotalEmployee = document.getElementById('total_employee');
 fetch('/get/total/employees')
   .then(response => response.json())
   .then(data => {
-    elTotalEmployee.innerHTML = data;
+    elTotalEmployee.innerHTML = data.total_employees;
   });
 
 let agencies = [];
@@ -32,8 +29,8 @@ fetch('/get/total/agency/archives')
           archives.push(data.total_archives);
       });
 
-    //   createGraphArchive(agencies, archives)
-      createGraphArchive(agencies, dummyData)
+      createGraphArchive(agencies, archives)
+    //   createGraphArchive(agencies, dummyData)
   });
 
   let units = [];
@@ -47,8 +44,8 @@ fetch('/get/total/agency/documents')
             documents.push(data.total_documents);
         });
 
-        // createGraphDocument(units, documents)
-        createGraphDocument(units, dummyData2)
+        createGraphDocument(units, documents)
+        // createGraphDocument(units, dummyData2)
     });
 }
 

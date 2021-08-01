@@ -3,17 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 
 Route::get('/', 'HomeController@index')->name('home');
 
@@ -149,3 +138,4 @@ Route::get('/get/total/{Entity}', 'ChartController@getTotalOf');
 
 // get total of agency relation , ex : archives, documents, or employees
 Route::get('/get/total/agency/{agency_relation}', 'ChartController@getTotal');
+Route::get('/get/total-by-year/{enitity}', 'ChartController@getTotalOfEntityByYear');

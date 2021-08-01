@@ -11,7 +11,7 @@
                 style="border-radius: 8px 8px 0px 0px; background-color: #005ea3 ;">
                 <div class="text-light px-4">
                     <div class="title">
-                        <h4 class="text-left text-left">SINAR <br> Sistem Manajemen Arsip</h4>
+                        <h4 class="text-left text-left">SINARSIP <br> Sistem Manajemen Arsip</h4>
                     </div>
                 </div>
             </div>

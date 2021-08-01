@@ -12,4 +12,14 @@ class Year extends Model
     protected $guarded = [
         'id',
     ];
+
+    public function archives()
+    {
+        return $this->hasMany(Archive::class);
+    }
+
+    public function documents()
+    {
+        return $this->hasMany(Document::class);
+    }
 }

@@ -5,7 +5,7 @@ function loadData() {
     fetch('/get/total/archives')
       .then(response => response.json())
       .then(data => {
-        elTotalArchive.innerHTML = data;
+        elTotalArchive.innerHTML = data.total_archives;
       });
     
       let elTotalDocument = document.getElementById('total_document');
@@ -13,7 +13,7 @@ function loadData() {
     fetch('/get/total/documents')
       .then(response => response.json())
       .then(data => {
-        elTotalDocument.innerHTML = data;
+        elTotalDocument.innerHTML = data.total_documents;
       });
     
     }
