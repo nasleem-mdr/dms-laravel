@@ -1,4 +1,20 @@
 <div class="form-group">
+  <label for="agency_id">Agency</label>
+  <select name="agency_id" id="agency_id" class="form-control" onchange="getPositions()">
+    <option selected disabled>Choose a Agency</option>
+
+    @if ($user->hasRole('super admin'))
+    @foreach ($agencies as $item)
+    <option {{ isset($agency) ? ($item->id == $agency->id) ? 'selected' : '' : ''}} value="{{ $item->id }}">
+      {{ $item->name }}</option>
+    @endforeach
+    @endif
+  </select>
+  @error('agency_id')
+  <div class="text-danger mt-1 d-block">{{ $message }}</div>
+  @enderror
+</div>
+<div class="form-group">
   <label for="no">Nomor Dokumen</label>
   <input type="text" name="no" id="no" class="form-control" value="{{ old('no') ?? $document->no }}">
   @error('no')

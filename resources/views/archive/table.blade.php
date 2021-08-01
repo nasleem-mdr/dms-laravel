@@ -20,19 +20,21 @@
   </div>
   <div class="card-body">
     <div class="table-responsive">
-      <table class="table table-hover">
-        <tr>
-          <th>#</th>
-          <th>NIP</th>
-          <th>No. Arsip</th>
-          <th>Tahun</th>
-          <th>Deskripsi</th>
-          @if ($user->hasRole('super admin'))
-          <th>Instansi</th>
-          @endif
-          <th>Action</th>
-
-        </tr>
+      <table class="table table-bordered table-hover" id="archiveTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th data-field="nip">NIP</th>
+            <th data-field="no_arsip">No. Arsip</th>
+            <th data-field="tahun">Tahun</th>
+            <th data-field="deskripsi">Deskripsi</th>
+            @if ($user->hasRole('super admin'))
+            <th data-field="instansi">Instansi</th>
+            @endif
+            <th data-sortable="falase">Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
 
         @foreach ($archives as $index => $archive)
         <tr>
@@ -52,7 +54,10 @@
         </tr>
         @endforeach
 
-      </table>
+          </tbody>
+        </table>
+      </div>
+      
     </div>
   </div>
   @endsection

@@ -5,14 +5,17 @@
   <div class="card-header text-white" style="background-color: #005ea3;">Data Table Navigation</div>
   <div class="card-body">
     <div class="table-responsive">
-    <table class="table table-hover">
-      <tr>
-        <th>Parent</th>
-        <th>Name</th>
-        <th>URL</th>
-        <th>Permission Name</th>
-        <th>Action</th>
-      </tr>
+      <table class="table table-bordered table-hover" id="agencyTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th data-field="parent">Parent</th>
+            <th data-field="nama">Nama</th>
+            <th data-field="url">URL</th>
+            <th data-sortable="falase">Aksi</th>
+          </tr>
+        </thead>
+        <tbody>  
 
       @foreach ($navigations as $navigation)
       <tr>
@@ -25,8 +28,11 @@
           => $navigation])</td>
       </tr>
       @endforeach
-
+      
+        </tbody>
     </table>
+    </div>
+    
   </div>
 </div>
 @endsection

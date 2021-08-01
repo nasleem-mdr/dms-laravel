@@ -11,35 +11,37 @@
 <div class="card">
   <div class="card-header text-white" style="background-color: #005ea3;">
     <div class="col justify-content-md-around">
-      Arsip Dinamis
+      Arsip Dinamis {{ ($documents[0]->employee->agency->name) ? ($documents[0]->employee->agency->name) : '' }}
       <a class="btn btn-sm btn-primary float-right" href="{{ route('document.create') }}">Tambah Arsip Dokumen</a>
     </div>
   </div>
   <div class="card-body">
     <div class="table-responsive">
-      <table class="table table-hover">
-        <tr>
-          <th>#</th>
-          @if ($user->hasRole('super admin'))
-          <th>Instansi</th>
-          @endif
-          <th>NIP</th>
-          <th>No. Arsip</th>
-          <th>Tahun</th>
-          <th>Kategori</th>
-          <th>Deskripsi</th>
-          <th>File</th>
-          <th>Action</th>
-
-        </tr>
+      <table class="table table-bordered table-hover" id="documentTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>#</th>
+            @if ($user->hasRole('super admin'))
+            <th data-field="nama_unit">Instansi</th>
+            @endif
+            <th data-field="nip">NIP</th>
+            <th data-field="no_arsip">No. Arsip</th>
+            <th data-field="tahun">Tahun</th>
+            <th data-field="kategori">Kategori</th>
+            <th data-field="deskripsi">Deskripsi</th>
+            <th data-field="file">File</th>
+            <th data-sortable="falase">Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
 
         @foreach ($documents as $index => $document)
         <tr>
           <td>{{ $index + 1 }}</td>
           @if ($user->hasRole('super admin'))
-          <td>{{ $document->employee->agency->name }}</td>
+          <td>{{ isset($document->employee->agency->name) ? $document->employee->agency->name : $document->agency->name }}</td>
           @endif
-          <td>{{ $document->employee->nip}}</td>
+          <td>{{ isset($document->employee->nip) ? $document->employee->nip : $user->username }}</td>
           <td>{{ $document->no }}</td>
           <td>{{ $document->year->year }}</td>
           <td>{{ $document->document_category->category }}</td>
@@ -53,7 +55,10 @@
         </tr>
         @endforeach
 
+        </tbody>
       </table>
+      </div>
+    
     </div>
   </div>
   @endsection
