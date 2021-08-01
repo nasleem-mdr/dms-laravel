@@ -39,9 +39,9 @@
         <tr>
           <td>{{ $index + 1 }}</td>
           @if ($user->hasRole('super admin'))
-          <td>{{ $document->employee->agency->name }}</td>
+          <td>{{ isset($document->employee->agency->name) ? $document->employee->agency->name : $document->agency->name }}</td>
           @endif
-          <td>{{ $document->employee->nip}}</td>
+          <td>{{ isset($document->employee->nip) ? $document->employee->nip : $user->username }}</td>
           <td>{{ $document->no }}</td>
           <td>{{ $document->year->year }}</td>
           <td>{{ $document->document_category->category }}</td>

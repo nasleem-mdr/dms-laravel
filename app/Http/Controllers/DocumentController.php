@@ -28,8 +28,18 @@ class DocumentController extends Controller
     public function create()
     {
 
+        $user = Auth::user();
+
+        $agencies = null;
+        if($user->hasRole('super admin')){
+            $agencies = Agency::get();
+        } 
+
+
         return view('document.create', [
+            'user' => $user,
             'document' => new Document(),
+            'agencies' => $agencies,
             'years' => Year::get(),
             'categories' => DocumentCategory::get(),
             'submit' => 'Create',
@@ -72,9 +82,19 @@ class DocumentController extends Controller
             'file' => 'required|mimes:pdf, jpg, png, doc, docx|max:5120',
         ]);
 
+        
         $user = Auth::user();
+        
         $employeeID = $user->employee->id;
-        $agencyID = $user->employee->agency_id;
+        $agencyID = $user->employee->agency_id; 
+
+        if($user->hasRole('super admin')){
+            request()->validate([
+                'agency_id' => 'required',
+            ]);
+            $employeeID = null;
+            $agencyID = request('agency_id');
+        } 
 
         $fileName = $this->saveFile(request(), $agencyID);
 
