@@ -19,50 +19,56 @@
   </div>
   <div class="card-body">
     <div class="table-responsive">
-      <table class="table table-hover">
-        <tr>
-          <th>#</th>
-          <th>NIP</th>
-          <th>Nama</th>
-          <th>Alamat</th>
-          <th>Kontak</th>
-          @if ($user->hasRole('super admin'))
-          <th>Instansi</th>
-          @endif
-          <th>Jabatan</th>
-          <th>Action</th>
-        </tr>
-
-        @foreach ($employees as $index => $employee)
-        <tr>
-          <td>{{ $index + 1 }}</td>
-          <td>{{ $employee->nip}}</td>
-          <td>{{ $employee->name }}</td>
-          <td class="{{ ($employee->address === null) ? 'text-center' : ''}}">
-            {{ ($employee->address === null) ? '-' : $employee->address }}
-          </td>
-          <td class="{{ ($employee->phone_number === null) ? 'text-center' : ''}}">
-            {{ ($employee->phone_number === null) ? '-' : $employee->phone_number }}
-          </td>
-          @if ($user->hasRole('super admin'))
-          <td>{{ $employee->agency->name }}</td>
-          @endif
-          <td>{{ $employee->position->position }}</td>
-
-          <td>
-            <a class=" text-primary" href="{{ route('employee.edit', $employee) }}">Edit</a>
-            @include('employee.delete', ['employee' => $employee])
+      <table class="table table-bordered table-hover" id="employeeTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th data-field="nip">NIP</th>
+            <th data-field="nama">Nama</th>
+            <th data-field="alamat">Alamat</th>
+            <th data-field="kontak">Kontak</th>
             @if ($user->hasRole('super admin'))
-
-            @include('employee.reset', ['employee' => $employee])
-
+            <th data-field="instansi">Instansi</th>
             @endif
+            <th data-field="jabatanb">Jabatan</th>
+            <th data-sortable="falase">Action</th>
+          </tr>
+      </thead>
+      <tbody>
 
-          </td>
-        </tr>
-        @endforeach
+         @foreach ($employees as $index => $employee)
+          <tr>
+            <td>{{ $index + 1 }}</td>
+            <td>{{ $employee->nip}}</td>
+            <td>{{ $employee->name }}</td>
+            <td class="{{ ($employee->address === null) ? 'text-center' : ''}}">
+              {{ ($employee->address === null) ? '-' : $employee->address }}
+            </td>
+            <td class="{{ ($employee->phone_number === null) ? 'text-center' : ''}}">
+              {{ ($employee->phone_number === null) ? '-' : $employee->phone_number }}
+            </td>
+            @if ($user->hasRole('super admin'))
+            <td>{{ $employee->agency->name }}</td>
+            @endif
+            <td>{{ $employee->position->position }}</td>
 
-      </table>
+            <td>
+              <a class=" text-primary" href="{{ route('employee.edit', $employee) }}">Edit</a>
+              @include('employee.delete', ['employee' => $employee])
+              @if ($user->hasRole('super admin'))
+
+              @include('employee.reset', ['employee' => $employee])
+
+              @endif
+
+            </td>
+          </tr>
+         @endforeach
+        
+          </tbody>
+        </table>
+      </div>
+      
     </div>
   </div>
   @endsection
