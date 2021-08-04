@@ -13,7 +13,7 @@
     <div class="col justify-content-md-around">
       Arsip Kepegawaian
       @if ($user->hasRole(['admin', 'pegawai']))
-      {{ $archives[1]->agency->name }}
+      {{ $user->employee->agency->name }}
       @endif
       <a class="btn btn-sm btn-primary float-right" href="{{ route('archive.create') }}">Tambah Arsip Kepegawaian</a>
     </div>
@@ -36,28 +36,28 @@
         </thead>
         <tbody>
 
-        @foreach ($archives as $index => $archive)
-        <tr>
-          <td>{{ $index + 1 }}</td>
-          <td>{{ $archive->employee->nip}}</td>
-          <td>{{ $archive->no }}</td>
-          <td>{{ $archive->year->year }}</td>
-          <td>{{ $archive->desc }}</td>
-          @if ($user->hasRole('super admin'))
-          <td>{{ $archive->employee->agency->name }}</td>
-          @endif
-          <td>
-            <a class="text-primary" href="{{ route('archive.edit', $archive) }}">Edit</a>
-            @include('archive.delete', ['archive'=> $archive])
-          </td>
+          @foreach ($archives as $index => $archive)
+          <tr>
+            <td>{{ $index + 1 }}</td>
+            <td>{{ $archive->employee->nip}}</td>
+            <td>{{ $archive->no }}</td>
+            <td>{{ $archive->year->year }}</td>
+            <td>{{ $archive->desc }}</td>
+            @if ($user->hasRole('super admin'))
+            <td>{{ $archive->employee->agency->name }}</td>
+            @endif
+            <td>
+              <a class="text-primary" href="{{ route('archive.edit', $archive) }}">Edit</a>
+              @include('archive.delete', ['archive'=> $archive])
+            </td>
 
-        </tr>
-        @endforeach
+          </tr>
+          @endforeach
 
-          </tbody>
-        </table>
-      </div>
-      
+        </tbody>
+      </table>
     </div>
+
   </div>
-  @endsection
+</div>
+@endsection

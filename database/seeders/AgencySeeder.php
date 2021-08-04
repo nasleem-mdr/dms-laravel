@@ -46,11 +46,25 @@ class AgencySeeder extends Seeder
             'contact' => '082212312121',
         ]);
 
+        $positions->each(function ($position) {
+            Position::create([
+                'position' => $position,
+                'agency_id' => 2,
+            ]);
+        });
+
         Agency::create([
             'name' => 'Unit 3',
             'address' => 'Makassar',
             'contact' => '082209907667',
         ]);
+
+        $positions->each(function ($position) {
+            Position::create([
+                'position' => $position,
+                'agency_id' => 3,
+            ]);
+        });
 
         Agency::create([
             'name' => 'Unit 4',
@@ -58,10 +72,24 @@ class AgencySeeder extends Seeder
             'contact' => '081201947667',
         ]);
 
+        $positions->each(function ($position) {
+            Position::create([
+                'position' => $position,
+                'agency_id' => 4,
+            ]);
+        });
+
         Agency::create([
             'name' => 'Unit 5',
             'address' => 'Surabaya',
             'contact' => '089767765665',
         ]);
+
+        $positions->each(function ($position) {
+            Position::create([
+                'position' => $position,
+                'agency_id' => 5,
+            ]);
+        });
     }
 }

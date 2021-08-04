@@ -11,7 +11,10 @@
 <div class="card">
   <div class="card-header text-white" style="background-color: #005ea3;">
     <div class="col justify-content-md-around">
-      Arsip Dinamis {{ ($documents[0]->employee->agency->name) ? ($documents[0]->employee->agency->name) : '' }}
+      Arsip Dinamis
+      @if ($user->hasRole(['admin', 'pegawai']))
+      {{ $user->employee->agency->name }}
+      @endif
       <a class="btn btn-sm btn-primary float-right" href="{{ route('document.create') }}">Tambah Arsip Dokumen</a>
     </div>
   </div>
@@ -35,30 +38,32 @@
         </thead>
         <tbody>
 
-        @foreach ($documents as $index => $document)
-        <tr>
-          <td>{{ $index + 1 }}</td>
-          @if ($user->hasRole('super admin'))
-          <td>{{ isset($document->employee->agency->name) ? $document->employee->agency->name : $document->agency->name }}</td>
-          @endif
-          <td>{{ isset($document->employee->nip) ? $document->employee->nip : $user->username }}</td>
-          <td>{{ $document->no }}</td>
-          <td>{{ $document->year->year }}</td>
-          <td>{{ $document->document_category->category }}</td>
-          <td>{{ $document->desc }}</td>
-          <td><a href="{{ route('document.download', $document) }}">{{ $document->file }}</a></td>
-          <td>
-            <a class="text-primary" href="{{ route('document.edit', $document) }}">Edit</a>
-            @include('document.delete', ['document'=> $document])
-          </td>
+          @foreach ($documents as $index => $document)
+          <tr>
+            <td>{{ $index + 1 }}</td>
+            @if ($user->hasRole('super admin'))
+            <td>
+              {{ isset($document->employee->agency->name) ? $document->employee->agency->name : $document->agency->name }}
+            </td>
+            @endif
+            <td>{{ isset($document->employee->nip) ? $document->employee->nip : $user->username }}</td>
+            <td>{{ $document->no }}</td>
+            <td>{{ $document->year->year }}</td>
+            <td>{{ $document->document_category->category }}</td>
+            <td>{{ $document->desc }}</td>
+            <td><a href="{{ route('document.download', $document) }}">{{ $document->file }}</a></td>
+            <td>
+              <a class="text-primary" href="{{ route('document.edit', $document) }}">Edit</a>
+              @include('document.delete', ['document'=> $document])
+            </td>
 
-        </tr>
-        @endforeach
+          </tr>
+          @endforeach
 
         </tbody>
       </table>
-      </div>
-    
     </div>
+
   </div>
-  @endsection
+</div>
+@endsection

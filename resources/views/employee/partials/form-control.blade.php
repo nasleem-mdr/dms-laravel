@@ -21,9 +21,9 @@
 </div>
 
 <div class="form-group">
-  <label for="position_id">Position</label>
+  <label for="position_id">Pilih Jabatan</label>
   <select name="position_id" id="position_id" class="form-control">
-    <option selected disabled>Choose a Position</option>
+    <option selected disabled>Pilih satu jabatan</option>
   </select>
   @error('position_id')
   <div class="text-danger mt-1 d-block">{{ $message }}</div>
@@ -41,7 +41,7 @@
 </div>
 
 <div class="form-group">
-  <label for="name">Name</label>
+  <label for="name">Nama Lengkap</label>
   <input type="text" name="name" id="name" class="form-control" value="{{ old('name') ?? $employee->name }}"
     placeholder="Refinaldy ">
   @error('name')
@@ -61,16 +61,16 @@
 
 
 <div class="form-group">
-  <label for="address">Address</label>
+  <label for="address">Alamat</label>
   <input type="text" name="address" id="address" class="form-control" value="{{ old('address') ?? $employee->address }}"
-    placeholder="refinaldy@test.test">
+    placeholder="Yogyakarta">
   @error('address')
   <div class="text-danger mt-1 d-block">{{ $message }}</div>
   @enderror
 </div>
 
 <div class="form-group">
-  <label for="phone_number">Phone Number</label>
+  <label for="phone_number">No Telepon</label>
   <input type="text" name="phone_number" id="phone_number" class="form-control"
     value="{{ old('phone_number') ?? $employee->phone_number }}" placeholder="081xxxxxx">
   @error('phone_number')
@@ -79,7 +79,7 @@
 </div>
 
 <div class="form-group">
-  <label for="roles">Role</label>
+  <label for="roles">Pilih role</label>
   <select name="roles[]" id="roles" class="form-control select2" multiple>
     @foreach ($roles as $role)
     <option value="{{ $role->id }}">{{ $role->name }}</option>
