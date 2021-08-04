@@ -17,6 +17,7 @@ class EmployeeSeeder extends Seeder
     public function run()
     {
 
+        $defaultProfilePicture = 'default-profile.png';
         //pegawai 1
         $user1 = User::create([
             'username' => '1800018411',
@@ -34,6 +35,7 @@ class EmployeeSeeder extends Seeder
             'address' => 'Yogyakarta',
             'phone_number' => null,
             'position_id' => 1,
+            'profile_picture' => $defaultProfilePicture,
         ]);
 
 
@@ -54,6 +56,7 @@ class EmployeeSeeder extends Seeder
             'address' => 'Jakarta',
             'phone_number' => null,
             'position_id' => 2,
+            'profile_picture' => $defaultProfilePicture,
         ]);
     }
 }
