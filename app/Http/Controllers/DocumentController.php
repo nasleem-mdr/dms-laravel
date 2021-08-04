@@ -31,9 +31,9 @@ class DocumentController extends Controller
         $user = Auth::user();
 
         $agencies = null;
-        if($user->hasRole('super admin')){
+        if ($user->hasRole('super admin')) {
             $agencies = Agency::get();
-        } 
+        }
 
 
         return view('document.create', [
@@ -60,11 +60,12 @@ class DocumentController extends Controller
     {
         $fileName = null;
         $category = DocumentCategory::find(request('category_id'));
+        $year = Year::find(request('year_id'));
         $agency = Agency::find($agencyID);
 
         $names = explode('.', $request->file->getClientOriginalName());
         if ($request->file) {
-            $fileName = $names[0] . '-' . time() . '-' . request('no') . '-' . $category->category
+            $fileName =  $request->no . '-' . $category->category . '-' . $year->year
                 . '.' . $request->file->extension();
             $request->file->move(public_path('documents/' . $agency->name), $fileName);
         }
@@ -82,19 +83,19 @@ class DocumentController extends Controller
             'file' => 'required|mimes:pdf, jpg, png, doc, docx|max:5120',
         ]);
 
-        
-        $user = Auth::user();
-        
-        $employeeID = $user->employee->id;
-        $agencyID = $user->employee->agency_id; 
 
-        if($user->hasRole('super admin')){
+        $user = Auth::user();
+
+        $employeeID = $user->employee->id;
+        $agencyID = $user->employee->agency_id;
+
+        if ($user->hasRole('super admin')) {
             request()->validate([
                 'agency_id' => 'required',
             ]);
             $employeeID = null;
             $agencyID = request('agency_id');
-        } 
+        }
 
         $fileName = $this->saveFile(request(), $agencyID);
 
