@@ -159,6 +159,21 @@ class EmployeeController extends Controller
     public function destroy(Employee $employee)
     {
         $employeeTemp = $employee->name;
+
+        if ($employee->user->hasRole('super admin')) {
+            $users = User::get();
+            $count = 0;
+            foreach ($users as $user) {
+                if ($user->hasRole('super admin')) {
+                    $count++;
+                }
+            }
+
+            if ($count === 1) {
+                return redirect()->route('employee.table')->with('error', "{$employeeTemp} tidak dapat dihapus karena hak akses super admin hanya tersisa satu akun");
+            }
+        }
+
         $employee->user->delete();
         $employee->delete();
 

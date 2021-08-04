@@ -8,6 +8,12 @@
 </div>
 @endif
 
+@if (session('error'))
+<div class="alert alert-danger">
+  {{ session('error') }}
+</div>
+@endif
+
 <div class="card">
   <div class="card-header text-white" style="background-color: #005ea3;">
     <div class="col justify-content-md-around">
@@ -33,10 +39,10 @@
             <th data-field="jabatanb">Jabatan</th>
             <th data-sortable="falase">Action</th>
           </tr>
-      </thead>
-      <tbody>
+        </thead>
+        <tbody>
 
-         @foreach ($employees as $index => $employee)
+          @foreach ($employees as $index => $employee)
           <tr>
             <td>{{ $index + 1 }}</td>
             <td>{{ $employee->nip}}</td>
@@ -63,12 +69,12 @@
 
             </td>
           </tr>
-         @endforeach
-        
-          </tbody>
-        </table>
-      </div>
-      
+          @endforeach
+
+        </tbody>
+      </table>
     </div>
+
   </div>
-  @endsection
+</div>
+@endsection
