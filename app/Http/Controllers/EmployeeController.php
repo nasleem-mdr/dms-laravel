@@ -111,7 +111,6 @@ class EmployeeController extends Controller
         }
 
         request()->validate([
-            'nip' => 'required',
             'name' => 'required',
             'email' => $emailValidation,
             'agency_id' => 'required',
@@ -119,10 +118,10 @@ class EmployeeController extends Controller
             'roles' => 'required',
         ]);
 
+
         $fileName = $employee->profile_picture;
 
         $employee->update([
-            'nip' => request('nip'),
             'name' => ucwords(request('name')),
             'agency_id' => request('agency_id'),
             'address' => request('address') ?? null,
@@ -137,7 +136,6 @@ class EmployeeController extends Controller
         $names = explode(' ', request('name'));
 
         $user->update([
-            'username' => request('nip'),
             'email' => request('email'),
         ]);
 
