@@ -14,6 +14,8 @@ Route::middleware('has.role')->group(function () {
         Route::get('/', 'ProfileController@show')->name('profile.show');
         Route::get('/edit', 'ProfileController@edit')->name('profile.edit');
         Route::put('/edit', 'ProfileController@update')->name('profile.update');
+        Route::get('/edit-profile-picture/{employee}', 'ProfileController@editProfilePicture')->name('profile.profile_picture');
+        Route::put('/edit-profile-picture/{employee}', 'ProfileController@updateProfilePicture');
         Route::delete('{employee}/delete', 'ProfileController@destroy')->name('profile.delete');
         Route::get('/resetpassword', 'ProfileController@editPassword')->name('profile.reset_password');
         Route::put('/resetpassword', 'ProfileController@resetPassword');

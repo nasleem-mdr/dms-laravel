@@ -14,8 +14,6 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12">
-          {{-- <x-layouts.navigation></x-layouts.navigation> --}}
-
           @yield('content')
         </div>
       </div>

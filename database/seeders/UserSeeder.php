@@ -23,11 +23,11 @@ class UserSeeder extends Seeder
             'password' => Hash::make('superadmindms'),
         ]);
 
-        $superAdmin->assignRole('super admin');
+        $superAdmin->assignRole('super admin', 'pegawai');
         $agency = Agency::get()->first();
 
         $position = $agency->positions[0];
-
+        $default_picture = 'default-profile.png';
 
         Employee::create([
             'user_id' => $superAdmin->id,
@@ -37,6 +37,7 @@ class UserSeeder extends Seeder
             'address' => null,
             'phone_number' => null,
             'position_id' => $position->id,
+            'profile_picture' => $default_picture,
         ]);
 
 
@@ -46,7 +47,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('admindms'),
         ]);
 
-        $admin->assignRole('admin');
+        $admin->assignRole('admin', 'pegawai');
         Employee::create([
             'user_id' => $admin->id,
             'nip' => '000000000',
@@ -55,6 +56,7 @@ class UserSeeder extends Seeder
             'address' => null,
             'phone_number' => null,
             'position_id' => $position->id,
+            'profile_picture' => $default_picture,
         ]);
     }
 }

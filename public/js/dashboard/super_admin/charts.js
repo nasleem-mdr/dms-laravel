@@ -1,5 +1,6 @@
 function loadData() {
-
+    dummyData1 = [122, 129,134,145,167];
+    dummyData2 = [22, 49,54,45,77];
   //get total of units/agency
 let elTotalAgency = document.getElementById('total_agencies');
 
@@ -29,8 +30,8 @@ fetch('/get/total/agency/archives')
           archives.push(data.total_archives);
       });
 
-      createGraphArchive(agencies, archives)
-    //   createGraphArchive(agencies, dummyData)
+    //   createGraphArchive(agencies, archives)
+      createGraphArchive(agencies, dummyData1)
   });
 
   let units = [];
@@ -44,8 +45,8 @@ fetch('/get/total/agency/documents')
             documents.push(data.total_documents);
         });
 
-        createGraphDocument(units, documents)
-        // createGraphDocument(units, dummyData2)
+        // createGraphDocument(units, documents)
+        createGraphDocument(units, dummyData2)
     });
 }
 
@@ -90,7 +91,7 @@ function createGraphArchive(agency, total) {
                 yAxes: [{
                     ticks: {
                         min: 0,
-                        max: 100,
+                        max: 200,
                         maxTicksLimit: 20
                     },
                     gridLines: {

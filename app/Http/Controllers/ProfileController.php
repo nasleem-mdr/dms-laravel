@@ -14,7 +14,7 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
         $employee = $user->employee;
-        return view('profile.show', compact('employee', 'user'));
+        return view('profile.show', compact('employee'));
     }
 
     public function edit()
@@ -26,8 +26,45 @@ class ProfileController extends Controller
         ]);
     }
 
+    function saveFile(Request $request, $agencyName)
+    {
+        $fileName = null;
+        $names = explode('.', $request->profile_picture->getClientOriginalName());
+
+        if ($request->profile_picture) {
+            $fileName = $names[0] . '-' . time() . '-' . request('nip') . '-' . 'profile-picture'
+                . '.' . $request->profile_picture->extension();
+            $request->profile_picture->move(public_path('images/profile/employees/' . $agencyName . '/'), $fileName);
+        }
+
+        return $fileName;
+    }
+
+    public function editProfilePicture(Employee $employee)
+    {
+        return view('employee.profile-picture', [
+            'employee' => $employee,
+        ]);
+    }
+
+    public function updateProfilePicture(Employee $employee)
+    {
+        $fileName = $employee->profile_picture;
+        if (request('profile_picture') !== null) {
+            $agencyName = $employee->agency->name;
+            $fileName = $this->saveFile(request(), $agencyName);
+        }
+
+        $employee->update([
+            'profile_picture' => $fileName,
+        ]);
+
+        return redirect()->route('profile.show')->with('success', 'Foto Profil Berhasil Digantikan');
+    }
+
     public function update()
     {
+
         $employee = Employee::where('nip', request('nip'))->first();
 
         if ($employee->user->email === request('email')) {
@@ -35,6 +72,7 @@ class ProfileController extends Controller
         } else {
             $emailValidation = 'required|unique:users';
         }
+
         request()->validate([
             'name' => 'required',
             'email' => $emailValidation,

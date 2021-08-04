@@ -49,8 +49,11 @@
   <script src="{{ asset('js/datatables.js') }}"></script>
 
   {{-- login --}}
-
+  <script src="{{ asset('js/login.js') }}"></script>
   <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+
+  {{-- profile - update profile picture --}}
+  <script src="{{ asset('js/update_profile.js') }}"></script>
 </body>
 
 </html>

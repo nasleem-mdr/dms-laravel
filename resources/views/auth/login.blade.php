@@ -2,6 +2,7 @@
 @section('styles')
 <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 @endsection
+
 @section('content')
 <div class="container d-flex justify-content-center">
     <div class="card col col-xl-4 px-0 my-5" style="border-radius:8px;">
@@ -39,6 +40,11 @@
                         <input type="password" class="form-control" id="inputPassword" name="password"
                             placeholder="Password" required>
                     </div>
+                </div>
+                <div class="col offset-md-1 pt-2 form-check">
+                    <input type="checkbox" class="form-check-input" id="showPassword"
+                        onchange="showPass('inputPassword', 'showPassword')">
+                    <label class="form-check-label" for="showPassword">Lihat Sandi</label>
                 </div>
                 <div class="col-sm-12 pt-4 offset-md-4">
                     <button class="btn px-3 text-white text-md-right" style="background-color: #005ea3;"

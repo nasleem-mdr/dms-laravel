@@ -33,24 +33,11 @@ class EmployeeController extends Controller
         ]);
     }
 
-    function saveFile(Request $request, $agencyName)
-    {
-        $fileName = null;
-
-        $names = explode('.', $request->profile_picture->getClientOriginalName());
-        if ($request->file) {
-            $fileName = $names[0] . '-' . time() . '-' . request('nip') . '-' . 'profile-picture'
-                . '.' . $request->file->extension();
-            $request->file->move(public_path('images/profile/employees/' . $agencyName), $fileName);
-        }
-
-        return $fileName;
-    }
-
     public function store()
     {
+
         request()->validate([
-            'nip' => 'required',
+            'nip' => 'required|unique:users,username',
             'name' => 'required',
             'email' => 'required|unique:users',
             'agency_id' => 'required',
@@ -68,13 +55,24 @@ class EmployeeController extends Controller
             'password' => Hash::make($password),
         ]);
 
-        $user->assignRole(request('roles'));
+        $rolesID = request('roles');
+        $roles = array();
+        foreach ($rolesID as $roleID) {
+            array_push(
+                $roles,
+                Role::where('id', $roleID)->get()->first()->name
+            );
+        }
+
+        if ((in_array('super admin', $roles) || in_array('admin', $roles)) && !in_array('pegawai', $roles)) {
+            $employeeRoleID = Role::where('name', 'pegawai')->get()->first()->id;
+            array_push($rolesID, (string)$employeeRoleID);
+            $user->assignRole($rolesID, 'pegawai');
+        } else {
+            $user->assignRole($rolesID);
+        }
 
         $fileName = 'default-profile.png';
-        if (request('profile_picture') !== null) {
-            $agencyName = Agency::find(request('agency_id'))->name;
-            $fileName = $this->saveFile(request(), $agencyName);
-        }
 
         Employee::create([
             'user_id' => $user->id,
@@ -87,20 +85,19 @@ class EmployeeController extends Controller
             'profile_picture' => $fileName,
         ]);
 
-
-
         return redirect()->route('employee.table', [
             'employees' => Employee::get(),
         ]);
     }
 
-    public function edit(Employee $employee)
+    public function edit(Employee $employee, Role $role)
     {
         return view('employee.edit', [
             'user' => Auth::user(),
             'employee' => $employee,
             'agencies' => Agency::get(),
             'roles' => Role::get(),
+            'role' => $role,
             'submit' => 'Update',
         ]);
     }
@@ -123,10 +120,6 @@ class EmployeeController extends Controller
         ]);
 
         $fileName = $employee->profile_picture;
-        if (request('profile_picture') !== null) {
-            $agencyName = $employee->agency->name;
-            $fileName = $this->saveFile(request(), $agencyName);
-        }
 
         $employee->update([
             'nip' => request('nip'),
@@ -165,7 +158,6 @@ class EmployeeController extends Controller
 
     public function destroy(Employee $employee)
     {
-
         $employeeTemp = $employee->name;
         $employee->user->delete();
         $employee->delete();

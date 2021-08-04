@@ -90,10 +90,5 @@
   </select>
 </div>
 
-<div class="form-group">
-  <label for="file">Upload Profile Picture</label>
-  <input type="file" class="form-control-file" id="profile_picture" name="profile_picture">
-  <small>max 5 MB</small>
-</div>
 
 <button type="submit" class="btn btn-info">{{ $submit }}</button>

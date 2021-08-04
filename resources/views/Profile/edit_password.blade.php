@@ -29,10 +29,10 @@
       @method('PUT')
 
       <div class="form-group row">
-        <label for="old_password" class="col-md-4 col-form-label text-md-right">Password Lama</label>
+        <label for="oldPassword" class="col-md-4 col-form-label text-md-right">Kata Sandi Lama</label>
 
         <div class="col-md-6">
-          <input id="old_password" type="password" class="form-control @error('old_password') is-invalid @enderror"
+          <input id="oldPassword" type="password" class="form-control @error('old_password') is-invalid @enderror"
             name="old_password" required autocomplete="current-old_password">
 
           @error('old_password')
@@ -43,11 +43,17 @@
         </div>
       </div>
 
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="showOldPassword"
+          onchange="showPass('oldPassword', 'showOldPassword')">
+        <label class="form-check-label" for="showOldPassword">Lihat Kata Sandi Lama</label>
+      </div>
+
       <div class="form-group row">
-        <label for="password" class="col-md-4 col-form-label text-md-right">Password Baru</label>
+        <label for="newPassword" class="col-md-4 col-form-label text-md-right">Kata Sandi Baru</label>
 
         <div class="col-md-6">
-          <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
+          <input id="newPassword" type="password" class="form-control @error('password') is-invalid @enderror"
             name="password" required autocomplete="current-password">
 
           @error('password')
@@ -57,6 +63,13 @@
           @enderror
         </div>
       </div>
+
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="showNewPassword"
+          onchange="showPass('newPassword', 'showNewPassword')">
+        <label class="form-check-label col-md-4" for="showNewPassword">Lihat Kata Sandi Baru</label>
+      </div>
+
 
       <div class="form-group row mb-0">
         <div class="col-md-8 offset-md-4">

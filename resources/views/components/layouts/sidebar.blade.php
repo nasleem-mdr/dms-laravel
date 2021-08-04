@@ -12,9 +12,9 @@
     </div>
     <div class="sidebar-header">
       <div class="user-pic">
-        <img class="img-responsive img-rounded"
-          src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
-          alt="User picture">
+        <img class="img-responsive img-rounded" style="max-height: 60px;"
+          src="{{ (auth()->user()->employee->profile_picture === 'default-profile.png') ? asset('/images/profile/default-profile.png') :  asset('/images/profile/employees/' . auth()->user()->employee->agency->name . '/' . auth()->user()->employee->profile_picture)  }}"
+          alt="{{ auth()->user()->employee->profile_picture}}">
       </div>
       <div class="user-info">
         <span class="user-name">

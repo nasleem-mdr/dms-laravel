@@ -1,5 +1,9 @@
 @extends('layouts.back')
 
+@section('styles')
+<link rel="stylesheet" href="{{ asset('/css/profile.css') }}">
+@endsection
+
 @section('content')
 
 @if (session('success'))
@@ -14,73 +18,94 @@
 </div>
 @endif
 
-<div class="card">
-  <div class="card-header text-white" style="background-color: #005ea3;">
-    <div class="col justify-content-md-around">
-      <div>
-        My Profile
+<div class="row mt-4">
+  <div class="col-md-4 mb-3 ">
+    <div class="card">
+      <div class="card-body pb-4">
+        <div class="d-flex flex-column align-items-center text-center">
+
+          <div class="img__wrap">
+            <a href="{{ route('profile.profile_picture', $employee) }}">
+              <img class="img_responsive img-rounded img__img " style="max-height: 220px;"
+                src="{{ ($employee->profile_picture === 'default-profile.png') ? asset('/images/profile/default-profile.png') :  asset('/images/profile/employees/' . $employee->agency->name . '/' . $employee->profile_picture)  }}"
+                alt="{{ $employee->profile_picture}}" width="220" />
+              <div class="img__description_layer">
+                <p class="img__description ">Ganti Foto</p>
+              </div>
+            </a>
+
+          </div>
+
+          <div class="mt-3">
+            <h4>{{ $employee->name }}</h4>
+            <p class="text-secondary mb-1">{{ $employee->position->position }}, {{ $employee->agency->name }}</p>
+            <p class="text-muted font-size-sm">{{ $employee->address }}</p>
+            <a href="{{ route('profile.reset_password') }}" class="btn btn-outline-info mt-lg-2">Ubah
+              Password</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="card-body d-flex" style="background-color: #0482dc;">
-
-    <div class="row">
-      <div class="col-md-4">
-        <img style="width: 100%" class="pl-3"
-          src="{{ ($user->employee->profile_picture) ? asset($user->employee->profile_picture) : asset('/images/profile/avatar-default.png')  }}"
-          alt="{{ ($user->employee->profile_picture) ? $user->employee->profile_picture : 'avatar-default'}}"></div>
-      <div class="col">
+  <div class="col-md-8">
+    <div class="card mb-3">
+      <div class="card-header">Identitas Lengkap</div>
+      <div class="card-body">
         <div class="row">
-          <table class="table table-hover text-white">
-            <tr>
-              <td>NIP</td>
-              <td>{{ $employee->nip}}</td>
-            </tr>
-            <tr>
-              <td>Email</td>
-              <td>{{ $employee->user->email}}</td>
-            </tr>
-            <tr>
-              <td>Nama</td>
-              <td>{{ $employee->name }}</td>
-            </tr>
-
-            <tr>
-              <td>Instansi</td>
-              <td>{{ $employee->agency->name }}</td>
-            </tr>
-
-            <tr>
-              <td>Jabatan</td>
-              <td>{{ $employee->position->position }}</td>
-            </tr>
-
-            <tr>
-              <td>Alamat</td>
-              <td>{{ $employee->address }}</td>
-            </tr>
-
-            <tr>
-              <td>Kontak</td>
-              <td>{{ $employee->phone_number }}</td>
-            </tr>
-
-          </table>
+          <div class="col-sm-3">
+            <h6 class="mb-0">NIP</h6>
+          </div>
+          <div class="col-sm-9 text-secondary">
+            {{ $employee->nip }}
+          </div>
         </div>
-        <div class="row d-flex justify-content-sm-between">
-          <div class="col"></div>
-
-          <div class="col"><a href="{{ route('profile.reset_password') }}" class="btn btn-info btn-sm">Ubah
-              Password</a>
-            <a href="{{ route('profile.edit')  }}" class="btn btn-info btn-sm">Ubah Profile</a></div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-3">
+            <h6 class="mb-0">Nama Lengkap</h6>
+          </div>
+          <div class="col-sm-9 text-secondary">
+            {{ $employee->name }}
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-3">
+            <h6 class="mb-0">Email</h6>
+          </div>
+          <div class="col-sm-9 text-secondary">
+            {{ $employee->user->email }}
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-3">
+            <h6 class="mb-0">No. Handphone</h6>
+          </div>
+          <div class="col-sm-9 text-secondary">
+            {{ $employee->phone_number }}
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-3">
+            <h6 class="mb-0">Alamat</h6>
+          </div>
+          <div class="col-sm-9 text-secondary">
+            {{ $employee->address }}
+          </div>
+        </div>
+        <hr>
+        <div class="row ">
+          <div class="col-sm-12 ">
+            <a href="{{ route('profile.edit')  }}" class="btn btn-outline-info float-right">Ubah Data Identitas</a>
+          </div>
         </div>
       </div>
-
-
     </div>
-
   </div>
 </div>
+
 
 @endsection

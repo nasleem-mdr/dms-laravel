@@ -71,7 +71,7 @@ selectEl.appendChild(optionEl);
 <div class="card">
   <div class="card-header text-white" style="background-color: #005ea3;">Edit Data {{ $employee->name }}</div>
   <div class="card-body">
-    <form action="{{ route('employee.edit', $employee) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('employee.edit', $employee, ) }}" method="POST" enctype="multipart/form-data">
       @csrf
       @method('PUT')
       @include('employee.partials.form-control')
