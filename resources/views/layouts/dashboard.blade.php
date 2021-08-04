@@ -24,15 +24,35 @@
     </div>
   </div>
 
-  @if (auth()->user()->hasRole('super admin'))
+  @if (auth()->user()->hasRole('admin'))
+</div>
+
+<div class="row">
   <div class="col-xl-4 col-md-6">
-    <div class="card text__black bg-white  mb-4">
-      <div class="card-body bg- card__body-title h6 text-white" style="background-color: #005ea3;">Jumlah Instansi</div>
-      <div class="card-body pt-0 h3" id="total_agencies">
+    <div class="card text__black mb-4">
+      <div class="card-body card__body-title h6">Jumlah Pegawai</div>
+      <div class="card-body pt-0 h3" id="total_employee">
         0
       </div>
       <div class="card-footer d-flex align-items-center justify-content-between">
-        <a class=" text__blue-color stretched-link h6" href="{{ route('agency.table')}}">Lihat
+        <a class="text__blue-color stretched-link h6" href="{{ route('employee.table')}}">Lihat
+          Detail</a>
+        <div class="text__blue-color"><i class='bx bx-chevron-right bx-sm'></i></div>
+      </div>
+    </div>
+  </div>
+
+  @endif
+
+  @if (!auth()->user()->hasRole('super admin'))
+  <div class="col-xl-4 col-md-6">
+    <div class="card text__black mb-4">
+      <div class="card-body card__body-title h6">Jumlah Arsip Kepegawaian</div>
+      <div class="card-body pt-0 h3" id="total_archive">
+        0
+      </div>
+      <div class="card-footer d-flex align-items-center justify-content-between">
+        <a class="text__blue-color stretched-link h6" href="{{ route('archive.table')}}">Lihat
           Detail</a>
         <div class="text__blue-color"><i class='bx bx-chevron-right bx-sm'></i></div>
       </div>
@@ -41,18 +61,51 @@
 
   <div class="col-xl-4 col-md-6">
     <div class="card text__black mb-4">
-      <div class="card-body card__body-title h6 text-white" style="background-color: #005ea3;">Jumlah Pegawai</div>
-      <div class="card-body pt-0 h3 " id="total_employee">
+      <div class="card-body card__body-title h6">Jumlah Dokumen</div>
+      <div class="card-body pt-0 h3" id="total_document">
         0
       </div>
-
       <div class="card-footer d-flex align-items-center justify-content-between">
-        <a class="text__blue-color stretched-link h6" href="{{ route('employee.table')}}">Lihat
+        <a class="text__blue-color stretched-link h6" href="{{ route('document.table')}}">Lihat
           Detail</a>
         <div class="text__blue-color"><i class='bx bx-chevron-right bx-sm'></i></div>
       </div>
     </div>
   </div>
+</div>
+@endif
+
+
+
+@if (auth()->user()->hasRole('super admin'))
+<div class="col-xl-4 col-md-6">
+  <div class="card text__black bg-white  mb-4">
+    <div class="card-body bg- card__body-title h6 text-white" style="background-color: #005ea3;">Jumlah Instansi</div>
+    <div class="card-body pt-0 h3" id="total_agencies">
+      0
+    </div>
+    <div class="card-footer d-flex align-items-center justify-content-between">
+      <a class=" text__blue-color stretched-link h6" href="{{ route('agency.table')}}">Lihat
+        Detail</a>
+      <div class="text__blue-color"><i class='bx bx-chevron-right bx-sm'></i></div>
+    </div>
+  </div>
+</div>
+
+<div class="col-xl-4 col-md-6">
+  <div class="card text__black mb-4">
+    <div class="card-body card__body-title h6 text-white" style="background-color: #005ea3;">Jumlah Pegawai</div>
+    <div class="card-body pt-0 h3 " id="total_employee">
+      0
+    </div>
+
+    <div class="card-footer d-flex align-items-center justify-content-between">
+      <a class="text__blue-color stretched-link h6" href="{{ route('employee.table')}}">Lihat
+        Detail</a>
+      <div class="text__blue-color"><i class='bx bx-chevron-right bx-sm'></i></div>
+    </div>
+  </div>
+</div>
 </div>
 
 <div class="row">
@@ -83,56 +136,8 @@
 </div>
 @endif
 
-@if (auth()->user()->hasRole('admin'))
-</div>
 
-<div class="row">
-  <div class="col-xl-4 col-md-6">
-    <div class="card text__black mb-4">
-      <div class="card-body card__body-title h6">Jumlah Pegawai</div>
-      <div class="card-body pt-0 h3" id="total_employee">
-        0
-      </div>
-      <div class="card-footer d-flex align-items-center justify-content-between">
-        <a class="text__blue-color stretched-link h6" href="{{ route('employee.table')}}">Lihat
-          Detail</a>
-        <div class="text__blue-color"><i class='bx bx-chevron-right bx-sm'></i></div>
-      </div>
-    </div>
-  </div>
 
-  @endif
-
-  @if (auth()->user()->hasRole('pegawai') || auth()->user()->hasRole('admin'))
-  <div class="col-xl-4 col-md-6">
-    <div class="card text__black mb-4">
-      <div class="card-body card__body-title h6">Jumlah Arsip Kepegawaian</div>
-      <div class="card-body pt-0 h3" id="total_archive">
-        0
-      </div>
-      <div class="card-footer d-flex align-items-center justify-content-between">
-        <a class="text__blue-color stretched-link h6" href="{{ route('archive.table')}}">Lihat
-          Detail</a>
-        <div class="text__blue-color"><i class='bx bx-chevron-right bx-sm'></i></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-xl-4 col-md-6">
-    <div class="card text__black mb-4">
-      <div class="card-body card__body-title h6">Jumlah Dokumen</div>
-      <div class="card-body pt-0 h3" id="total_document">
-        0
-      </div>
-      <div class="card-footer d-flex align-items-center justify-content-between">
-        <a class="text__blue-color stretched-link h6" href="{{ route('document.table')}}">Lihat
-          Detail</a>
-        <div class="text__blue-color"><i class='bx bx-chevron-right bx-sm'></i></div>
-      </div>
-    </div>
-  </div>
-</div>
-@endif
 
 
 @endsection
