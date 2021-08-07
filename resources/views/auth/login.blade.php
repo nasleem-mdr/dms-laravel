@@ -18,7 +18,7 @@
             </div>
             <div class="card-body px-2">
                 <div class="col pt-3 ">
-                    <label class="sr-only" for="inputEmail">Email</label>
+                    <label class="sr-only" for="inputEmail">Email/NIP</label>
                     <div class="input-group mb-2 mt-0">
                         <div class="input-group-prepend">
                             <div class="input-group-text border-0" style="background-color: #005ea3"><i

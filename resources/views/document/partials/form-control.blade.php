@@ -5,7 +5,8 @@
     <option selected disabled>Choose a Agency</option>
 
     @foreach ($agencies as $agency)
-    <option {{ ($agency->id === $document->agency->id) ? 'selected' : ''}} value="{{ $agency->id }}">
+    <option {{ ( isset($document->agency->id) ? $agency->id === $document->agency->id : '') ? 'selected' : '' }}
+      value="{{ $agency->id }}">
       {{ $agency->name }}</option>
     @endforeach
 

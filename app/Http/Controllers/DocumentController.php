@@ -27,14 +27,12 @@ class DocumentController extends Controller
 
     public function create()
     {
-
         $user = Auth::user();
 
         $agencies = null;
         if ($user->hasRole('super admin')) {
             $agencies = Agency::get();
         }
-
 
         return view('document.create', [
             'user' => $user,
@@ -120,13 +118,18 @@ class DocumentController extends Controller
             abort('403');
         }
 
+        $agencies = null;
+        if ($user->hasRole('super admin')) {
+            $agencies = Agency::get();
+        }
+
         return view('document.edit', [
             'user' => $user,
             'categories' => DocumentCategory::get(),
             'document' => $document,
             'years' => Year::get(),
             'submit' => 'Update',
-            'agencies' => Agency::get(),
+            'agencies' => $agencies,
         ]);
     }
 
