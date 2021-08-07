@@ -64,6 +64,14 @@ class EmployeeController extends Controller
             );
         }
 
+        if (Auth::user()->hasRole('admin')) {
+            foreach ($roles as $role) {
+                if ($role === 'super admin') {
+                    return back()->with('error', 'Admin tidak dapat menambahkan super admin');
+                }
+            }
+        }
+
         if ((in_array('super admin', $roles) || in_array('admin', $roles)) && !in_array('pegawai', $roles)) {
             $employeeRoleID = Role::where('name', 'pegawai')->get()->first()->id;
             array_push($rolesID, (string)$employeeRoleID);

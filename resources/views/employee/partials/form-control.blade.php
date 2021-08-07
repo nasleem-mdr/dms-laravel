@@ -81,9 +81,16 @@
 <div class="form-group">
   <label for="roles">Pilih role</label>
   <select name="roles[]" id="roles" class="form-control select2" multiple>
+
+
+
     @foreach ($roles as $role)
-    <option value="{{ $role->id }}">{{ $role->name }}</option>
+    <option
+      {{ $user->hasRole('admin') ? (($role->name === 'super admin') ?  'disabled hidden' : '' ) : '' }}value="{{ $role->id }}">
+      {{ $user->hasRole('admin') ? (($role->name === 'super admin') ?  '' : $role->name ) : $role->name  }}
+    </option>
     @endforeach
+
     @error('role')
     <div class="text-danger mt-2 d-block">{{ $message }}</div>
     @enderror
