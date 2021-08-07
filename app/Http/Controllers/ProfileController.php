@@ -87,7 +87,6 @@ class ProfileController extends Controller
         $user = User::find($employee->user->id);
 
         $user->update([
-            'username' => request('nip'),
             'email' => request('email'),
         ]);
 
