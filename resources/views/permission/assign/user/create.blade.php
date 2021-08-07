@@ -29,8 +29,8 @@
       <form action="{{ route('assign.user.create')  }}" method="post">
         @csrf
         <div class="form-group">
-          <label for="user">User</label>
-          <input type="text" name="email" id="user" class="form-control">
+          <label for="user">NIP Pegawai</label>
+          <input type="text" name="nip" id="user" class="form-control">
         </div>
 
         <div class="form-group">

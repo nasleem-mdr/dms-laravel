@@ -146,12 +146,12 @@ class EmployeeController extends Controller
     {
         $user = User::find($employee->user->id);
         $names = explode(' ', $employee->name);
-
+        $password = strtolower($names[0]) . $employee->nip;
         $user->update([
-            'password' => $names[0] . $employee->nip,
+            'password' => Hash::make($password),
         ]);
 
-        return redirect()->route('employee.table')->with('success', "Password {$employee} telah direset");
+        return redirect()->route('employee.table')->with('success', "Password {$employee->name} telah direset");
     }
 
     public function destroy(Employee $employee)

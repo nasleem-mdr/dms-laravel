@@ -4,9 +4,9 @@
   <select name="agency_id" id="agency_id" class="form-control" onchange="getPositions()">
     <option selected disabled>Choose a Agency</option>
 
-    @foreach ($agencies as $item)
-    <option {{ isset($agency) ? ($item->id == $agency->id) ? 'selected' : '' : ''}} value="{{ $item->id }}">
-      {{ $item->name }}</option>
+    @foreach ($agencies as $agency)
+    <option {{ ($agency->id === $document->agency->id) ? 'selected' : ''}} value="{{ $agency->id }}">
+      {{ $agency->name }}</option>
     @endforeach
 
   </select>

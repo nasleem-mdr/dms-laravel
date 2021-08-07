@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Permissions;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -19,7 +20,7 @@ class UserController extends Controller
 
     public function store()
     {
-        $user = User::where('email', request('email'))->first();
+        $user = User::where('username', request('nip'))->first();
         $rolesID = request('roles');
         $roles = array();
         foreach ($rolesID as $roleID) {
@@ -52,7 +53,30 @@ class UserController extends Controller
 
     public function update(User $user)
     {
-        $user->syncRoles(request('roles'));
-        return redirect()->route('assign.user.create')->with('success', 'The roles has been synced');
+        $rolesID = request('roles');
+        $roles = array();
+        foreach ($rolesID as $roleID) {
+            array_push(
+                $roles,
+                Role::where('id', $roleID)->get()->first()->name
+            );
+        }
+
+        if ((in_array('super admin', $roles) || in_array('admin', $roles)) && !in_array('pegawai', $roles)) {
+            $employeeRoleID = Role::where('name', 'pegawai')->get()->first()->id;
+            array_push($rolesID, (string)$employeeRoleID);
+            $user->syncRoles($rolesID, 'pegawai');
+        } else {
+            $user->syncRoles($rolesID);
+        }
+
+        $loginUser = Auth::user();
+        $loginUser = User::find($loginUser->id);
+
+        if (($loginUser->hasRole('super admin'))) {
+            return redirect()->route('assign.user.create')->with('success', 'Role user berhasil diperbarui');
+        }
+
+        return redirect()->route('dashboard');
     }
 }

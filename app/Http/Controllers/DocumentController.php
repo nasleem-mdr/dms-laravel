@@ -121,10 +121,12 @@ class DocumentController extends Controller
         }
 
         return view('document.edit', [
+            'user' => $user,
             'categories' => DocumentCategory::get(),
             'document' => $document,
             'years' => Year::get(),
             'submit' => 'Update',
+            'agencies' => Agency::get(),
         ]);
     }
 
