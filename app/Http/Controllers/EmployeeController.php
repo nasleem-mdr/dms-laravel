@@ -38,12 +38,13 @@ class EmployeeController extends Controller
     {
 
         request()->validate([
-            'nip' => 'required|unique:users,username',
+            'nip' => 'required|unique:users,username|max:18',
             'name' => 'required',
             'email' => 'required|unique:users|string|email',
             'agency_id' => 'required',
             'position_id' => 'required',
             'roles' => 'required',
+            'phone_number' => 'numeric|max:14'
         ]);
 
         $names = explode(' ', request('name'));
@@ -125,6 +126,7 @@ class EmployeeController extends Controller
             'agency_id' => 'required',
             'position_id' => 'required',
             'roles' => 'required',
+            'phone_number' => 'numeric|max:14'
         ]);
 
 

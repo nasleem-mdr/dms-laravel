@@ -21,6 +21,9 @@ Route::middleware('has.role')->group(function () {
         Route::put('/resetpassword', 'ProfileController@resetPassword');
     });
 
+    Route::prefix('activities')->group(function () {
+        Route::get('/', 'ActivityController@index')->name('activity.show');
+    });
     Route::prefix('role-and-permission')->namespace('Permissions')->middleware('permission:assign permission')->group(function () {
 
         Route::get('assignable', 'AssignController@create')->name('assign.create');

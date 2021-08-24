@@ -105,6 +105,8 @@ class DocumentController extends Controller
             'agency_id' => $agencyID,
             'document_category_id' =>  request('category_id'),
         ]);
+        $noDocument = request('no');
+        $user->addActivity("membuat arsip dokumen {$noDocument}");
 
         return redirect()->route('document.table')->with('success', "{$document->file} berhasil ditambahkan");
     }
@@ -154,6 +156,8 @@ class DocumentController extends Controller
             'document_category' =>  request('category_id'),
             'file' => $fileName,
         ]);
+        $noDocument = request('no');
+        $user->addActivity("mengubah arsip dokumen dari {$oldDocument} menjadi {$noDocument}");
 
         return redirect()->route('document.table')->with('success', "Arsip No. {$oldDocument} telah diperbaruhi menjadi {$document->no}");
     }
@@ -173,6 +177,8 @@ class DocumentController extends Controller
         $tempDocument = $document->no;
         $this->deleteFile($document);
         $document->delete();
+        $user = Auth::user();
+        $user->addActivity("menghapus arsip dokumen {$tempDocument}");
         return redirect()->route('document.table')->with('success', "Arsip No. {$tempDocument} telah dihapus");
     }
 }

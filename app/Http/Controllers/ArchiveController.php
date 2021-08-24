@@ -53,8 +53,10 @@ class ArchiveController extends Controller
             'employee_id' => $employeeID,
             'agency_id' => $agencyID,
         ]);
+        $file = request('no');
+        $user->addActivity("membuat arsip kepegawaian {$file}");
 
-        return redirect()->route('archive.table')->with('message', 'New Archive has been added');
+        return redirect()->route('archive.table')->with('message', 'Arsip kepegawaian telah ditambahkan');
     }
 
     public function edit(Archive $archive)
@@ -93,12 +95,17 @@ class ArchiveController extends Controller
             'desc' => request('desc'),
             'year_id' => request('year_id'),
         ]);
+        $file = request('no');
+        $user->addActivity("mengubah arsip kepegawaian {$oldArchive} menjadi {$file}");
+
 
         return redirect()->route('archive.table')->with('success', "Arsip No. {$oldArchive} telah diperbaruhi menjadi {$archive->no}");
     }
 
     public function destroy(Archive $archive)
     {
+        $user = Auth::user();
+        $user->addActivity("menghapus arsip kepegawaian {$archive->no}");
         $tempArchive = $archive->no;
         $archive->delete();
         return redirect()->route('archive.table')->with('success', "Arsip No. {$tempArchive} telah dihapus");

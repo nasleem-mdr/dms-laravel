@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Traits\HasRoles;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -68,5 +69,20 @@ class User extends Authenticatable implements JWTSubject
     public function employee()
     {
         return $this->hasOne(Employee::class);
+    }
+
+    public function activities()
+    {
+        return $this->hasMany(Activity::class);
+    }
+
+    public function addActivity($activity)
+    {
+        Activity::create(
+            [
+                'user_id' => Auth::user()->id,
+                'activity' => $activity,
+            ]
+        );
     }
 }

@@ -139,5 +139,19 @@ class NavigationSeeder extends Seeder
             'parent_id' => $master->id,
             'permission_name' => 'create year',
         ]);
+
+        $activity = Navigation::create([
+            'name' => 'Aktivitas',
+            'url' => null,
+            'parent_id' => null,
+            'permission_name' => 'show activity',
+        ]);
+
+        Navigation::create([
+            'name' => 'Aktivitas Pengguna',
+            'url' => 'activities',
+            'parent_id' => $activity->id,
+            'permission_name' => 'show activity',
+        ]);
     }
 }

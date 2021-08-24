@@ -26,6 +26,7 @@ class RolesAndPermissionsSeeder extends Seeder
         Permission::create(['name' => 'create archive']);
         Permission::create(['name' => 'create document']);
         Permission::create(['name' => 'edit profile']);
+        Permission::create(['name' => 'show activity']);
         Permission::create(['name' => 'master']);
 
         $superAdmin = Role::create(['name' => 'super admin']);
@@ -36,7 +37,8 @@ class RolesAndPermissionsSeeder extends Seeder
                 'create employee',
                 'create archive',
                 'create document',
-                'edit profile'
+                'edit profile',
+                'show activity',
             ]);
 
         Role::create(['name' => 'pegawai'])
@@ -44,6 +46,7 @@ class RolesAndPermissionsSeeder extends Seeder
                 'create archive',
                 'create document',
                 'edit profile',
+                'show activity',
             );
     }
 }

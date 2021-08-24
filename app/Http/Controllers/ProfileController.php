@@ -7,6 +7,7 @@ use App\Models\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules\Password;
 
 class ProfileController extends Controller
 {
@@ -26,7 +27,7 @@ class ProfileController extends Controller
         ]);
     }
 
-    function saveFile(Request $request, $agencyName)
+    function saveFile(Request $request, $agencyID)
     {
         $fileName = null;
         $names = explode('.', $request->profile_picture->getClientOriginalName());
@@ -34,7 +35,7 @@ class ProfileController extends Controller
         if ($request->profile_picture) {
             $fileName = $names[0] . '-' . time() . '-' . request('nip') . '-' . 'profile-picture'
                 . '.' . $request->profile_picture->extension();
-            $request->profile_picture->move('../public_html/images/profile/employees/' . $agencyName . '/', $fileName);
+            $request->profile_picture->move('../public_html/images/profile/employees/' . $agencyID . '/', $fileName);
         }
 
         return $fileName;
@@ -51,8 +52,8 @@ class ProfileController extends Controller
     {
         $fileName = $employee->profile_picture;
         if (request('profile_picture') !== null) {
-            $agencyName = $employee->agency->name;
-            $fileName = $this->saveFile(request(), $agencyName);
+            $agencyID = $employee->agency->id;
+            $fileName = $this->saveFile(request(), $agencyID);
         }
 
         $employee->update([
@@ -105,7 +106,12 @@ class ProfileController extends Controller
 
         request()->validate([
             'old_password' => 'required|string|min:8',
-            'password' => 'required|string|min:8',
+            'password' => [
+                'required',
+                Password::min(8)
+                    ->letters()
+                    ->numbers()
+            ],
         ]);
 
         if (!Hash::check(request('old_password'), $user->password)) {
