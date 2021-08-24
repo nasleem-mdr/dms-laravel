@@ -34,7 +34,7 @@ class ProfileController extends Controller
         if ($request->profile_picture) {
             $fileName = $names[0] . '-' . time() . '-' . request('nip') . '-' . 'profile-picture'
                 . '.' . $request->profile_picture->extension();
-            $request->profile_picture->move(public_path('images/profile/employees/' . $agencyName . '/'), $fileName);
+            $request->profile_picture->move('../public_html/images/profile/employees/' . $agencyName . '/', $fileName);
         }
 
         return $fileName;
@@ -64,13 +64,12 @@ class ProfileController extends Controller
 
     public function update()
     {
-
-        $employee = Employee::where('nip', request('nip'))->first();
+        $employee = Auth::user()->employee;
 
         if ($employee->user->email === request('email')) {
-            $emailValidation = 'required';
+            $emailValidation = 'required|email';
         } else {
-            $emailValidation = 'required|unique:users';
+            $emailValidation = 'required|unique:users|email';
         }
 
         request()->validate([
@@ -85,6 +84,7 @@ class ProfileController extends Controller
         ]);
 
         $user = User::find($employee->user->id);
+
 
         $user->update([
             'email' => request('email'),

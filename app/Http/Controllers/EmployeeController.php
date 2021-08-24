@@ -26,6 +26,7 @@ class EmployeeController extends Controller
     {
         return view('employee.create', [
             'user' => Auth::user(),
+            'users' => User::with('employee')->get(),
             'employee' => new Employee,
             'agencies' => Agency::get(),
             'roles' => Role::get(),
@@ -39,7 +40,7 @@ class EmployeeController extends Controller
         request()->validate([
             'nip' => 'required|unique:users,username',
             'name' => 'required',
-            'email' => 'required|unique:users',
+            'email' => 'required|unique:users|string|email',
             'agency_id' => 'required',
             'position_id' => 'required',
             'roles' => 'required',
@@ -113,9 +114,9 @@ class EmployeeController extends Controller
     public function update(Employee $employee)
     {
         if ($employee->user->email === request('email')) {
-            $emailValidation = 'required';
+            $emailValidation = 'required|string|email';
         } else {
-            $emailValidation = 'required|unique|users';
+            $emailValidation = 'required|unique|users|string|email';
         }
 
         request()->validate([

@@ -53,7 +53,8 @@
   <select name="category_id" id="category_id" class="form-control">
     <option disabled selected>Pilih Kategori</option>
     @foreach ($categories as $item)
-    <option {{ ($document->document_category_id === $item->id) ? 'selected' : ''}} value="{{  $item->id }}">
+    <option {{ ($document->document_category_id === $item->id) ? 'selected' : ''}}
+      value="{{ old('category_id') ??  $item->id }}">
       {{ $item->category }}
     </option>
     @endforeach
@@ -64,9 +65,9 @@
 </div>
 
 <div class="form-group">
-  <label for="file">Upload Document</label>
-  <input type="file" class="form-control-file" id="file" name="file">
-  <small>max 5 MB</small>
+  <label for="file">Unggah Dokumen</label>
+  <input type="file" class="form-control-file" id="file" name="file" placeholder="input">
+  <small>maksimal 5 MB</small>
 </div>
 
-<button type="submit" class="btn btn-info">{{ $submit }}</button>
+<button type=" submit" class="btn btn-info">{{ $submit }}</button>

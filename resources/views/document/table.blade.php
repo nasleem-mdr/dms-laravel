@@ -32,8 +32,8 @@
             <th data-field="tahun">Tahun</th>
             <th data-field="kategori">Kategori</th>
             <th data-field="deskripsi">Deskripsi</th>
-            <th data-field="file">File</th>
-            <th data-sortable="falase">Aksi</th>
+            <th data-filed="upload">Tanggal Upload</th>
+            <th data-sortable="false">Aksi</th>
           </tr>
         </thead>
         <tbody>
@@ -47,11 +47,11 @@
             </td>
             @endif
             <td>{{ isset($document->employee->nip) ? $document->employee->nip : $user->username }}</td>
-            <td>{{ $document->no }}</td>
+            <td><a href="{{ route('document.download', $document) }}">{{ $document->no }}</a></td>
             <td>{{ $document->year->year }}</td>
             <td>{{ $document->document_category->category }}</td>
             <td>{{ $document->desc }}</td>
-            <td><a href="{{ route('document.download', $document) }}">{{ $document->file }}</a></td>
+            <td>{{ $document->created_at->format('d-m-Y') }}</td>
             <td>
               <a class="text-primary" href="{{ route('document.edit', $document) }}">Edit</a>
               @include('document.delete', ['document'=> $document])

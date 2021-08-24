@@ -29,9 +29,18 @@
       <form action="{{ route('assign.user.create')  }}" method="post">
         @csrf
         <div class="form-group">
-          <label for="user">NIP Pegawai</label>
-          <input type="text" name="nip" id="user" class="form-control">
+
+          <label for="user" class="form-label">NIP Pegawai</label>
+          <input class="form-control" list="datalistNIP" id="user" name="nip"
+            placeholder="Masukkan NIP Pegawai/Pilih NIP Pegawai">
+          <datalist id="datalistNIP">
+            @foreach($users as $user)
+            <option value="{{$user->username}}">{{$user->employee->name}}</option>
+            @endforeach
+          </datalist>
+
         </div>
+
 
         <div class="form-group">
           <label for="roles">Role</label>
@@ -46,36 +55,37 @@
         </div>
 
         <button type="submit" class="btn btn-primary">Assign</button>
-
       </form>
     </div>
 
   </div>
+</div>
 
-  <div class="card">
-    <div class="card-header text-white" style="background-color: #005ea3;">
-      Table User and Roles
+<div class="card mt-2">
+  <div class="card-header text-white" style="background-color: #005ea3;">
+    Table User and Roles
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <tr>
+          <th>#</th>
+          <th>NIP/Username</th>
+          <th>Email</th>
+          <th>Roles</th>
+          <th>Action</th>
+        </tr>
+        @foreach ($users as $index => $user)
+        <tr>
+          <td>{{ $index+1 }}</td>
+          <td>{{ $user->username }}</td>
+          <td>{{ $user->email }}</td>
+          <td>{{ implode(', ', $user->getRoleNames()->toArray()) }}</td>
+          <td><a href="{{ route('assign.user.edit', $user) }}">Sync</a></td>
+        </tr>
+        @endforeach
+      </table>
     </div>
-    <div class="card-body">
-      <div class="table-responsive">
-        <table class="table table-hover">
-          <tr>
-            <th>#</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Roles</th>
-            <th>Action</th>
-          </tr>
-          @foreach ($users as $index => $user)
-          <tr>
-            <td>{{ $index+1 }}</td>
-            <td>{{ $user->name }}</td>
-            <td>{{ $user->email }}</td>
-            <td>{{ implode(', ', $user->getRoleNames()->toArray()) }}</td>
-            <td><a href="{{ route('assign.user.edit', $user) }}">Sync</a></td>
-          </tr>
-          @endforeach
-        </table>
-      </div>
-    </div>
-    @endsection
+  </div>
+</div>
+@endsection

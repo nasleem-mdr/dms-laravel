@@ -26,13 +26,11 @@
   <div class="card-body">
     <table class="table table-hover">
       <tr>
-        <th>#</th>
         <th>Year</th>
         <th>Action</th>
       </tr>
-      @foreach ($years as $index => $year)
+      @foreach ($years as $year)
       <tr>
-        <td>{{ $index+1 }}</td>
         <td>{{ $year->year }}</td>
         <td>
           <a href="{{ route('year.edit', $year) }}">Edit</a>

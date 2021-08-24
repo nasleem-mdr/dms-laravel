@@ -21,14 +21,14 @@
     </div>
 
     <div class="mt-5">
-      <h5>List Positions at {{ $agency->name }}</h5>
+      <h5>List Jabatan di {{ $agency->name }}</h5>
     </div>
 
     <table class="table table-hover mt-0">
       <tr>
         <th>#</th>
-        <th>Position</th>
-        <th>Action</th>
+        <th>Jabatan</th>
+        <th>Aksi</th>
       </tr>
 
       @foreach ($agency->positions as $index => $position)
@@ -36,7 +36,7 @@
         <td>{{ $index + 1 }}</td>
         <td>{{ $position->position }}</td>
         <td>
-          <a class="btn btn-primary " href="{{ route('position.detail',[$agency, $position]) }}">Detail</a>
+          <!--<a class="btn btn-primary " href="{{ route('position.detail',[$agency, $position]) }}">Detail</a>-->
           <a class="btn btn-primary " href="{{ route('position.edit', [$agency, $position]) }}">Edit</a>
           @include('agency.position.delete', ['position'
           => $position])</td>
@@ -45,6 +45,32 @@
 
     </table>
     <a href="{{ route('position.create', $agency) }}" type="submit" class="btn btn-primary">Create New Position</a>
+
+    <div class="mt-5">
+      <h5>List Pegawai di {{ $agency->name }}</h5>
+    </div>
+
+    <table class="table table-hover mt-0">
+      <tr>
+        <th>#</th>
+        <th>Jabatan</th>
+        <th>NIP</th>
+        <th>Nama</th>
+      </tr>
+
+      @foreach ($agency->employees as $index => $employee)
+      <tr>
+        <td>{{ $index + 1 }}</td>
+        <td>{{ $employee->position->position }}</td>
+        <td>{{ $employee->nip }}</td>
+        <td>{{ $employee->name }}</td>
+      </tr>
+      @endforeach
+
+    </table>
+
   </div>
 </div>
+
+
 @endsection

@@ -27,7 +27,6 @@ class ArchiveController extends Controller
 
     public function create()
     {
-
         return view('archive.create', [
             'archive' => new Archive,
             'years' => Year::get(),

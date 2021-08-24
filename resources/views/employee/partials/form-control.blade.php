@@ -3,8 +3,7 @@
   <select name="agency_id" id="agency_id" class="form-control" onchange="getPositions()">
     <option selected disabled>Choose a Agency</option>
     @if ($user->hasRole('admin'))
-    <option {{ isset($agency) ? $item->id == $agency->id ? 'selected' : '' : ''}}
-      value="{{ old('agency_id') ?? $user->employee->agency->id  }}">
+    <option selected value="{{ old('agency_id') ?? $user->employee->agency->id  }}">
       {{ $user->employee->agency->name }}</option>
     @endif
 
@@ -24,6 +23,11 @@
   <label for="position_id">Pilih Jabatan</label>
   <select name="position_id" id="position_id" class="form-control">
     <option selected disabled>Pilih satu jabatan</option>
+    @if($user->hasRole('admin'))
+    @foreach ($user->employee->agency->positions as $position)
+    <option value="{{ old('position_id') ?? $position->id }}">{{ $position->position }}</option>
+    @endforeach
+    @endif
   </select>
   @error('position_id')
   <div class="text-danger mt-1 d-block">{{ $message }}</div>
@@ -51,8 +55,7 @@
 
 <div class="form-group">
   <label for="email">Email</label>
-  <input type="text" name="email" id="email" class="form-control"
-    value="{{ old('email') ?? isset ($employee->user->email) ? $employee->user->email : '' }}"
+  <input type="text" name="email" id="email" class="form-control" value="{{ old('email') ?? '' }}"
     placeholder="refinaldy@test.test">
   @error('email')
   <div class="text-danger mt-1 d-block">{{ $message }}</div>

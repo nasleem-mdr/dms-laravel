@@ -8,6 +8,7 @@ use App\Models\Agency;
 use App\Models\Document;
 use Illuminate\Http\Request;
 use App\Models\DocumentCategory;
+use App\Rules\DocumentNumberFormat;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
@@ -47,7 +48,7 @@ class DocumentController extends Controller
     public function download(Document $document)
     {
         $agency = Agency::find($document->agency_id);
-        $filePath = public_path("documents/{$agency->name}/$document->file");
+        $filePath = $document->file;
         if ($filePath === null) {
             abort('404');
         }
@@ -56,31 +57,29 @@ class DocumentController extends Controller
 
     function saveFile(Request $request, $agencyID)
     {
-        $fileName = null;
         $category = DocumentCategory::find(request('category_id'));
         $year = Year::find(request('year_id'));
         $agency = Agency::find($agencyID);
-
-        $names = explode('.', $request->file->getClientOriginalName());
+        $fileName = null;
         if ($request->file) {
-            $fileName =  $request->no . '-' . $category->category . '-' . $year->year
+            $fileName = $request->no . '-' . $category->category . '-' . $year->year
                 . '.' . $request->file->extension();
-            $request->file->move(public_path('documents/' . $agency->name), $fileName);
+            $location = $request->file->move(public_path('documents/' . $agency->id, '/' . $year->year . '/'), $fileName);
+            // $location = $request->file->move('documents/' . $agency->id . '/' . $year->year . '/', $fileName); // production
         }
 
-        return $fileName;
+        return $location;
     }
 
     public function store()
     {
         request()->validate([
-            'no' => 'required',
-            'desc' => 'required',
+            'no' => ['required', 'unique:documents', new DocumentNumberFormat()],
+            'desc' => 'required|string',
             'year_id' => 'required',
             'category_id' => 'required',
-            'file' => 'required|mimes:pdf, jpg, png, doc, docx|max:5120',
+            'file' => 'required|mimes:pdf, jpg, png, doc, docx, xlsx|max:5120',
         ]);
-
 
         $user = Auth::user();
 
@@ -91,16 +90,16 @@ class DocumentController extends Controller
             request()->validate([
                 'agency_id' => 'required',
             ]);
-            $employeeID = null;
+            $employeeID = $user->employee->id;
             $agencyID = request('agency_id');
         }
 
-        $fileName = $this->saveFile(request(), $agencyID);
+        $location = $this->saveFile(request(), $agencyID);
 
         $document = Document::create([
             'no' => request('no'),
             'desc' => request('desc'),
-            'file' => $fileName,
+            'file' => $location,
             'year_id' => request('year_id'),
             'employee_id' => $employeeID,
             'agency_id' => $agencyID,
@@ -114,11 +113,7 @@ class DocumentController extends Controller
     {
         $user = Auth::user();
 
-        if ($user->id !== $document->employee->id && !$user->hasRole(['super admin', 'admin'])) {
-            abort('403');
-        }
-
-        $agencies = null;
+        $agencies = new Agency();
         if ($user->hasRole('super admin')) {
             $agencies = Agency::get();
         }
@@ -136,10 +131,6 @@ class DocumentController extends Controller
     public function update(Document $document)
     {
         $user = Auth::user();
-
-        if ($user->id !== $document->employee->id && !$user->hasRole(['super admin', 'admin'])) {
-            abort('403');
-        }
 
         request()->validate([
             'no' => 'required',

@@ -59,16 +59,18 @@ class PositionController extends Controller
 
     public function update(Agency $agency, Position $position)
     {
-
         request()->validate([
             'name' => 'required',
         ]);
 
-        $agency->position->update([
-            'name' => request('name'),
+        $position = Position::where('agency_id', $agency->id)->where('id', $position->id)->get()->first();
+
+
+        $position->update([
+            'position' => request('position'),
         ]);
 
-        return redirect()->route('position.table');
+        return redirect()->route('agency.detail', $agency);
     }
 
     public function destroy(Agency $agency, Position $position)
