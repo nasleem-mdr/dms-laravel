@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\Activity;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -39,6 +41,18 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
         $this->username = $this->findUsername();
+    }
+
+    public function authenticated()
+    {
+        $user = Auth::user();
+        $user->addActivity('masuk ke sistem');
+    }
+
+    public function logout()
+    {
+        $user = Auth::user();
+        $user->addActivity('keluar dari sistem');
     }
 
     public function findUsername()
