@@ -44,7 +44,7 @@ class EmployeeController extends Controller
             'agency_id' => 'required',
             'position_id' => 'required',
             'roles' => 'required',
-            'phone_number' => 'numeric|max:14'
+            'phone_number' => 'digits_between:8,14'
         ]);
 
         $names = explode(' ', request('name'));
@@ -126,7 +126,7 @@ class EmployeeController extends Controller
             'agency_id' => 'required',
             'position_id' => 'required',
             'roles' => 'required',
-            'phone_number' => 'numeric|max:14'
+            'phone_number' => 'digits_between:8,14'
         ]);
 
 
