@@ -44,7 +44,7 @@
       @endforeach
 
     </table>
-    <a href="{{ route('position.create', $agency) }}" type="submit" class="btn btn-primary">Create New Position</a>
+    <a href="{{ route('position.create', $agency) }}" type="submit" class="btn btn-primary">Buat Posisi Baru</a>
 
     <div class="mt-5">
       <h5>List Pegawai di {{ $agency->name }}</h5>

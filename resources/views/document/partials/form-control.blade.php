@@ -1,8 +1,8 @@
 @if ($user->hasRole('super admin'))
 <div class="form-group">
-  <label for="agency_id">Agency</label>
+  <label for="agency_id">Unit</label>
   <select name="agency_id" id="agency_id" class="form-control" onchange="getPositions()">
-    <option selected disabled>Choose a Agency</option>
+    <option selected disabled>Pilih Unit</option>
 
     @foreach ($agencies as $agency)
     <option {{ ( isset($document->agency->id) ? $agency->id === $document->agency->id : '') ? 'selected' : '' }}

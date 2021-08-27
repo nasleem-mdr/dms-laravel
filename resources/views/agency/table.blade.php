@@ -2,14 +2,14 @@
 
 @section('content')
 <div class="card">
-  <div class="card-header text-white" style="background-color: #005ea3;">Tabel Unit</div>
+  <div class="card-header text-white" style="background-color: #005ea3;">Tabel Instansi</div>
   <div class="card-body ">
     <div class="table-responsive">
       <table class="table table-bordered table-hover" id="agencyTable" width="100%" cellspacing="0">
         <thead>
           <tr>
             <th>#</th>
-            <th data-field="nama_unit">Nama Unit</th>
+            <th data-field="nama_unit">Nama Instansi</th>
             <th data-field="alamat">Alamat</th>
             <th data-field="kontak">Kontak</th>
             <th data-sortable="falase">Aksi</th>

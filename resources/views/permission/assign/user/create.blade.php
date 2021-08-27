@@ -22,7 +22,7 @@
 @endif
 
 <div class="card mb-3">
-  <div class="card-header text-white" style="background-color: #005ea3;">Pick Roles for User</div>
+  <div class="card-header text-white" style="background-color: #005ea3;">Pilih Roles untuk User</div>
 
   <div class="card-body">
     <div class="table-responsive">
@@ -63,7 +63,7 @@
 
 <div class="card mt-2">
   <div class="card-header text-white" style="background-color: #005ea3;">
-    Table User and Roles
+    Tabel User dan Roles
   </div>
   <div class="card-body">
     <div class="table-responsive">
@@ -73,7 +73,7 @@
           <th>NIP/Username</th>
           <th>Email</th>
           <th>Roles</th>
-          <th>Action</th>
+          <th>Aksi</th>
         </tr>
         @foreach ($users as $index => $user)
         <tr>

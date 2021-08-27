@@ -1,5 +1,5 @@
 <div class="form-group">
-  <label for="name">Agency Name</label>
+  <label for="name">Nama Unit</label>
   <input type="text" name="name" id="name" class="form-control" value="{{ old('agency_name') ?? $agency->name}}"
     placeholder="Unit 1 Kabupaten Tanah Tidung" readonly>
   <input type="text" name="agency_id" id="id" class="form-control" value="{{ old('agency_id') ?? $agency->id }}" hidden>
@@ -9,7 +9,7 @@
 </div>
 
 <div class="form-group">
-  <label for="position">Position</label>
+  <label for="position">Jabatan</label>
   <input type="text" name="position" id="position" class="form-control"
     value="{{ old('position') ?? $position->position }}" placeholder="Sekretaris">
   @error('position')

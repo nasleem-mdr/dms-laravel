@@ -1,5 +1,5 @@
 <div class="form-group">
-  <label for="year">Year</label>
+  <label for="year">Tahun</label>
   <input type="text" value="{{ old('year') ?? $year->year }}" name="year" id="year" class="form-control"
     placeholder="2030">
   @error('year')

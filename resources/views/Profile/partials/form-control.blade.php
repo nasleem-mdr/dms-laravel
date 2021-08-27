@@ -7,7 +7,7 @@
 </div>
 
 <div class="form-group">
-  <label for="name">Name</label>
+  <label for="name">Nama</label>
   <input type="text" name="name" id="name" class="form-control" value="{{ old('name') ?? $employee->name }}">
   @error('name')
   <div class="text-danger mt-1 d-block">{{ $message }}</div>
@@ -23,7 +23,7 @@
 </div>
 
 <div class="form-group">
-  <label for="address">Address</label>
+  <label for="address">Alamat</label>
   <input type="text" name="address" id="address" class="form-control" value="{{ old('address') ?? $employee->address }}"
     placeholder="Jalan. Kel. Kec.">
   @error('address')
@@ -32,7 +32,7 @@
 </div>
 
 <div class="form-group">
-  <label for="phone_number">Phone Number</label>
+  <label for="phone_number">Nomor Telpon</label>
   <input type="text" name="phone_number" id="phone_number" class="form-control"
     value="{{ old('phone_number') ?? $employee->phone_number }}" placeholder="081xxxxxx">
   @error('phone_number')

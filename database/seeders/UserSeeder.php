@@ -50,7 +50,7 @@ class UserSeeder extends Seeder
         $admin->assignRole('admin', 'pegawai');
         Employee::create([
             'user_id' => $admin->id,
-            'nip' => '000000000',
+            'nip' => '111111111',
             'name' => 'John Doe',
             'agency_id' => 1,
             'address' => null,
