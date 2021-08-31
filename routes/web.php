@@ -23,6 +23,7 @@ Route::middleware('has.role')->group(function () {
 
     Route::prefix('activities')->group(function () {
         Route::get('/', 'ActivityController@index')->name('activity.show');
+        Route::get('/{agency}', 'ActivityController@show')->name('activity.unit');
     });
     Route::prefix('role-and-permission')->namespace('Permissions')->middleware('permission:assign permission')->group(function () {
 
