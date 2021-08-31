@@ -1,6 +1,6 @@
 function loadData() {
-    dummyData1 = [122, 129,134,145,167];
-    dummyData2 = [22, 49,54,45,77];
+    // dummyData1 = [122, 129,134,145,167];
+    // dummyData2 = [22, 49,54,45,77];
   //get total of units/agency
 let elTotalAgency = document.getElementById('total_agencies');
 
@@ -30,8 +30,8 @@ fetch('/get/total/agency/archives')
           archives.push(data.total_archives);
       });
 
-    //   createGraphArchive(agencies, archives)
-      createGraphArchive(agencies, dummyData1)
+      createGraphArchive(agencies, archives)
+    //   createGraphArchive(agencies, dummyData1)
   });
 
   let units = [];
@@ -45,8 +45,8 @@ fetch('/get/total/agency/documents')
             documents.push(data.total_documents);
         });
 
-        // createGraphDocument(units, documents)
-        createGraphDocument(units, dummyData2)
+        createGraphDocument(units, documents)
+        // createGraphDocument(units, dummyData2)
     });
 }
 

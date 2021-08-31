@@ -17,6 +17,38 @@
     </div>
     <div class="card-body">
 
+      {{-- super admin --}}
+      @if ($user->hasRole('super admin'))
+      <!-- Button trigger modal -->
+      @foreach ($agencies as $agency)
+      <button onclick="loadActivity({{ $agency->id }})" type="button" class="btn btn-primary" data-toggle="modal"
+        data-target="#staticBackdrop">
+        {{ $agency->name }}
+      </button>
+      @endforeach
+      <!-- Modal -->
+      <div class="modal fade modal-dialog-scrollable" id="staticBackdrop" data-backdrop="static" data-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="agencyName">Aktivitas</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div id="logActivity" class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{--batas super admin  --}}
+      @else
+
 
       @foreach ($items as $date => $activities)
 
@@ -24,7 +56,7 @@
 
       @foreach ($activities as $activity)
       <li class=" ml-5">
-        @if ($user->hasRole('super admin') || $user->hasRole('pegawai') && !$user->hasRole('admin'))
+        @if ($user->hasRole('pegawai') && !$user->hasRole('admin'))
         {{ $activity->user->username == $user->username ? 'Anda' : $activity->user->username }}
         @else
         {{ $activity->username == $user->username ? 'Anda' : $activity->username }}
@@ -43,7 +75,7 @@
       @endforeach
 
       @endforeach
-
+      @endif
     </div>
   </div>
   @endsection

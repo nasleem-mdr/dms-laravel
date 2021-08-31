@@ -68,12 +68,6 @@ class ActivityController extends Controller
                     return $item->created_at->format('d-m-Y');
                 });
         }
-        // if ($user->hasRole("super admin")) {
-        //     $items = Activity::get()->groupBy(function ($item) {
-        //         return $item->created_at->format('d:M:y');
-        //     });
-        // }
-
 
         $data = [];
         foreach ($items as $key => $item) {
