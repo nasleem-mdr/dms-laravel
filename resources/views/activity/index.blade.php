@@ -17,6 +17,7 @@
     </div>
     <div class="card-body">
 
+
       @foreach ($items as $date => $activities)
 
       <h5>{{ $date }}</h5>
@@ -42,11 +43,6 @@
       @endforeach
 
       @endforeach
-
-
-
-
-      </ul>
 
     </div>
   </div>

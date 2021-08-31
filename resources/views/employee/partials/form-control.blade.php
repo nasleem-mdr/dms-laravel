@@ -1,7 +1,7 @@
 <div class="form-group">
-  <label for="agency_id">Agency</label>
+  <label for="agency_id">Instansi</label>
   <select name="agency_id" id="agency_id" class="form-control" onchange="getPositions()">
-    <option selected disabled>Choose a Agency</option>
+    <option selected disabled>Pilih instansi</option>
     @if ($user->hasRole('admin'))
     <option selected value="{{ old('agency_id') ?? $user->employee->agency->id  }}">
       {{ $user->employee->agency->name }}</option>

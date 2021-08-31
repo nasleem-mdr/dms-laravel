@@ -1,5 +1,5 @@
 <div class="form-group">
-  <label for="name">Name</label>
+  <label for="name">Nama</label>
   <input type="text" name="name" id="name" class="form-control" value="{{ old('name') ?? $agency->name }}"
     placeholder="Unit 1 Kabupaten Tanah Tidung">
   @error('name')
@@ -8,7 +8,7 @@
 </div>
 
 <div class="form-group">
-  <label for="address">Address</label>
+  <label for="address">Alamat</label>
   <input type="text" name="address" id="address" class="form-control" value="{{ old('address') ?? $agency->address }}"
     placeholder="Jalan. Nama Jalan, Kelurahan, Kecamatan, ...">
   @error('address')

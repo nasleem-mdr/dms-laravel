@@ -20,7 +20,7 @@
       Data Pegawai @if ($user->hasRole(['admin', 'pegawai']))
       {{ $user->employee->agency->name }}
       @endif
-      <a class="btn btn-sm btn-primary float-right" href="{{ route('employee.create') }}">Add New Employee</a>
+      <a class="btn btn-sm btn-primary float-right" href="{{ route('employee.create') }}">Tambah Pegawai Baru</a>
     </div>
   </div>
   <div class="card-body">
@@ -36,7 +36,7 @@
             @if ($user->hasRole('super admin'))
             <th data-field="instansi">Instansi</th>
             @endif
-            <th data-field="jabatanb">Jabatan</th>
+            <th data-field="jabatan">Jabatan</th>
             <th data-sortable="falase">Action</th>
           </tr>
         </thead>

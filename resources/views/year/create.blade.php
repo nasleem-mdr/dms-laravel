@@ -9,7 +9,7 @@
 @endif
 
 <div class="card mb-3">
-  <div class="card-header text-white" style="background-color: #005ea3;">Add new Year</div>
+  <div class="card-header text-white" style="background-color: #005ea3;">Tambah Tahun</div>
   <div class="card-body">
     <form action="{{ route('year.create')  }}" method="post">
       @csrf
@@ -21,13 +21,13 @@
 
 <div class="card">
   <div class="card-header text-white" style="background-color: #005ea3;">
-    Table Years
+    Tabel Tahun
   </div>
   <div class="card-body">
     <table class="table table-hover">
       <tr>
-        <th>Year</th>
-        <th>Action</th>
+        <th>Tahun</th>
+        <th>Aksi</th>
       </tr>
       @foreach ($years as $year)
       <tr>

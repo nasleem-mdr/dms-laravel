@@ -1,7 +1,7 @@
 <div class="form-group">
   <label for="parent_id">Parent</label>
   <select name="parent_id" id="parent_id" class="form-control">
-    <option selected disabled>Choose a parent</option>
+    <option selected disabled>Pilih parent</option>
     @foreach ($navigations as $item)
     <option {{ isset($navigation) ? $item->id == $navigation->parent_id ? 'selected' : '' : ''}}
       value="{{ $item->id }}">
@@ -13,7 +13,7 @@
 <div class="form-group">
   <label for="permission_name">Permission</label>
   <select name="permission_name" id="permission_name" class="form-control">
-    <option selected disabled>Choose a permission</option>
+    <option selected disabled>Pilih perijinan</option>
     @foreach ($permissions as $permission)
     <option {{ isset($navigation) ? $permission->name == $navigation->permission_name ? 'selected' : '' : ''  }}
       value="{{ $permission->name }}">
@@ -28,9 +28,9 @@
 <div class="row">
   <div class="col-md-6">
     <div class="form-group">
-      <label for="name">Name</label>
+      <label for="name">Nama</label>
       <input type="text" name="name" id="name" class="form-control"
-        value="{{ old('name') ?? isset($navigation) ? $navigation->name : ''}}" placeholder="Create new post">
+        value="{{ old('name') ?? isset($navigation) ? $navigation->name : ''}}" placeholder="Buat baru">
       @error('permission_name')
       <div class="text-danger mt-1 d-block">{{ $message }}</div>
       @enderror

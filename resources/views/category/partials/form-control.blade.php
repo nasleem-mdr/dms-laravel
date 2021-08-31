@@ -1,5 +1,5 @@
 <div class="form-group">
-  <label for="category">Category</label>
+  <label for="category">Kategori</label>
   <input type="text" value="{{ old('category') ?? $category->category }}" name="category" id="category"
     class="form-control" placeholder="Surat Masuk">
   @error('category')

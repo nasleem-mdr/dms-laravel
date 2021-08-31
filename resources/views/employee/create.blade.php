@@ -70,7 +70,7 @@
 
 @section('content')
 <div class="card">
-  <div class="card-header">Add new Employee</div>
+  <div class="card-header">Tambah Pegawai Baru</div>
   <div class="card-body">
     <form action="{{ route('employee.create') }}" method="POST" enctype="multipart/form-data">
       @csrf

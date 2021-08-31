@@ -9,7 +9,7 @@
 @endif
 
 <div class="card mb-3">
-  <div class="card-header text-white" style="background-color: #005ea3;">Add new Category</div>
+  <div class="card-header text-white" style="background-color: #005ea3;">Tambah Kategori Baru</div>
   <div class="card-body">
     <form action="{{ route('category.create')  }}" method="post">
       @csrf
@@ -21,14 +21,14 @@
 
 <div class="card">
   <div class="card-header text-white" style="background-color: #005ea3;">
-    Table Categories
+    Tabel Kategori
   </div>
   <div class="card-body">
     <table class="table table-hover">
       <tr>
         <th>#</th>
-        <th>Category</th>
-        <th>Action</th>
+        <th>Kategori</th>
+        <th>Aksi</th>
       </tr>
       @foreach ($categories as $index => $category)
       <tr>
