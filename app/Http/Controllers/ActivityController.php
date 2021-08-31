@@ -20,13 +20,6 @@ class ActivityController extends Controller
             $items =  Activity::with('user')->latest()->get()->groupBy(function ($item) {
                 return $item->created_at->format('d-M-y');
             });
-            // $items = Activity::get()->groupBy(function ($item) {
-            //     return $item->created_at->format('d:M:y');
-            // });
-            // $data = [];
-            // foreach ($items as $key => $item) {
-            //     $data[$key] = ActivityResource::collection($item);
-            // }
 
             return view('activity.index', [
                 'user' => $user,
@@ -38,7 +31,6 @@ class ActivityController extends Controller
 
             $items =  Activity::join('users', 'activities.user_id', '=', 'users.id')
                 ->join('employees', 'employees.user_id', '=', 'users.id')
-                // ->join('agencies', 'agencies.id', '=', 'employees.agency_id')
                 ->where('employees.agency_id', '=', $user->employee->agency->id)
                 ->latest()->get(['activities.created_at', 'activities.activity', 'users.username'])->groupBy(function ($item) {
                     return $item->created_at->format('d-m-Y');
