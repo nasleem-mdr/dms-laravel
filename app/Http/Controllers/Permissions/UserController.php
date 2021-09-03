@@ -20,7 +20,17 @@ class UserController extends Controller
 
     public function store()
     {
+
+        request()->validate([
+            'nip' => 'required|digits_between:8,18',
+            'roles' => 'required',
+        ]);
+
         $user = User::where('username', request('nip'))->first();
+        if ($user === null) {
+            return back()->with('error', 'Data NIP pegawai tidak ditemukan');
+        }
+
         $rolesID = request('roles');
         $roles = array();
         foreach ($rolesID as $roleID) {
@@ -53,6 +63,16 @@ class UserController extends Controller
 
     public function update(User $user)
     {
+        request()->validate([
+            'nip' => 'required|digits_between:8,18',
+            'roles' => 'required',
+        ]);
+
+        $user = User::where('username', request('nip'))->first();
+        if ($user === null) {
+            return back()->with('error', 'Data NIP pegawai tidak ditemukan');
+        }
+
         $rolesID = request('roles');
         $roles = array();
         foreach ($rolesID as $roleID) {

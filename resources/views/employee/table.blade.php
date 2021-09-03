@@ -56,7 +56,7 @@
             @if ($user->hasRole('super admin'))
             <td>{{ $employee->agency->name }}</td>
             @endif
-            <td>{{ $employee->position->position }}</td>
+            <td>{{ $employee->position->position ?? '-' }}</td>
 
             <td>
               <a class=" text-primary" href="{{ route('employee.edit', $employee) }}">Edit</a>

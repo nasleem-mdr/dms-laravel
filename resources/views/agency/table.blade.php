@@ -21,8 +21,8 @@
           <tr>
             <td>{{ $index + 1 }}</td>
             <td>{{ $agency->name }}</td>
-            <td>{{ $agency->address }}</td>
-            <td>{{ $agency->contact }}</td>
+            <td>{{ $agency->address ?? '-' }}</td>
+            <td>{{ $agency->contact ?? '-'}}</td>
             <td>
               <a class="btn btn-primary " href="{{ route('agency.detail', $agency) }}">Detail</a>
               <a class="btn btn-primary " href="{{ route('agency.edit', $agency) }}">Edit</a>

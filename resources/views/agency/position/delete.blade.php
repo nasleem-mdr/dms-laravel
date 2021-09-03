@@ -9,8 +9,14 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="position-{{ $position->id }}Label"> Anda yakin ingin menghapus jabatan
-          {{ $position->position  }} pada {{ $agency->name }}? </h5>
+        <div class="col">
+          <h5 class="modal-title" id="position-{{ $position->id }}Label"> Anda yakin ingin menghapus jabatan
+            {{ $position->position  }} pada {{ $agency->name }}? </h5>
+          <p>
+            Perhatian : Jika anda menghapus jabatan pada unit/instansi ini, maka seluruh pegawai pada unit ini yang
+            memiliki jabatan {{ $position->id }} ini sementara tidak memiliki jabatan.
+        </div>
+        </p>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

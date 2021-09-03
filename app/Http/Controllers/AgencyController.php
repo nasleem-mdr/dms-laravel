@@ -35,7 +35,7 @@ class AgencyController extends Controller
     public function store()
     {
         request()->validate([
-            'name' => 'required',
+            'name' => 'required|string',
         ]);
 
         Agency::create([

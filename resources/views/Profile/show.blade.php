@@ -27,7 +27,7 @@
           <div class="img__wrap">
             <a href="{{ route('profile.profile_picture', $employee) }}">
               <img class="img_responsive img-rounded img__img " style="max-height: 220px;"
-                src="{{ ($employee->profile_picture === 'default-profile.png') ? asset('/images/profile/default-profile.png') :  asset('/images/profile/employees/' . $employee->agency->name . '/' . $employee->profile_picture)  }}"
+                src="{{ ($employee->profile_picture === 'default-profile.png') ? asset('/images/profile/default-profile.png') :  asset($employee->profile_picture)  }}"
                 alt="{{ $employee->profile_picture}}" width="220" />
               <div class="img__description_layer">
                 <p class="img__description ">Ganti Foto</p>
@@ -38,7 +38,8 @@
 
           <div class="mt-3">
             <h4>{{ $employee->name }}</h4>
-            <p class="text-secondary mb-1">{{ $employee->position->position }}, {{ $employee->agency->name }}</p>
+            <p class="text-secondary mb-1">{{ $employee->position->position ?? 'Belum ada jabatan'}},
+              {{ $employee->agency->name }}</p>
             <p class="text-muted font-size-sm">{{ $employee->address }}</p>
             <a href="{{ route('profile.reset_password') }}" class="btn btn-outline-info mt-lg-2">Ubah
               Password</a>

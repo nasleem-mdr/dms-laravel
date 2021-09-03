@@ -9,8 +9,14 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="agency-{{ $agency->id }}Label"> Anda yakin ingin menghapus instansi
-          {{ $agency->name  }}? </h5>
+        <div class="col">
+          <h5 class="modal-title" id="agency-{{ $agency->id }}Label"> Anda yakin ingin menghapus instansi
+            {{ $agency->name  }}? </h5>
+          <p>
+            Perhatian : Jika anda menghapus suatu unit, maka seluruh data pegawai dan dokumen pada unit tersebut akan
+            terhapus.
+        </div>
+        </p>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -22,12 +28,12 @@
             <form action="{{ route('agency.delete', $agency) }}" method="post">
               @csrf
               @method('DELETE')
-              <button type="submit" class="btn btn-danger btn-block">Delete</button>
+              <button type="submit" class="btn btn-danger btn-block">Tetap Hapus</button>
             </form>
           </div>
           <div class="mx-1"></div>
           <div class="w-100">
-            <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-primary btn-block" data-dismiss="modal">Batalkan</button>
           </div>
         </div>
       </div>

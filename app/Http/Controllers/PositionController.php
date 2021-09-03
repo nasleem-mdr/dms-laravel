@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Agency;
+use App\Models\Employee;
 use App\Models\Position;
 use Illuminate\Http\Request;
 
@@ -75,6 +76,12 @@ class PositionController extends Controller
 
     public function destroy(Agency $agency, Position $position)
     {
+        $employees = Employee::where('agency_id', $agency->id)->where('position_id', $position->id)->get();
+        foreach ($employees as $employee) {
+            $employee->update([
+                'position_id' => null,
+            ]);
+        }
         $position->delete();
         return redirect()->route('agency.detail', $agency);
     }

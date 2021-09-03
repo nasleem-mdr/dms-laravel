@@ -35,10 +35,11 @@ class ProfileController extends Controller
         if ($request->profile_picture) {
             $fileName = $names[0] . '-' . time() . '-' . request('nip') . '-' . 'profile-picture'
                 . '.' . $request->profile_picture->extension();
-            $request->profile_picture->move('../public_html/images/profile/employees/' . $agencyID . '/', $fileName);
+            $location = $request->profile_picture->move(public_path('/images/profile/employees/' . $agencyID . '/'), $fileName);
+            // $request->profile_picture->move('../public_html/images/profile/employees/' . $agencyID . '/', $fileName);
         }
-
-        return $fileName;
+        $location = '/images/profile/employees/' . $agencyID . '/' . $fileName;
+        return $location;
     }
 
     public function editProfilePicture(Employee $employee)
@@ -50,14 +51,14 @@ class ProfileController extends Controller
 
     public function updateProfilePicture(Employee $employee)
     {
-        $fileName = $employee->profile_picture;
+        $location = $employee->profile_picture;
         if (request('profile_picture') !== null) {
             $agencyID = $employee->agency->id;
-            $fileName = $this->saveFile(request(), $agencyID);
+            $location = $this->saveFile(request(), $agencyID);
         }
 
         $employee->update([
-            'profile_picture' => $fileName,
+            'profile_picture' => $location,
         ]);
 
         return redirect()->route('profile.show')->with('success', 'Foto Profil Berhasil Digantikan');
@@ -76,6 +77,7 @@ class ProfileController extends Controller
         request()->validate([
             'name' => 'required',
             'email' => $emailValidation,
+            'phone_number' => 'digits_between:8,14',
         ]);
 
         $employee->update([

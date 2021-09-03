@@ -85,8 +85,6 @@
   <label for="roles">Pilih role</label>
   <select name="roles[]" id="roles" class="form-control select2" multiple>
 
-
-
     @foreach ($roles as $role)
     <option
       {{ $user->hasRole('admin') ? (($role->name === 'super admin') ?  'disabled hidden' : '' ) : '' }}value="{{ $role->id }}">

@@ -3,9 +3,13 @@
 <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 @endsection
 
+
+
+
 @section('content')
 <div class="container d-flex justify-content-center">
     <div class="card col col-xl-4 px-0 my-5" style="border-radius:8px;">
+
         <form action="{{ route('login') }}" method="POST">
             @csrf
             <div class="card-header radius-10 bg__first-color px-0"
@@ -17,6 +21,11 @@
                 </div>
             </div>
             <div class="card-body px-2">
+                @if (session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+                @endif
                 <div class="col pt-3 ">
                     <label class="sr-only" for="inputEmail">Email/NIP</label>
                     <div class="input-group mb-2 mt-0">
@@ -28,6 +37,7 @@
                         <input type="text" class="form-control" id="inputEmail" name="credential" placeholder="Email"
                             required>
                     </div>
+
                 </div>
                 <div class="col pt-2">
                     <label class="sr-only" for="inputPassword">Password</label>
@@ -52,9 +62,33 @@
                 </div>
                 <div class="col text-center py-3">
                     @if (Route::has('password.request'))
-                    <p>Lupa Password? <a class="text__first-color font-weight-bold"
-                            href="{{ route('password.request') }}">Reset</a></p>
+                    <p>Lupa Password?
+                        <a href="#" class="text__first-color font-weight-bold" data-toggle="modal"
+                            data-target="#resetPasswordModal">
+                            Reset
+                        </a>
+                    </p>
                     @endif
+
+                    <div class="modal fade" id="resetPasswordModal" tabindex="-1"
+                        aria-labelledby="resetPasswordModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="resetPasswordModalLabel">Ketentuan Reset Password</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Harap menghubungi admin kantor untuk reset password!
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
             </div>

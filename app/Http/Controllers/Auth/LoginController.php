@@ -82,4 +82,9 @@ class LoginController extends Controller
     {
         return $this->username;
     }
+
+    protected function sendFailedLoginResponse(Request $request)
+    {
+        return back()->with('error', 'username atau password salah');
+    }
 }

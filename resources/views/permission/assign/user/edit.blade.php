@@ -11,6 +11,18 @@
   );
   });
 </script>
+
+<script>
+  function checkRoles(selected){
+    let selectedRolesElement = document.getElementById('roles');
+    let selectedRoles = selected.options[selected.selectedIndex].text
+    let infoElement = document.getElementById('info')
+    if(selectedRoles === 'admin' || selectedRoles === 'super admin'){
+      infoElement.innerText = "Jika memilih admin atau super admin, maka user otomatis akan mendapatkan role pegawai"
+    }
+    
+  }
+</script>
 @endpush
 
 @section('content')
@@ -27,21 +39,26 @@
       @csrf
       @method('PUT')
       <div class="form-group">
-        <label for="user">User</label>
-        <input type="text" name="email" id="user" class="form-control" value="{{ $user ? $user->email : ''}}">
+        <label for="nip">NIP</label>
+        <input type="text" name="nip" id="nip" class="form-control" value="{{ $user ? $user->username : ''}}">
+        @error('nip')
+        <div class="text-danger mt-1 d-block">{{ $message }}</div>
+        @enderror
       </div>
 
       <div class="form-group">
         <label for="roles">Role</label>
-        <select name="roles[]" id="roles" class="form-control select2" multiple>
+        <select onchange="checkRoles(this)" name="roles[]" id="roles" class="form-control select2" multiple>
           @foreach ($roles as $role)
           <option {{ $user->roles()->find($role->id) ? 'selected' : '' }} value="{{ $role->id }}">{{ $role->name }}
           </option>
           @endforeach
-          @error('role')
-          <div class="text-danger mt-2 d-block">{{ $message }}</div>
-          @enderror
         </select>
+        @error('roles')
+        <div class="text-danger mt-2 d-block">{{ $message }}</div>
+        @enderror
+        <div id="info" class="text-info mt-2 d-block"></div>
+
       </div>
 
       <button type="submit" class="btn btn-primary">Sync</button>

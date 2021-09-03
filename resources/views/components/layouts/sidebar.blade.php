@@ -13,7 +13,7 @@
     <div class="sidebar-header">
       <div class="user-pic">
         <img class="img-responsive img-rounded" style="max-height: 60px;"
-          src="{{ (auth()->user()->employee->profile_picture === 'default-profile.png') ? asset('/images/profile/default-profile.png') :  asset('/images/profile/employees/' . auth()->user()->employee->agency->name . '/' . auth()->user()->employee->profile_picture)  }}"
+          src="{{ (auth()->user()->employee->profile_picture === 'default-profile.png') ? asset('/images/profile/default-profile.png') :  asset(auth()->user()->employee->profile_picture)  }}"
           alt="{{ auth()->user()->employee->profile_picture}}">
       </div>
       <div class="user-info">
@@ -21,7 +21,7 @@
           <a class="text-white"
             href="{{ route('profile.show')}}"><strong>{{ auth()->user()->employee->name }}</strong></a>
         </span>
-        <span class="user-role">{{ auth()->user()->employee->position->position }}</span>
+        <span class="user-role">{{ auth()->user()->employee->position->position ?? '-' }}</span>
         <span class="user-role"><a class="text-white" href="{{ route('profile.show')}}">My Profile</a></span>
       </div>
     </div>

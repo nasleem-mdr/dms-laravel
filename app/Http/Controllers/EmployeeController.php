@@ -38,7 +38,7 @@ class EmployeeController extends Controller
     {
 
         request()->validate([
-            'nip' => 'required|unique:users,username|max:18',
+            'nip' => 'required|unique:users,username|numeric|digits_between:8,18',
             'name' => 'required',
             'email' => 'required|unique:users|string|email',
             'agency_id' => 'required',
@@ -117,10 +117,11 @@ class EmployeeController extends Controller
         if ($employee->user->email === request('email')) {
             $emailValidation = 'required|string|email';
         } else {
-            $emailValidation = 'required|unique|users|string|email';
+            $emailValidation = 'required|unique:users|string|email';
         }
 
         request()->validate([
+            'nip' => 'required|unique:employees|digits_between:8,18',
             'name' => 'required',
             'email' => $emailValidation,
             'agency_id' => 'required',
@@ -129,10 +130,10 @@ class EmployeeController extends Controller
             'phone_number' => 'digits_between:8,14'
         ]);
 
-
         $fileName = $employee->profile_picture;
 
         $employee->update([
+            'nip' => request('nip'),
             'name' => ucwords(request('name')),
             'agency_id' => request('agency_id'),
             'address' => request('address') ?? null,
@@ -144,9 +145,8 @@ class EmployeeController extends Controller
         $user = User::find($employee->user->id);
         $user->syncRoles(request('roles'));
 
-        $names = explode(' ', request('name'));
-
         $user->update([
+            'username' => request('nip'),
             'email' => request('email'),
         ]);
 

@@ -11,6 +11,17 @@
   );
   });
 </script>
+<script>
+  function checkRoles(selected){
+    let selectedRolesElement = document.getElementById('roles');
+    let selectedRoles = selected.options[selected.selectedIndex].text
+    let infoElement = document.getElementById('info')
+    if(selectedRoles === 'admin' || selectedRoles === 'super admin'){
+      infoElement.innerText = "Jika memilih role admin atau super admin, maka user otomatis akan mendapatkan role pegawai"
+    }
+    
+  }
+</script>
 @endpush
 
 @section('content')
@@ -18,6 +29,12 @@
 @if (session('success'))
 <div class="alert alert-success">
   {{ session('success') }}
+</div>
+@endif
+
+@if (session('error'))
+<div class="alert alert-danger">
+  {{ session('error') }}
 </div>
 @endif
 
@@ -33,6 +50,10 @@
           <label for="user" class="form-label">NIP Pegawai</label>
           <input class="form-control" list="datalistNIP" id="user" name="nip"
             placeholder="Masukkan NIP Pegawai/Pilih NIP Pegawai">
+          @error('nip')
+          <div class="text-danger mt-1 d-block">{{ $message }}</div>
+          @enderror
+
           <datalist id="datalistNIP">
             @foreach($users as $user)
             <option value="{{$user->username}}">{{$user->employee->name}}</option>
@@ -40,18 +61,17 @@
           </datalist>
 
         </div>
-
-
         <div class="form-group">
           <label for="roles">Role</label>
-          <select name="roles[]" id="roles" class="form-control select2" multiple>
+          <select onchange="checkRoles(this)" name="roles[]" id="roles" class="form-control select2" multiple>
             @foreach ($roles as $role)
             <option value="{{ $role->id }}">{{ $role->name }}</option>
             @endforeach
-            @error('role')
-            <div class="text-danger mt-2 d-block">{{ $message }}</div>
-            @enderror
           </select>
+          <div id="info" class="text-info mt-2 d-block"></div>
+          @error('roles')
+          <div class="text-danger mt-1 d-block">{{ $message }}</div>
+          @enderror
         </div>
 
         <button type="submit" class="btn btn-primary">Assign</button>

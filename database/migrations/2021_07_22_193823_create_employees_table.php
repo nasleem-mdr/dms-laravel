@@ -21,7 +21,7 @@ class CreateEmployeesTable extends Migration
             $table->string('phone_number')->nullable();
             $table->string('profile_picture')->nullable();
             $table->unsignedBigInteger('agency_id');
-            $table->unsignedBigInteger('position_id');
+            $table->unsignedBigInteger('position_id')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('agency_id')->references('id')->on('agencies')->onDelete('cascade');
             $table->foreign('position_id')->references('id')->on('positions')->onDelete('cascade');

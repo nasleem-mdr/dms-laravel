@@ -61,7 +61,7 @@
       @foreach ($agency->employees as $index => $employee)
       <tr>
         <td>{{ $index + 1 }}</td>
-        <td>{{ $employee->position->position }}</td>
+        <td>{{ $employee->position->position ?? '-' }}</td>
         <td>{{ $employee->nip }}</td>
         <td>{{ $employee->name }}</td>
       </tr>
