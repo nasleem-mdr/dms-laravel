@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
     public function run()
     {
         $superAdmin = User::create([
-            'username' => '1800018000',
+            'username' => '2021001',
             'email' => 'superadmin@test.test',
             'password' => Hash::make('superadmindms'),
         ]);
@@ -31,7 +31,7 @@ class UserSeeder extends Seeder
 
         Employee::create([
             'user_id' => $superAdmin->id,
-            'nip' => '1800018000',
+            'nip' => '2021001',
             'name' => 'Refinaldy M',
             'agency_id' => 1,
             'address' => null,
@@ -42,7 +42,7 @@ class UserSeeder extends Seeder
 
 
         $admin = User::create([
-            'username' => '1800018999',
+            'username' => '2021002',
             'email' => 'admin@test.test',
             'password' => Hash::make('admindms'),
         ]);
@@ -50,7 +50,7 @@ class UserSeeder extends Seeder
         $admin->assignRole('admin', 'pegawai');
         Employee::create([
             'user_id' => $admin->id,
-            'nip' => '1800018999',
+            'nip' => '2021002',
             'name' => 'John Doe',
             'agency_id' => 1,
             'address' => null,
