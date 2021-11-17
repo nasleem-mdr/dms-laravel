@@ -78,6 +78,7 @@ class DocumentController extends Controller
             'desc' => 'required|string',
             'year_id' => 'required',
             'category_id' => 'required',
+            'tags' => 'required',
             'file' => 'required|mimes:pdf, jpg, png, doc, docx, xlsx|max:5120',
         ]);
 
@@ -107,7 +108,8 @@ class DocumentController extends Controller
         ]);
         $noDocument = request('no');
         $user->addActivity("membuat arsip dokumen {$noDocument}");
-
+        $tags = explode(",", $request->tags);
+        $document->tag($tags);
         return redirect()->route('document.table')->with('success', "{$document->file} berhasil ditambahkan");
     }
 

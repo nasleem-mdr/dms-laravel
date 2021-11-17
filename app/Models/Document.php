@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Document extends Model
 {
     use HasFactory;
-
+    use \Conner\Tagging\Taggable;
+    
     protected $guarded = [
         'id',
     ];

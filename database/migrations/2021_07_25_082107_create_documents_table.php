@@ -18,6 +18,7 @@ class CreateDocumentsTable extends Migration
             $table->string('no')->unique();
             $table->string('desc');
             $table->string('file');
+            $table->timestamp('expired_at');
             $table->unsignedBigInteger('year_id');
             $table->unsignedBigInteger('agency_id')->nullable();
             $table->unsignedBigInteger('employee_id')->nullable();

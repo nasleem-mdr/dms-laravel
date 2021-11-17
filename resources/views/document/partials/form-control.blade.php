@@ -33,7 +33,20 @@
   <div class="text-danger mt-1 d-block">{{ $message }}</div>
   @enderror
 </div>
-
+<div class="form-group">
+  <label for="desc">Tags</label>
+  <input type="text" name="tags" id="tags" class="form-control" value="{{ old('tags') ?? $document->tags }}"
+    placeholder="">
+  @error('tags')
+  <div class="text-danger mt-1 d-block">{{ $message }}</div>
+  @enderror
+</div>
+<div>
+				<strong>Tag:</strong>
+				@foreach($article->tags as $tag)
+					<label class="label label-info">{{ $tag->name }}</label>
+				@endforeach
+			</div>
 <div class="form-group">
   <label for="year_id">Tahun</label>
   <select name="year_id" id="year_id" class="form-control">
